@@ -17,6 +17,7 @@ class Controller extends BaseController
             'message' => 'ok',
             'data' => $result
         ];
+//        return json_encode($result, JSON_UNESCAPED_UNICODE);
         return response($result);
     }
 
@@ -26,7 +27,8 @@ class Controller extends BaseController
             'message' => $errMessage,
             'data' => []
         ];
-        return response($result, $errCode);
+        return json_encode($result, JSON_UNESCAPED_UNICODE);
+//        return response($result, $errCode);
     }
 
 }
