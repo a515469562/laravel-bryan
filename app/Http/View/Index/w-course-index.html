@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>精品课程_未明学院</title>   
+<meta name="keywords" content="未明学院,精品课程">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("m.")>0){
+    vincent=vincent.replace("{$Think.const.MOBILE}","{$Think.const.WEB}");
+    window.location.href=vincent;
+    }
+    </script> 
+</head>
+<body style="background: #f7f7f7;overflow:scroll">
+
+ {include file="./application/index/view/index/w-top.html"} 
+
+<div class="course-top">
+    <h1>精品课程</h1>
+    <h2>热门行业项目实战，掌握行业所需技能</h2>
+</div>
+<div class="course-body">
+    <div class="course-body-top">
+        <a onclick="change(0)" herf="javascript:void(0)">
+            <div class="course-body-top1 selected" id="x0">
+                    全部
+            </div>
+        </a>
+        <a onclick="change(1)" herf="javascript:void(0)">
+            <div class="course-body-top1" id="x1">
+                    进行中
+            </div>
+        </a>
+        <a onclick="change(2)" herf="javascript:void(0)">
+            <div class="course-body-top1" id="x2">
+                    已结束
+            </div>
+        </a>
+
+                    
+
+    </div>
+    <div class="course-body-desc">
+        {volist name="result" id="vo"}
+        <a href="/course/{$vo.id}" target="_blank">
+            <div class="course-body-desc-body   class-{$vo.checkdate}">
+                <div class="course-body-desc-body-img">
+                    <img alt="{$vo.title}" src= "http://img.compassedu.hk/{$vo.img}"> 
+                    <div class="course-tabs">
+                    {if $vo.tab1name!=''}<div class="course-tab">{$vo.tab1name}</div>{/if}
+                    {if $vo.tab2name!=''}<div class="course-tab">{$vo.tab2name}</div>{/if}
+                    {if $vo.tab3name!=''}<div class="course-tab">{$vo.tab3name}</div>{/if}
+                    </div>
+               </div>
+                <div class="course-body-desc-body-title">
+                    {$vo.title}    
+                </div>
+                <div class="course-body-desc-body-contant">
+                    {$vo.description}  
+                </div>
+                <div class="course-body-desc-body-bottom">
+                <div class="course-body-desc-body-bottom1">
+                    已报人数：{$vo.quota-$vo.number}/{$vo.quota}人                  
+                </div>
+                {if $vo.checkdate==1}
+                <div class="course-body-desc-body-bottom2">
+                  {$vo.day}开课
+                </div>  
+                {elseif $vo.checkdate==2}
+                <div class="course-body-desc-body-bottom3">
+                报名已结束
+                </div>
+                {/if}
+              </div>
+            </div>
+        </a> 
+        {/volist}
+
+    </div>
+</div>
+
+{include file="./application/index/view/index/w-bottom.html"} 
+
+</body>
+<script>
+
+    function change(x){
+        $(".course-body-top1").removeClass("selected");
+        $("#x"+x).addClass("selected");
+        if(x==0){
+            $(".course-body-desc-body").show();
+        }else{
+            $(".course-body-desc-body").hide();
+            $(".class-"+x).show();
+        }
+
+        
+    }
+</script>
+<script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 132293);
+// 初始化成功后调用美洽 showPanel
+    _MEIQIA('allSet', function(){
+      _MEIQIA('showPanel');
+    });
+</script>
+</html>

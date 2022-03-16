@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<link href="/public/static/index/CSS/wmxy-custom.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+</head>
+
+
+<body style="background: #f7f7f7;">
+
+ {include file="./application/index/view/index/w-top-1.html"} 
+
+ <div class="cust-container" style="min-height:600px;overflow: hidden;">
+    <div class="row"> 
+{include file="./application/index/view/index/w-side.html"} 
+
+        <div class="col-xs-9" style="padding-left:0px">               
+            <div class="event-top">
+                {if $result}
+                    {volist name="result" id="a"}
+                        {if $a.overdue!=1}
+                        <a onclick="jump('{$a.course_buy}')" target="_blank">
+                        <div class="part-event">
+                            <div class="part-img">
+                                <img src ="{$a.img}">
+                            </div>
+                            <div class="part-content">
+                                <div class="ucn">{$a.title}{if $a.info!=""||$a.info!=NULL||$a.info}（{$a.info}）{/if}</div>
+                                <div class="lh"><span class="spanc">
+                                    {if $a.order==1}结营时间：{$a.end}
+                                    {elseif $a.order==2}项目进行中
+                                    {elseif $a.order==3}开营时间：{$a.date}
+                                    {elseif $a.order==4}下次开课时间：{$a.date}
+                                    {/if}
+                                </span></div>
+                            {if $a.overdue!=1}
+                            <button>
+                                    {if $a.order==3}
+                                    查看课表
+                                    {elseif $a.order==4}
+                                    继续学习
+                                    {else}
+                                    回看学习
+                                    {/if}
+                            </button>
+                            {/if}
+                          </div>
+                        </div></a>
+                        {else}
+                        <div class="part-event">
+                                <div class="part-img">
+                                    <img src ="{$a.img}">
+                                </div>
+                                <div class="part-content">
+                                    <div class="ucn">{$a.title}{if $a.info!=""||$a.info!=NULL||$a.info}（{$a.info}）{/if}</div>
+                                    <div class="lh"><span class="spanc">
+                                        {if $a.order==1}结营时间：{$a.end}
+                                        {elseif $a.order==2}项目进行中
+                                        {elseif $a.order==3}开营时间：{$a.date}
+                                        {elseif $a.order==4}下次开课时间：{$a.date}
+                                        {/if}
+                                    </span></div>
+                              </div>
+                            </div>
+                        {/if}
+                    {/volist}
+                {else}
+                    <div class="order-blank">
+                        <img src="http://img.compassedu.hk/wmxy/nonebag.png">
+                        <div class="order-blank-tip">您尚未报名任何活动</div>
+                    </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="wenjuanpython" class="wenjuan" style="width:600px"></div>
+<div id="md-overlay" class="md-overlay"></div>
+<script>
+
+    $("#my_event").addClass("open");
+    $("#my_event_tag").addClass("open");
+
+    /*var s1=0;
+    var s2=0;
+    timeDown();
+    let time = setInterval(()=>{
+                                if(s1 == 3&&s2 == 3){
+                                    clearInterval(time)
+                                }
+                                timeDown()
+                            },1000);
+    function timeDown () {
+
+                const endTime1 = new Date("2018/11/17 20:00:00");
+                const endTime2 = new Date("2018/11/17 17:00:00");
+                const nowTime = new Date();
+                let leftTime1 = parseInt((endTime1.getTime()-nowTime.getTime())/1000);
+                let leftTime2 = parseInt((endTime2.getTime()-nowTime.getTime())/1000);
+
+                if(leftTime1 > 300){
+                    s1=1;
+                }else if(leftTime1+1800>0){
+                    s1=2
+                }else{
+                    s1=3
+                }
+                if(leftTime2 > 300){
+                    s2=1;
+                }else if(leftTime2+1800>0){
+                    s2=2
+                }else{
+                    s2=3
+                }
+        }*/
+
+    function jump(s){
+        /*if(s==209&&s2==1){
+            alert("训练营暂未开始，开营仪式于2018年11月17日下午5点进行");
+        }else if(s==208&&s1==1){
+            alert("训练营暂未开始，开营仪式于2018年11月17日晚8点进行");
+        }else if(s==209&&s2==2){
+            url="http://www.enaca.cn/opening";
+            window.open(url);
+        }else if(s==208&&s1==2){
+            url="http://www.enaca.cn/opening";
+            window.open(url);
+        }else{
+            url="http://www.enaca.cn/classroom/"+s;
+            window.open(url);
+        }*/
+        // if(s==472){
+        //     alert("训练营暂未开始");
+        //     return false;
+        // }
+        url="http://www.enaca.cn/classroom/"+s;
+        window.open(url);
+    }
+
+</script>
+{include file="./application/index/view/index/w-bottom-1.html"} 
+
+</body>
+
+
+</html>

@@ -27,8 +27,8 @@ class Controller extends BaseController
             'message' => $errMessage,
             'data' => []
         ];
-        return json_encode($result, JSON_UNESCAPED_UNICODE);
-//        return response($result, $errCode);
+//        return json_encode($result, JSON_UNESCAPED_UNICODE);
+        return response($result, $errCode);
     }
 
 }

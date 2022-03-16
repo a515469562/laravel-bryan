@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+<script type=text/javascript src="/public/static/index/JS/jquery.cookie.js"></script>
+<link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+<script type=text/javascript src="/public/static/index/JS/mui.min.js"></script>
+<style>
+        html,body{
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background:#f7f7f7;
+        }
+    </style>
+</head>
+<body>
+        <header class="header">
+        {if $Think.session.gzh!=1}
+        <a  href="./guest"><div class="jump-index-m"></div></a>
+        <img class="header-logo" src="http://img.compassedu.hk/wmxy/back-white.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/75">  
+        <span style="padding-left:55px;">我的订单</span>
+        {else}
+        <span style="padding-left:20px;">我的订单</span>
+        {/if}
+        
+        </header>
+        <div class="header-bg">
+        
+        </div>
+
+        {if $order}
+        {if $Think.session.weixin==1}
+        
+        <div class="guest-order">
+                {volist name="order" id="o"}
+               
+                <div class="guest-order-list">
+                   <div class="guest-order-title">
+                        <div class="p1">{$o.ct_order}</div>
+                        <div class="p2">
+                            {if $o.state_order=="TRADE_FINISHED"}
+                            <span>已付款</span>
+                            {else}
+                            待付款
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="guest-order-desc">
+                        {$o.desc_order}
+                    </div>
+                    <div class="guest-order-price">
+                        应付金额：<span>￥{$o.price_order}</span> 
+                        {if $o.state_order!="TRADE_FINISHED"}
+                        <button onclick="callpay('{$o.id_order}')">立即付款</button>
+                        {/if}
+                    </div>
+                </div>
+                {/volist}
+        </div>
+
+        <script type="text/javascript">
+            //调用微信JS api 支付
+            function jsApiCall(s)
+            {
+                var id=s;
+                $.post("./getorder", {
+                "id": id,
+            }, function (r) {
+                var jsApiParameters= eval('(' + r + ')');
+                 // 建议使用这中方式发起支付.
+                 WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                     //公众号名称，由商户传入
+                     
+                     "timeStamp":jsApiParameters['timeStamp'],
+                     "appId":jsApiParameters['appId'],  //时间戳，自1970年以来的秒数
+                     "nonceStr":jsApiParameters['nonceStr'],    //随机串
+                     "package":jsApiParameters['package'],
+                     "signType":'MD5',     //微信签名方式：
+                     "paySign":jsApiParameters['paySign']        //微信签名
+                  }, function(res){
+                 // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                     window.location.reload();
+                   }
+                  }
+                 );
+                });
+            }
+    
+            function callpay(s)
+            {
+                if (typeof WeixinJSBridge == "undefined"){
+                    if( document.addEventListener ){
+                        document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                    }else if (document.attachEvent){
+                        document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                        document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                    }
+                }else{
+                    jsApiCall(s);
+                }
+            }
+        </script>
+        {else}
+        <div class="guest-order">
+                {volist name="order" id="o"}
+                <div class="guest-order-list">
+                    <form  role="form" name="alipayment{$o.id_order}" action="./alipay.trade.wap.pay-PHP-UTF-8/wappay/pay.php" method=post target="_blank">
+                    <div class="guest-order-title">
+                        <div class="p1">{$o.ct_order}</div>
+                        <div class="p2">
+                            {if $o.state_order=="TRADE_FINISHED"}
+                            <span>已付款</span>
+                            {else}
+                            待付款
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="guest-order-desc">
+                        {$o.desc_order}
+                    </div>
+                    <input type="text" id="price"style="display:none" name="WIDtotal_fee" value="{$o.price_order}" readonly="true">
+                    <input type="text" id="item"style="display:none" name="WIDsubject" value="{$o.item_order}" readonly="true" >
+                    <input type="text" id="order_no" name="WIDout_trade_no"style="display:none" value="{$o.code_order}" readonly="true" >
+                    <input type="text" id="WIDtotal_amount"style="display:none"  name="WIDtotal_amount" value="{$o.price_order}" readonly="true">
+                    <div class="guest-order-price">
+                        应付金额：<span>￥{$o.price_order}</span> 
+                        {if $o.state_order!="TRADE_FINISHED"}
+                        <button onclick="payment('{$o.id_order}')">立即付款</button>
+                        {/if}
+                    </div>
+                    </form>
+                </div>
+                {/volist}
+        </div>
+        {/if}
+        {else}
+        <div class="guest-time-blank">暂无订单！</div>
+        {/if}
+</body>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</html>
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+</head>
+
+<style>
+.cust-container{
+    padding-left: 60px!important;
+    padding-top: 10px!important;
+    width: 1100px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    margin: 74px auto 10px auto;
+    padding: 0px;
+    clear: both;
+    height: 100%;
+    font-size: 14px;
+}
+.row {
+    margin-top: 10px;
+}
+.login-box-body {
+    height: auto;
+}   
+</style>
+<body style="background: #f7f7f7;">
+
+ {include file="./application/index/view/index/w-top-1.html"} 
+
+ <div class="cust-container" style="min-height:600px">
+        <div class="row">
+                
+                <div class="login-box-body wxp" style="text-align: center;">
+                            
+                  <script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+                  <div id="login_container1">
+                  </div>
+                 </div>
+                
+                  <script>  	
+                   //var url=window.location.href;
+                   //url=url.replace("_",",");
+                   url = "http://www.enaca.cn/bindwx";
+                   //url = "http://test.enaca.cn/bindwx";
+                   var obj = new WxLogin({
+                       self_redirect: false,
+                       id: "login_container1",
+                       appid: "wxf192d129c2291b53",
+                       scope: "snsapi_login",
+                       redirect_uri: url,
+                       state: "996633",
+                       style: "",
+                       href: "",
+                   });</script>
+                
+                
+                
+                </div>  
+ </div>
+
+{include file="./application/index/view/index/w-bottom-1.html"} 
+
+</body>
+
+
+</html>

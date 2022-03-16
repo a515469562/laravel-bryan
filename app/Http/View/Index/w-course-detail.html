@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$result['title']}_未明学院</title>   
+<meta name="keywords" content="未明学院,{$result['title']}">
+<meta name="description" content="未明学院的{$result['title']}项目是未明学院老师精心打造，{$result['title']}项目特色为{$result['description']}，{$result['desc_title']}，{$result['point_title']}。">
+
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("m.")>0){
+    vincent=vincent.replace("{$Think.const.MOBILE}","{$Think.const.WEB}");
+    window.location.href=vincent;
+    }
+    </script> 
+</head>
+<body>
+
+ {include file="./application/index/view/index/w-top.html"} 
+
+
+
+<div class="detail-top"><!--顶部-->
+    <img class="bg-img" alt="{$result['title']}" src="http://img.compassedu.hk/{$result['bg1']}">
+    <div class="c-top-title">{$result['title']}</div>
+    <div class="c-top-desc">{$result['description']}</div>
+    <div class="c-top-admin">
+        <div class="c-top-admin-1">
+            <div class="name">课程费用</div>
+            <div class="detail">¥{$result['fee']}</div>
+        </div>
+        <div class="c-top-admin-2">
+            <div class="name" id="lefttime">截止日期</div>
+            <div class="detail">{$result['ydate']}</div>
+        </div>
+        <div class="c-top-admin-1">
+            <div class="name">已报人数</div>
+            <div class="detail">{$result['quota']-$result['number']}/{$result['quota']}人</div>
+        </div>        
+    </div>
+    <div class="c-top-aply">
+        <a href="javascript:void(0)" id="apply">
+            <div class="aply-btn">我要报名预约</div>
+            <div class="course-ewm">
+            <img alt="扫码添加课程助理为好友,课程助理会详细和您介绍报名流程" src="http://img.compassedu.hk/enaca.jpg?imageMogr2/auto-orient/thumbnail/x500/blur/1x0/quality/80" class="" style="height: 250px;">
+            <span style="font-size: 14px;text-align:  center;color:  #333333;display:  block;margin-top:  5px;">扫码添加课程助理为好友<br>
+            <span style="font-size:12px;display:  block;">课程助理会详细和您介绍报名流程</span></span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="fix-time">
+        <div class="time-cont course-container ">
+        <div class="time-title">{$result['title']}</div>
+    <div class="release-topic"><span style="margin-right:5px">已报人数</span><span class="re-num">{$result['quota']-$result['number']}</span>
+    <span class="time-topic">截止日期</span>
+    
+    <span class="time-part tpday">{$result['ydate']}</span>
+    
+    <div class="fixbt" style="float: right;margin-left: 26px;position:  relative;"> <button class="time-botton">我要报名</button>
+    <div class="course-ewm" style="    left: -140px;top: 50px;height:306px">
+    
+    <img alt="扫码添加课程助理为好友,课程助理会详细和您介绍报名流程" src="http://img.compassedu.hk/enaca.jpg?imageMogr2/auto-orient/thumbnail/x500/blur/1x0/quality/80" class="" style="height: 250px;">
+    <span style="font-size: 14px;text-align:  center;    line-height: 18px;color:  #333333;display:  block;margin-top:  5px;    position: relative;    bottom: 20px;">扫码添加课程助理为好友<br>
+    <span style="font-size:12px;display:  block;">课程助理会详细和您介绍报名流程</span></span>
+    </div>
+    
+    </div>
+    </div>
+        <div style="clear:both"></div>
+        </div>
+</div>
+<div class="course-container course-desc"><!--课程介绍-->
+    <div class="desc-title">项目课程介绍</div>
+    <div class="desc-title-1">{$result['desc_title']}</div>
+    <div class="desc-desc">{$result['desc_body']}</div>
+    <div class="desc-img"><!--导师介绍-->
+        <img alt="{$teacher['wmxy_tea']}" src="http://img.compassedu.hk/{$teacher['img_tea']}?imageMogr2/auto-orient/thumbnail/252x/blur/1x0/quality/95">
+        <div class="desc-img-tea">{$teacher['wmxy_tea']}</div>
+    </div>
+</div>
+
+<div class="course-point"><!--特色优势-->
+    <div class="course-container">
+        <div class="desc-title">项目特色及优势介绍</div>
+        <div class="desc-title-1">{$result['point_title']}</div>
+        <div class="point-desc">
+            <div class="point-detail">
+                <div class="detail-order">1</div>
+                <div class="detail-title">{$result['point_1_title']}</div>
+                <div class="detail-desc">{$result['point_1_body']}</div>
+            </div>
+            <div class="point-detail">
+                <div class="detail-order">2</div>
+                <div class="detail-title">{$result['point_2_title']}</div>
+                <div class="detail-desc">{$result['point_2_body']}</div>
+            </div>
+            <div class="point-detail">
+                <div class="detail-order">3</div>
+                <div class="detail-title">{$result['point_3_title']}</div>
+                <div class="detail-desc">{$result['point_3_body']}</div>
+            </div>
+            <div class="point-img"><img src="http://img.compassedu.hk/{$result['point_img']}?imageMogr2/auto-orient/thumbnail/324x/blur/1x0/quality/75"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="course-gain"><!--成果-->
+    <img class="bg-img" alt="往期课程项目成果展示" src="http://img.compassedu.hk/{$result['bg2']}?imageMogr2/auto-orient/thumbnail/!80p/blur/1x0/quality/75">
+    <div class="course-gain-body">
+            <div class="desc-title">往期课程项目成果展示</div>
+            <div class="desc-title-1">{$result['gain_title']}</div>
+            <div class="gain-img-1">
+                <img alt="往期课程项目成果展示图1" src="http://img.compassedu.hk/{$result['gain_1_img']}?imageMogr2/auto-orient/thumbnail/350x/blur/1x0/quality/75">
+                <div class="gain-title">{$result['gain_1_title']}</div>
+                <div class="gain-desc">{$result['gain_1_body']}</div>
+            </div>
+            <div class="gain-img-2">
+                <img alt="往期课程项目成果展示图2" src="http://img.compassedu.hk/{$result['gain_2_img']}?imageMogr2/auto-orient/thumbnail/350x/blur/1x0/quality/75">
+                <div class="gain-title">{$result['gain_2_title']}</div>
+                <div class="gain-desc">{$result['gain_2_body']}</div>
+            </div>
+            <div class="gain-img-1">
+                <img alt="往期课程项目成果展示图3" src="http://img.compassedu.hk/{$result['gain_3_img']}?imageMogr2/auto-orient/thumbnail/350x/blur/1x0/quality/75">
+                <div class="gain-title">{$result['gain_3_title']}</div>
+                <div class="gain-desc">{$result['gain_3_body']}</div>
+            </div>
+    </div>
+</div>
+
+
+<div class="course-list"><!--课程安排-->
+    <div class="course-container">
+        <div class="desc-title">课程安排</div>
+        <div class="desc-title-1">{$result['list_title']}</div>
+        {volist name="list" id="co"}
+
+        <div class="course-list-body">
+            <div class="list-body-order">{$co.num_ct}</div>
+            <div class="list-body-title">{$co.title_ct}</div>
+            <div class="list-body-desc-1">{$co.title_1_ct}</div>
+            <div class="list-body-desc-2">{$co.body_1_ct}</div>
+            {if $co.title_2_ct!=''}
+            <div class="list-body-desc-1">{$co.title_2_ct}</div>
+            <div class="list-body-desc-2">{$co.body_2_ct}</div>
+            {/if}
+            {if $co.title_3_ct!=''}
+            <div class="list-body-desc-1">{$co.title_3_ct}</div>
+            <div class="list-body-desc-2">{$co.body_3_ct}</div>
+            {/if}
+            {if $co.title_4_ct!=''}
+            <div class="list-body-desc-1">{$co.title_4_ct}</div>
+            <div class="list-body-desc-2">{$co.body_4_ct}</div>
+            {/if}
+            {if $co.title_5_ct!=''}
+            <div class="list-body-desc-1">{$co.title_5_ct}</div>
+            <div class="list-body-desc-2">{$co.body_5_ct}</div>
+            {/if}
+            {if $co.title_6_ct!=''}
+            <div class="list-body-desc-1">{$co.title_6_ct}</div>
+            <div class="list-body-desc-2">{$co.body_6_ct}</div>
+            {/if}
+            {if $co.title_7_ct!=''}
+            <div class="list-body-desc-1">{$co.title_7_ct}</div>
+            <div class="list-body-desc-2">{$co.body_7_ct}</div>
+            {/if}
+            {if $co.title_8_ct!=''}
+            <div class="list-body-desc-1">{$co.title_8_ct}</div>
+            <div class="list-body-desc-2">{$co.body_8_ct}</div>
+            {/if}
+            {if $co.title_9_ct!=''}
+            <div class="list-body-desc-1">{$co.title_9_ct}</div>
+            <div class="list-body-desc-2">{$co.body_9_ct}</div>
+            {/if}
+            {if $co.title_10_ct!=''}
+            <div class="list-body-desc-1">{$co.title_10_ct}</div>
+            <div class="list-body-desc-2">{$co.body_10_ct}</div>
+            {/if}
+        </div>
+        {/volist}
+    </div>
+</div>
+
+<div class="pub-pj">
+        <div class="course-pj-body">
+                <div class="pub-pj-title">学员评价</div>
+                {volist name="pjlist" id="pj"}
+                <div class="pub-pj-img">
+                    <img src="{$pj.img}" alt="{$pj.name}头像">
+                    <div class="pj-name">{$pj.name}</div>
+                    <div class="pj-star">
+                        <div class="pj-star-1"></div>
+                        <div class="pj-star-1"></div>
+                        <div class="pj-star-1"></div>
+                        <div class="pj-star-1"></div>
+                        <div class="pj-star-1"></div>
+                    </div>
+                    <div class="pj-pro"><a title="{$pj.pro}">{$pj.pro}</a></div>
+                    <div class="pj-desc">{$pj.pj}</div>
+                </div>
+                {/volist}
+        </div>
+    </div>
+
+
+
+<div class="course-tea"><!--常见问题-->
+    <div class="course-faq">
+        <div class="desc-title">常见问题</div>
+        {if $result['teacher']==1||$result['teacher']==3}
+        <div class="course-q">训练营持续时间多久？</div>
+        <div class="course-a">数据分析项目制训练营为期四周，其中前两周是理论知识的学习以及示范项目的讲解，后两周授课老师和助教将会协助学员完成指定项目。</div>   
+        <div class="course-q">训练营是以怎样的方式进行？</div>
+        <div class="course-a">数据分析项目制训练营采用了直播授课+作业录屏讲解的授课方式，同时我们运用大量心理学知识及经验，
+            通过微信班级群+小程序打卡作业+名师全程陪伴的方式，激发出学员的学习动力。学习数据分析是可以成为一件很有意思的事情。</div>
+        <div class="course-q">分配的项目是自己独立完成，还是老师带着做？</div>
+        <div class="course-a">我们的主讲老师和助教老师会带着你手把手的写代码，做项目，帮你更好的掌握数据分析的理论，陪你一起去踩实践过程中会遇到的坑。</div>    
+        <div class="course-q">完成项目制学习后，我们简历上的项目经历会不会雷同？</div>
+        <div class="course-a">针对每个不同的班级，我们都设计了不同的项目，而且确保该项目仅针对此次班级，不会被重复使用。</div>  
+        <div class="course-q">项目完成后，我可以得到什么？</div>
+        <div class="course-a">每个项目完成后，我们都会协助学生完成该项目的项目报告，报告完成后我们将颁发未明学院授予的项目结课证书。</div>  
+        {else if $result['teacher']==2||$result['teacher']==4}
+        <div class="course-q">训练营持续时间多久？</div>
+        <div class="course-a">训练营为期四周，其中前两周是理论知识的学习以及示范项目的讲解，后两周授课老师和助教将会协助学员完成指定项目。</div>   
+        <div class="course-q">训练营是以怎样的方式进行？</div>
+        <div class="course-a">训练营采用了直播授课+作业录屏讲解的授课方式，同时我们运用大量心理学知识及经验，通过微信班级群+小程序打卡作业+名师全程陪伴的方式，
+            激发出学员的学习动力。学习是可以成为一件很有意思的事情。</div>
+        <div class="course-q">分配的项目是自己独立完成，还是老师带着做？</div>
+        <div class="course-a">我们的主讲老师和助教老师会带着你手把手的写代码，做项目，帮你更好的掌握理论知识，陪你一起去踩实践过程中会遇到的坑。</div>    
+        <div class="course-q">完成项目制学习后，我们简历上的项目经历会不会雷同？</div>
+        <div class="course-a">针对每个不同的班级，我们都设计了不同的项目，而且确保该项目仅针对此次班级，不会被重复使用。</div>  
+        <div class="course-q">项目完成后，我可以得到什么？</div>
+        <div class="course-a">每个项目完成后，我们都会协助学生完成该项目的项目报告，报告完成后我们将颁发未明学院授予的项目结课证书。</div>  
+        
+        {/if}
+    </div>
+</div>
+
+{include file="./application/index/view/index/w-bottom.html"}      
+
+<div id="console-bg" class="console-bg"></div>        
+</body>
+
+
+<script>
+        var sh=$('.course-desc').offset().top;
+        var state="{$result['checkdate']}";
+        $(window).scroll(function(e){
+            if(state==1){
+                s=$(document).scrollTop();
+                if(s+52>sh)
+                    {
+                    $('.fix-time').show();
+                    }else{
+                        $('.fix-time').hide();	
+                    }
+            }
+                });	
+            
+            
+        
+        </script>
+        <!--
+ <script>
+        $("#apply").click(function(){
+            var top = $(document).scrollTop();
+                $(document).on('scroll.unable', function(e) {
+                $(document).scrollTop(top);
+                })
+                 $("#MEIQIA-BTN-TEXT").click();
+                 $("#MEIQIA-PANEL-HOLDER").addClass("console");
+                 $("#console-bg").css("visibility", "visible")
+        });
+        $(".time-botton").click(function(){
+            var top = $(document).scrollTop();
+                $(document).on('scroll.unable', function(e) {
+                $(document).scrollTop(top);
+                })
+                $("#MEIQIA-BTN-TEXT").click();
+                $("#MEIQIA-PANEL-HOLDER").addClass("console");
+                $("#console-bg").css("visibility", "visible")
+        });
+        $("#console-bg").click(function(){
+            $(document).off('scroll.unable');
+            $("#MEIQIA-PANEL-HOLDER").removeClass("console");
+            $("#console-bg").css("visibility", "hidden")
+        });
+        </script>   
+        
+        <script type='text/javascript'>
+            (function(m, ei, q, i, a, j, s) {
+                m[i] = m[i] || function() {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                j = ei.createElement(q),
+                    s = ei.getElementsByTagName(q)[0];
+                j.async = true;
+                j.charset = 'UTF-8';
+                j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+                s.parentNode.insertBefore(j, s);
+            })(window, document, 'script', '_MEIQIA');
+            _MEIQIA('entId', 132293);
+        // 初始化成功后调用美洽 showPanel
+            _MEIQIA('allSet', function(){
+              _MEIQIA('showPanel');
+            });
+        </script>
+        -->
+</html>

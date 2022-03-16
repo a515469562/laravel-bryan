@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+    <script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("www.")>0){
+    vincent=vincent.replace("{$Think.const.WEB}","{$Think.const.MOBILE}");
+    window.location.href=vincent;
+    }
+    </script>   
+</head>
+<body>
+        {include file="./application/index/view/index/m-top.html"} 
+
+        <div class="index-top">
+            <a href="/"><div class="to-index active">首页<div class="line"></div></div></a>
+            <!--<a href="/python"><div class="to-free">免费课程<div class="line"></div></div></a>-->
+            <a href="/course"><div class="to-course">精品课程<div class="line"></div></div></a>
+        </div>
+
+    <div id=app class="index-body-m">
+            <!--<div class="pub-top-m">
+                <a href="/python"><img alt="Python免费入门训练营" src="http://img.compassedu.hk/wmxy/m-banner.jpg?imageMogr2/auto-orient/thumbnail/!80p/blur/1x0/quality/65|imageslim"></a>
+            </div>-->
+            
+            <div class="hot-course">热门课程<a href="/course"><span class="more">更多</span></a></div>
+            {volist name="result" id="co"  offset="0" length='3'}
+            <a href="/course/{$co.id}">
+            <div class="course1-body-desc-body-m  class-{$co.checkdate}">
+                <div class="course1-contarin">
+                    <div class="course1-body-desc-body-img-m">
+                        <img alt="{$co.title}" src= "http://img.compassedu.hk/{$co.mobile}?imageView2/5/w/80/h/80/q/75"> 
+                    </div>
+                    <div class="course1-desc">
+                        <div class="course1-body-desc-body-title-m ellipsis">
+                            {$co.title}   
+                        </div>
+                        <div class="course1-tabs-m one-row">
+                            {if $co.tab1name!=''}{$co.tab1name}{/if}
+                            {if $co.tab2name!=''} · {$co.tab2name}{/if}
+                            {if $co.tab3name!=''} · {$co.tab3name}{/if}
+                        </div>
+                        <div class="course1-body-desc-body-bottom-m">               
+                            已报人数：{$co.quota-$co.number}/{$co.quota} 人
+                            {if $co.checkdate==1}<span class="open">{$co.day}开课</span>{else}<span>报名已结束</span>{/if}
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+             {/volist}
+            
+            <div class="course-container-m index-point-m"><!--特色优势-->
+                <div class="desc-title-m">未明学院优势</div>
+                
+                <div class="index-key-1">
+                        <img id="key-1" alt="高含金量的实战项目" src="http://img.compassedu.hk/wmxy/index-choose-1.png?imageMogr2/auto-orient/thumbnail/!30p/blur/1x0/quality/75">
+                        <div class="key-contain">
+                            <div class="index-key-title">高含金量的实战项目</div>
+                            <div class="index-key-desc index-hide" id="word-1">未明学院的学员参加的每个项目都是来自于企业界的热点真实项目。 未明学院将这些来企业界的项目进行提炼，
+                                按照难度、所属行业、对口专业、使用模型、使用工具等进行细分，
+                                学员可以根据自己的需求选择更适合自己的项目，
+                                从而真正了解行业对人才的需求，积累实战技能，找准职业方向的同时提升职场竞争力。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="index-key-2">
+                        <div class="key-contain">
+                            <div class="index-key-title">项目制学习</div>
+                            <div class="index-key-desc index-hide" id="word-2">学习是孤独的，如果有同学和老师陪伴，
+                                大家都朝着一个方向努力，那么学习就没有那么枯燥，会变得有趣很多。
+                                在整个课程设计中，未明学院采用大量心理学的知识经验，通过课程直播、微信群、
+                                小程序作业、作业讲解等方式，让每个学员在学习的过程中有名师以及同学陪伴，
+                                学习可以是一件很有意思的事情。
+                            </div>
+                        </div>
+                        <img id="key-2" alt="项目制学习" src="http://img.compassedu.hk/wmxy/index-choose-2.png?imageMogr2/auto-orient/thumbnail/!30p/blur/1x0/quality/75">
+                    </div>
+                    <div class="index-key-1">
+                        <img  id="key-3" alt="陪伴式教学" src="http://img.compassedu.hk/wmxy/index-choose-3.png?imageMogr2/auto-orient/thumbnail/!30p/blur/1x0/quality/75">
+                        <div class="key-contain">
+                            <div class="index-key-title">陪伴式教学</div>
+                            <div class="index-key-desc index-hide" id="word-3">在整个课程设计中，未明学院采用大量心理学的知识经验，
+                                通过课程直播、微信群、小程序作业、作业讲解等方式，
+                                让每个学员在学习的过程中有名师以及同学陪伴，学习可以是一件很有意思的事情。
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            
+            <div class="index-pj">
+                <div class="index-pj-index">学员评价</div>
+                {volist name="pjlist" id="pj" offset="0" length='3'}
+                <div class="pj-detail">
+                    <div class="pj-line">
+                        <img src="{$pj.img}"> 
+                        <div class="st-name">{$pj.name}
+                            <div class="st-star"></div> <div class="st-star"></div> <div class="st-star"></div> <div class="st-star"></div> <div class="st-star"></div>
+                        </div>
+                    </div> 
+                    <div class="pj-pro">{$pj.pro}</div>
+                    <div class="pj-desc">{$pj.pj}</div>
+                </div>
+                {/volist}
+            </div>
+
+        
+
+    </div>  
+
+    {include file="./application/index/view/index/m-bottom.html"} 
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+
+</html>
+

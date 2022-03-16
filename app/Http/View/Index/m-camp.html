@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>未明学院</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+<script type=text/javascript src="/public/static/index/JS/jquery.cookie.js"></script>
+<link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+<script type=text/javascript src="/public/static/index/JS/mui.min.js"></script>
+<style>
+        html,body{
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background:#f7f7f7;
+        }
+        .page-guestva{
+            position: fixed;
+            width:100vw;
+            height:100vh;
+            z-index: 995;
+            top:0;
+            left:0;
+            background: #f7f7f7;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        {if $result}
+        <div class="camp-body">
+            {volist name="result" id="a"}
+            <div class="camp-list" onclick="camp('{$a.days}','{$a.date}','{$a.course_buy}','{$a.overdue}','{$a.times}')">
+                <div class="camp-title">
+                    <div class="mui-ellipsis camp-t">
+                        {$a.title}
+                    </div>
+                    <div class="camp-s">
+                        {if $a.days==0}未开始{elseif $a.state=="课程结束"}已结束{else}<span>进行中</span>{/if}
+                    </div>
+                </div>
+                <div class="camp-time">
+                    打卡次数：{$a.times}
+                    {if $a.state=="课程结束"}<span class="camp-course-date">共进行{$a.days}天</span>
+                    {else if $a.days>0}<span class="camp-course-date">已进行{$a.days}天</span>
+                    {/if}
+                </div>
+            </div>
+            {/volist}
+        </div>
+        {else}
+        <div class="guest-time-blank">你还未参加未明学院打卡营</div>
+        {/if}
+    </div>
+        <div class="page-guestva" id="guestevaPython" style="position: relative;width:100vw;overflow-x:hidden"></div>        
+        <script>
+            var eva="{$eva}";
+            var uid="{$Think.session.guestinfo.id_guest}";
+
+            /*var s1=0;
+            var s2=0;
+            timeDown();
+            let time = setInterval(()=>{
+                                if(s1 == 3&&s2 == 3){
+                                    clearInterval(time)
+                                }
+                                timeDown()
+                            },1000);
+            function timeDown () {
+
+                const endTime1 = new Date("2018/11/17 20:00:00");
+                const endTime2 = new Date("2018/11/17 17:00:00");
+                const nowTime = new Date();
+                let leftTime1 = parseInt((endTime1.getTime()-nowTime.getTime())/1000);
+                let leftTime2 = parseInt((endTime2.getTime()-nowTime.getTime())/1000);
+
+                if(leftTime1 > 300){
+                    s1=1;
+                }else if(leftTime1+1800>0){
+                    s1=2
+                }else{
+                    s1=3
+                }
+                if(leftTime2 > 300){
+                    s2=1;
+                }else if(leftTime2+1800>0){
+                    s2=2
+                }else{
+                    s2=3
+                }
+            }*/
+
+        function camp(a,b,c,d,e){
+            /*if(c==209&&s2==1){
+                mui.alert("开营仪式于11月17日下午5点进行",'训练营暂未开始','知道了');
+            }else if(c==208&&s1==1){
+                mui.alert("开营仪式于11月17日晚8点进行",'训练营暂未开始','知道了');
+            }else if(c==209&&s2==2){
+                url="http://www.enaca.cn/opening";
+                window.open(url);
+            }else if(c==208&&s1==2){
+                url="http://www.enaca.cn/opening";
+                window.open(url);
+            }else{
+                if(eva!=1){
+                    mui.alert('','请填写学员信息采集表','马上填写',function(){
+                        $("#guestevaPython").load("http://m.enaca.cn/skillevaPython?cid="+c+"&uid="+uid,function(){
+                        $("#app").hide();
+                        $("#guestevaPython").show();
+                    });
+                });
+                }else{
+                    if(a==0){
+                        mui.alert('打卡即将于'+b+' 正式开启，敬请期待','暂未开始','知道了');
+                    }else{
+                        window.location.href="http://m.enaca.cn/camp/"+c;
+                    }
+                }
+            }*/
+            if(d==1&&uid!=2025){
+                mui.alert('本次打卡已结束','提醒','知道了');
+            }else if(eva!=1){
+                mui.alert('','请填写学员信息调查问卷','马上填写',function(){
+                    $("#guestevaPython").load("http://m.enaca.cn/skillevaPython?cid="+c+"&uid="+uid,function(){
+                    $("#app").hide();
+                    $("#guestevaPython").show();
+                    });
+                });
+                // if(c==208){
+                //     mui.alert('','请填写学员信息采集表','马上填写',function(){
+                //     $("#guestevaPython").load("http://m.enaca.cn/skillevaPython?cid="+c+"&uid="+uid,function(){
+                //     $("#app").hide();
+                //     $("#guestevaPython").show();
+                //     });
+                // });
+                // }else if(c==275){
+                //     mui.alert('','请填写学员信息采集表','马上填写',function(){
+                //     $("#guestevaPython").load("http://m.enaca.cn/skillevaPython?cid="+c+"&uid="+uid,function(){
+                //     $("#app").hide();
+                //     $("#guestevaPython").show();
+                //     });
+                // });
+                // }else if(c==217){
+                //     mui.alert('','请填写学员信息采集表','马上填写',function(){
+                //     $("#guestevaPython").load("http://m.enaca.cn/skillevaTab?cid="+c+"&uid="+uid,function(){
+                //     $("#app").hide();
+                //     $("#guestevaPython").show();
+                //     });
+                // });
+                // }else if(c==214){
+                //     mui.alert('','请填写学员信息采集表','马上填写',function(){
+                //     $("#guestevaPython").load("http://m.enaca.cn/skillevaR?cid="+c+"&uid="+uid,function(){
+                //     $("#app").hide();
+                //     $("#guestevaPython").show();
+                //     });
+                // });
+                // }else if(c==213){
+                //     mui.alert('','请填写学员信息采集表','马上填写',function(){
+                //     $("#guestevaPython").load("http://m.enaca.cn/skillevaStata?cid="+c+"&uid="+uid,function(){
+                //     $("#app").hide();
+                //     $("#guestevaPython").show();
+                //     });
+                // });
+                // }
+            }else{
+                if(a==0&&(uid!=2025&&uid!=5600&&uid!=36652&&uid!=2983&&uid!=41824&&uid!=45307&&uid!=6807&&uid!=10085&&uid!=45307&&uid!=49738)){
+                    mui.alert('打卡即将于'+b+' 正式开启，敬请期待','暂未开始','知道了');
+                }else{
+                    if(c==379||c==381||c==382||c==383||c==388||c==454){
+                        $.get("http://api.compassedu.hk/index.php/page/index/zuoye", { "cid":c,"uid":uid},
+                                function(data){
+                                    if(data){
+                                        var pj=data['data'];
+                                        if(pj[0].eva=="0"){
+                                            mui.alert('','请填写训练营中期问卷','马上填写',function(){
+                                                $("#guestevaPython").load("http://m.enaca.cn/skillevaPythonOver?cid="+c+"&uid="+uid+"&times="+e,function(){
+                                                $("#app").hide();
+                                                $("#guestevaPython").show();
+                                                });
+                                            });
+                                        }else{
+                                            window.location.href="http://m.enaca.cn/index.php/camp/"+c;
+                                        }
+                                    }else{
+                                        window.location.href="http://m.enaca.cn/index.php/camp/"+c;
+                                    }
+                                }); 
+                    }else{
+                        window.location.href="http://m.enaca.cn/index.php/camp/"+c;
+                    }
+                    
+                }
+            }
+        }
+
+        </script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+
+</html>
+

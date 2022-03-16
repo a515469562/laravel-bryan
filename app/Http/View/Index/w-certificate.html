@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>未明学院证书查询</title>   
+<meta name="keywords" content="未明学院证书查询">
+<meta name="description" content="未明学院专注于通过项目制教学来教授学员数据分析&数据挖掘技能。未明学院证书查询系统可根据未明学院学员证书编号验证。未明学院采用大量心理学的知识经验，通过课程直播、微信群、小程序作业、作业讲解等方式，让每个学员在学习的过程中有名师以及同学陪伴，学习可以是一件很有意思的事情。">
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("m.")>0){
+    vincent=vincent.replace("{$Think.const.MOBILE}","{$Think.const.WEB}");
+    window.location.href=vincent;
+    }
+    </script>   
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+    <style>
+    #certificate{
+        width:400px;
+        height:auto;
+    }
+    .certificate-div{
+        margin-top:10px;
+        min-height: 330px;
+    }
+    .certificate-text{
+        color:rgba(0,0,0,0.85);
+        font-size: 16px;
+        line-height: 40px;
+        width:400px;
+        padding-bottom: 5px;
+    }
+    .certificate-down a{
+        color:rgba(24,144,255,0.85);
+        font-size: 16px;
+        line-height: 40px;
+        float:right;
+    }
+    </style>
+</head>
+<body style="background: #f7f7f7;">
+
+ {include file="./application/index/view/index/w-top.html"} 
+
+<div class="certificate-top">
+    <h1>证书查询</h1>
+    <h2>输入证书编号和身份证号码，查询电子版证书</h2>
+</div>
+<div class="certificate-body">
+    <div class="certificate-info">
+      证书编号：<input id="certificate-no" placeholder="请输入证书编号">身份证号码：<input id="certificate-code" placeholder="请输入身份证号码">
+      <button id="certificate-search">查询</button>
+    </div>
+    <div class="certificate-detail" style="display:none">
+        <div>查询结果：</div>
+        <div class="certificate-div">
+            <img src="" id="certificate">
+            <div class="certificate-text">证书编号：<span id="certificateno"></span><span class="certificate-down"><a href="" id="download" download="" target="_blank">下载</a></span></div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#certificate-search").click(function(){
+        var no=$("#certificate-no").val();
+        var code=$("#certificate-code").val();
+        if(no==""||code==""){
+            alert("请填写正确的证书编号和身份证号码进行查询");
+            return false;
+        }
+        $.post("http://www.enaca.cn/search", {
+                "no": no,
+                "code": code
+            }, function (r) {
+                if (r == 1) {
+                    alert("请填写正确的证书编号和身份证号码进行查询");
+                }else{
+                    url="http://camp.enaca.cn/"+r;
+                    $("#certificate").attr("src",url);
+                    $(".certificate-detail").show();
+                    $("#certificateno").html(no);
+                    $("#download").attr("href",url);
+                    $("#download").attr("download","aaa");
+                }
+            })
+    })
+
+</script>
+
+
+{include file="./application/index/view/index/w-bottom.html"} 
+
+</body>
+
+
+</html>

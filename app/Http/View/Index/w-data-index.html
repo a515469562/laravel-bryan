@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>精品课程_未明学院</title>   
+<meta name="referrer" content="no-referrer" />
+<meta name="keywords" content="未明学院,精品课程">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<link href="/public/static/index/CSS/wmxy.css?v=15" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("m.")>0){
+    vincent=vincent.replace("{$Think.const.MOBILE}","{$Think.const.WEB}");
+    window.location.href=vincent;
+    }
+    </script> 
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?709818baeea3c9368881e6328f67e7dc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body style="background: #f7f7f7;overflow:scroll">
+
+ {include file="./application/index/view/index/w-top.html"} 
+
+<div class="data-top">
+    <h1>免费数据集</h1>
+    <h2 style="font-weight: normal;">汇集各行业的公开数据，提供免费下载</h2>
+</div>
+<div class="data-body">
+    
+    <div class="data-body-top" id='cat'>
+        <div class='nav'>
+            <div class="option1">
+                <div class="option">类别:</div>
+                <div class='categ'>
+                    <button class='data-body-top1 two selected' onclick="change(0)" id="x0" value="0">全部</button>
+                    {volist name="cate" id="ca"}
+                    <button class='data-body-top1 ' onclick="change('{$ca.id}')" id="x{$ca.id}" value="{$ca.id}">{$ca.name}
+                    </button>
+
+                    {/volist}
+                </div>
+            </div>
+            <div class="option2">
+                <span class='option'>关键词:</span>
+                <input type="text" id='keywords' placeholder="输入关键词" />
+                <button class='data-search' id='search-data'><span class='search'>搜索</span></button>
+            </div>
+            <hr>
+        </div>
+        <div class='data-content'>
+        </div>
+    </div>
+
+</div>
+<footer>
+{include file="./application/index/view/index/w-bottom.html"} 
+</footer>
+</body>
+<script type="text/javascript">
+
+    var oapi = "https://api.compassedu.hk/index.php/"
+    var ceshi = 'http://118.24.185.42:882/'
+    var count = 0;
+    var page_data = 1;//页码
+    var page_size = 10;//页大小
+    var isloading = false;
+  
+    $(function(){
+        let all = $('#x0').nextAll();
+        let name = ''
+        let nlen = 0;
+        all.each(function(){
+            name = $(this).text();
+            nlen = name.length; 
+            // console.log('name:'+name);
+            // console.log('nlen:'+nlen);
+            if (nlen == 22) {
+                $(this).addClass('two');
+            }
+        });
+        showList(0)//全部
+    });
+    function load(res){
+        for (var i = 0; i <res.length; i++) {
+                let profile = res[i].subscribe;
+                let profile1 = beautySub(profile,70);
+                let sourcelink = res[i].sourcelink;
+                let sourcelink1 = beautySub(sourcelink);
+
+                if (res[i].dataexplain == '') {
+                    $('.data-content').append(""+
+                   "<div class='content-body'> " +  
+                        "<div class='left'> " +
+                            '<img src='+res[i].imgurl+'> ' +
+                        '</div>' +
+                        "<div class='right'>" +
+                            "<div id='label' class='content-data clabel'><span>" + res[i].title+"</span></div>" +
+                            "<div id='profile' class='content-data cprofile cprofile1'><span>" + profile +
+                                "</span><a class='hid' style='display:none'>收起</a></div>"+
+                            "<div id='profile2' class='content-data cprofile cprofile2' style='display:none'><span>" + profile1 +
+                                    "</span><a class='more'  >查看更多</a></div>"+
+                            "<div id='source' class='content-data csource csource1'><span>数据来源：<span>"+res[i].sourcelink+"</span></span><a class='hid' style='display:none'>收起</a></div>"+
+                            "<div id='source2' class='content-data csource csource2' style='display:none'><span>数据来源：<span>"+sourcelink1+"</span></span><a class='more'  >查看更多</a></div>"+
+                            "<div id='explain' class='content-data cexplain'><span></span><span></span></div>"+
+                            "<div id='addition' class='content-data caddition'>"+
+                                "<span class='csv'>csv：" + res[i].datasize +"</span>  "+
+                                "<span class='time-upload'>上传时间：" + res[i].time +"</span>"+
+                                "<a class='download' href='" + res[i].downloadurl +"' target='blank_' onclick='downloadata()'>下载数据<a/>"+
+                            "</div>"+
+                            "<hr style='display:none'>" +
+                        "</div>"+
+                        "<hr class='gap'>"+ 
+                    "</div>") 
+                    // console.log('1高度：'+$(".csource").css('height'));
+                }else{
+                    let dataexplain = res[i].dataexplain;
+                    let dataexplain1 = beautySub(dataexplain);
+                    $('.data-content').append(""+
+                       "<div class='content-body'> " +  
+                            "<div class='left'> " +
+                                '<img src='+res[i].imgurl+'> ' +
+                            '</div>' +
+                            "<div class='right' >" +
+                                "<div id='label' class='content-data clabel'><span>" + res[i].title+"</span></div>" +
+                                "<div id='profile' class='content-data cprofile cprofile1'><span>" + profile +
+                                    "</span><a class='hid' style='display:none'>收起</a></div>"+
+                                "<div id='profile2' class='content-data cprofile cprofile2' style='display:none'><span>" + profile1 +
+                                    "</span><a class='more' >查看更多</a></div>"+
+                                "<div id='source' class='content-data csource csource1'><span>数据来源：<span>"+res[i].sourcelink+"</span></span><a class='hid' style='display:none'>收起</a></div>"+
+                                "<div id='source2' class='content-data csource csource2' style='display:none'><span>数据来源：<span>"+sourcelink1+"</span></span><a class='more' >查看更多</a></div>"+
+                                "<div id='explain' class='content-data cexplain cexplain1'><span>数据说明：<span>"+res[i].dataexplain+"</span></span><a class='hid' style='display:none'>收起</a></div>"+
+                                "<div id='explain2' class='content-data cexplain cexplain2' style='display:none'><span>数据说明：</span>"+dataexplain1+"<span></span><a class='more' >查看更多</a></div>" +
+                                "<div id='addition' class='content-data caddition'>"+
+                                    "<span class='csv'>csv：" + res[i].datasize +"</span>  "+
+                                    "<span class='time-upload'>上传时间：" + res[i].time +"</span>"+
+                                    "<a class='download' href='" + res[i].downloadurl +"' target='blank_' onclick='downloadata()'>下载数据<a/>"+
+                                "</div>"+
+                                "<hr style='display:none'>" +
+                            "</div>"+
+                            "<hr class='gap'>"+ 
+                        "</div>")
+
+                }
+                 //隐藏div1【收起】，显示div2【展开更多】
+                $(".cprofile1").each(function(){
+                    if ($(this).height() > 48 ) {
+                        $(this).children('.hid').show();//添加收起按钮                           
+                        $(this).hide();//隐藏真实内容
+                        $(this).next('.cprofile2').show();//显示省略内容
+                    }
+                });
+              
+                $(".csource1").each(function(){                        
+                    if ($(this).height() > 24) {
+                        $(this).children('.hid').show();//添加收起按钮
+                        $(this).hide();//隐藏真实内容
+                        $(this).next('.csource2').show();//显示省略内容
+                    }
+                });
+                $(".cexplain1").each(function(){                        
+                    if ($(this).height() > 24) {
+                        $(this).children('.hid').show();//添加收起按钮
+                        $(this).hide();//隐藏真实内容
+                        $(this).next('.cexplain2').show();//显示省略内容
+                    }
+                });
+
+        }      
+    }
+    function downloadata(){
+        var id_guest = '{$Think.session.guestinfo.id_guest}'
+        if (id_guest <= 0) {
+            alert('请登录再下载数据')
+            $(".download").removeAttr('href');
+            showlogin();
+        }   
+    }
+    function showlogin(){
+        state=0;
+        page=0;
+        clickstyle("#wx-dl");
+        $(".log-tab").show();
+        $(".reg-topic").hide();
+        $(".overlay-button").html("登录");
+        $(".asi-ask").html("没有账号？");
+        $(".asi-click").html("点击注册");
+        overlayshow()
+    }
+    function change(x){
+        $(".data-body-top1").removeClass("selected");
+        $("#x"+x).addClass("selected");
+        page_data = 1;
+        showList(x) 
+    }
+    function showList(id_cat,keywds=''){
+        $.post(oapi + "api/wmdata/datalists",{
+            timestamp:(new Date()).getTime(),
+            sign:'last',
+            typeid: id_cat,
+            keywords:keywds,
+            start: 1,
+            size: page_size 
+        },function(dataset){
+            var res = dataset.data.list
+            count = res.length;
+            page_data++;
+            // console.log('page_data:'+page_data);
+            //清空数据
+            $('.data-content').empty();
+            load(res);
+        }).fail(function (xhr, ajaxOptions, thrownError) {
+          //数据显示失败提示
+          console.log('fail:'+thrownError)      
+         })
+    }
+
+    $('#search-data').click(function(){
+        var id_cat = $('.data-body-top1.selected').val();
+        var keywds = $('#keywords').val();
+        page_data = 1;
+        showList(id_cat,keywds);
+    })
+    
+    $(window).scroll(function (e) {
+    //滚动
+      s = $(document).scrollTop();
+      w = $(window).height();
+      h = $("footer").offset().top;
+      if (s + w + 340 > h) {
+      //拉到底部
+      // console.log("page:" +page_data +"count:"+count);
+        if (page_data >1 && isloading != true) {
+            // console.log("page:" +page_data +"count:"+count);
+            pageload()
+            // console.log('加载页数+1')
+        }
+      }
+    });
+
+    function pageload(){
+            isloading = true;
+            var keywds = $('#keywords').val();
+            var id_cat = $('.data-body-top1.selected').val();
+
+            $.post(oapi + "api/wmdata/datalists",{
+                timestamp:1,
+                sign:'last',
+                typeid: id_cat,
+                keywords:keywds,
+                start: page_data,
+                size: page_size 
+            },function(dataset){
+                var res = dataset.data.list
+                count = res.length;
+                // console.log("page:" +page +"count:"+count);
+                page_data = count < page_size? 1: page_data+1;
+                if (count>0) {
+                    load(res)
+                    // console.log('res:',res)
+                }
+                isloading = false;
+            }).fail(function (msg) {
+               console.log("error:" + msg);
+            });
+          
+
+    }
+
+    $(function() {
+
+        //说明展开
+        $('body').on('click', '.cexplain .more', function() {
+            $(this).parent().siblings('.cexplain1').show();
+            $(this).parent().hide();
+        });
+
+        // 来源展开
+        $('body').on('click', '.csource .more', function() {
+            // console.log('txt:'+$(this).parent().text())
+            $(this).parent().siblings('.csource1').show();
+            $(this).parent().hide();
+        });
+        // 简介展开
+        $('body').on('click', '.cprofile .more', function() {
+            $(this).parent().siblings('.cprofile1').show();
+            $(this).parent().hide();
+        })
+
+        //说明收起
+        $('body').on('click', '.cexplain1 .hid', function() {
+            //div1[收起]隐藏，div2【展开】显示
+            $(this).parent().siblings('.cexplain2').show();
+            $(this).parent().hide();
+        });
+        //来源收起
+        $('body').on('click', '.csource1 .hid', function() {
+            //div1[收起]隐藏，div2【展开】显示
+            $(this).parent().siblings('.csource2').show();
+            $(this).parent().hide();
+        });
+        //简介收起
+        $('body').on('click', '.cprofile1 .hid', function() {
+            $(this).parent().siblings('.cprofile2').show();
+            $(this).parent().hide();
+        });
+
+    })
+    function beautySub(str,len=32) {
+        var reg = /[\u4e00-\u9fa5]/g,slice = str.substring(0, len),
+            cCharNum = (~~(slice.match(reg) && slice.match(reg).length)),
+            realen = slice.length*2 - cCharNum-1;
+        return str.substr(0, realen) + (realen < str.length ? "..." : "");
+    }   
+
+    //回车自动搜索
+    var input = document.getElementById("keywords");
+    input.addEventListener("keyup", function(event) {
+    //按键被松开
+        event.preventDefault();
+        if (event.keyCode === 13) {
+        //回车键
+            document.getElementById("search-data").click();
+        }
+    });
+
+</script>
+</html>

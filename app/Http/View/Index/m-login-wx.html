@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+<script type=text/javascript src="/public/static/index/JS/jquery.cookie.js"></script>
+<link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+<script type=text/javascript src="/public/static/index/JS/mui.min.js"></script>
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("www.")>0){
+    vincent=vincent.replace("{$Think.const.WEB}","{$Think.const.MOBILE}");
+    window.location.href=vincent;
+    }
+    </script>   
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        background:#fff;
+    }
+</style>
+</head>
+<body>
+        <div class="login-header" id="back1">
+                <a  href="#" onclick="javascript:window.history.back();return false;"><div class="jump-index-m"></div></a>
+                <img class="header-logo" src="http://img.compassedu.hk/wmxy/back.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/75">                
+            </div>
+        <div class="login-header" id="back2" style="display:none;text-align: center;">
+                <div id="back3" class="jump-index-m"></div>
+                <div style="line-height: 50px;font-size: 18px;color:#333">选择国家和地区</div>
+                <img class="header-logo" src="http://img.compassedu.hk/wmxy/back.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/75">                
+            </div>
+        <div class="login-header" id="back4" style="display:none;text-align: center;">
+            <div id="back5" class="jump-index-m"></div>
+            <div style="line-height: 50px;font-size: 18px;color:#333">登录遇到问题</div>
+            <img class="header-logo" src="http://img.compassedu.hk/wmxy/back.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/75">                
+        </div>
+    <div class="cy-homepage">
+
+        <div class="login-title">
+            绑定手机号
+        </div>
+        <div class="login-box">
+            <div class="login-c">
+                <div class="login-cy" onclick="code()">+<span id="cy">86</span></div> 
+                <input id="tel" type="tel" style="padding-left:68px;" placeholder="请输入手机号">
+            </div>
+            <div class="login-code" id="code-div">
+                <input id="code" type="tel" placeholder="请输入验证码">
+                <span id="code-get">获取验证码</span>
+            </div>
+            <div class="login-code" id="pass-div" style="display:none">
+                <input id="pass" type="password" placeholder="请输入密码">
+            </div>
+            <div class="login-tip">
+                <span id="login-tip"></span>&nbsp;
+            </div>
+            <div class="login-btn">
+                <button id="login-btn">绑定</button>
+            </div>
+
+        </div>
+    </div>
+        <div class="cy-page" id="cy-md">
+                <div id="name" style="padding-top:10px;">
+
+                </div>
+        </div> 
+
+<script> 
+
+    var state=1;
+    $.getJSON ("code.text", function (data)  
+    {  
+        var t1='';
+        $.each (data, function (i, item)  
+        {  
+            var k=item.key;
+            t1+='<div class="cy-0">'+k+'</div>';
+            var d=item.data;
+            $.each (d, function (i1, item1) 
+            {
+                t1+='<div class="cy-1" onclick="choose('+item1.phoneCode+')">'+item1.countryName+'<span>+'+item1.phoneCode+'</span></div>';
+            }); 
+            
+        });  
+        $ ("#name").append (t1);   
+    });  
+
+    $.cookie('presenturl',window.location.href);
+    if($.cookie("secondsremained")>0){
+  		 var count=$.cookie("secondsremained");　
+  	}else{
+  		var count=60;
+  	}
+    
+    if ($.cookie("secondsremained") > 1) {
+        $("#code-get").css("color", "rgba(0, 0, 0, 0.45)");
+        $("#code-get").html("重新获取(" + count + "s)");
+        $("#code-get").attr("disabled", "disabled");
+     		count--;
+        var date = new Date();
+        var c=count+1;
+        date.setTime(date.getTime()+c*1000);
+        $.cookie("secondsremained", count,{expires:date});
+        setTimeout(GetNumber, 1000);
+    }
+    else {
+  	    $("#code-get").html("获取验证码");
+        $("#code-get").css("color", " rgba(0,80,179,0.85)");
+        $("#code-get").attr("disabled", false);
+    }
+    
+    function GetNumber(s) {
+  	    if (s > 0) {
+  	        count = s
+  	    }
+  	    count--;
+  	    if (count < 1) {
+            $("#code-get").html("获取验证码");
+            $("#code-get").css("color", " rgba(0,80,179,0.85)");
+            $("#code-get").attr("disabled", false);
+  	    } else {
+            $("#code-get").css("color", "rgba(0, 0, 0, 0.45)");
+            $("#code-get").html("重新获取(" + count + "s)");
+            $("#code-get").attr("disabled", "disabled");
+  	        var date = new Date();
+  	        var c = count + 1;
+  	        date.setTime(date.getTime() + c * 1000);
+  	        $.cookie("secondsremained", count,{expires:date});
+  	        
+  	        setTimeout(GetNumber, 1000)
+  	    }
+  	};           
+
+    $("#code-get").click(function () {
+    if ($(this).html() == "获取验证码") {
+        var cy = changearea($("#cy").html());
+        var tel = $("#tel").val();
+        
+        if ((cy == 86 && checktel(tel))||(cy != 86 && !isNaN(tel)) ){
+            posttel(tel, cy);
+        } else {
+            mui.toast('请输入正确的手机号码',{ duration:'long', type:'div' }) ;            
+        }
+    }
+    });
+
+    function posttel(tel, cy) {
+  	    $.post("./sendmsge", {
+  	        "tel": tel,
+  	        "cy": cy
+  	    }, function (result) {
+  	        var date = new Date();
+  	        date.setTime(date.getTime() + 60 * 1000);
+  	        $.cookie("secondsremained", 60,{expires:date});
+  	        GetNumber(60)
+  	    })
+    }
+
+    function checktel(e) {
+  	    var tel = e;
+  	    var myreg = /^(((1[0-9]{1}))+\d{9})$/;
+  	    if (!myreg.test(tel)) {
+  	        return false
+  	    } else {
+  	        return true
+  	    }
+    }  
+
+    $("#tel,#code,#pass").blur(function(){changemodel(state);})
+  	$("#tel").keyup(function(){
+  		if(event.keyCode==13){
+  			$("#login-btn").click();
+  		}else{
+            changemodel(state);
+  		}
+  	})
+    $("#code,#pass").keyup(function () {
+        if (event.keyCode == 13 && $(this).val().length > 5) {
+            $("#login-btn").click();
+        }else{
+            changemodel(state);
+        }
+    });
+    $("#to-pass").click(function(){
+        $("#code-div").hide();
+        $("#pass-div").show();
+        $("#login-tip").hide();
+        $("#to-pass").hide();
+        $("#to-code").show();
+        $(".login-title").html("手机密码登录");
+        state=2;
+        changemodel(state);
+    })
+    $("#to-code").click(function(){
+        $("#code-div").show();
+        $("#pass-div").hide();
+        $("#login-tip").show();
+        $("#to-pass").show();
+        $("#to-code").hide();
+        $(".login-title").html("手机验证码登录");
+        state=1;
+        changemodel(state);
+    })
+    function changemodel(el) {
+          var tel = $("#tel").val();
+          if(el==1){
+            var code = $("#code").val();
+          }else if(el==2){
+            var code = $("#pass").val();
+          }
+  	    if (tel != "" && code != ""  && code.length >= 6 ) {
+            $("#login-btn").addClass("ready")
+  	    } else {
+            $("#login-btn").removeClass("ready")
+  	    }
+    }
+
+    $("#login-btn").click(function () {
+        if ($(this).hasClass("ready")) {
+            var cy = changearea($("#cy").html());
+            var tel = $("#tel").val();
+            var code = $("#code").val();
+            var pass = $("#pass").val();
+            if ((cy == 86 && checktel(tel)) || (cy != 86 && !isNaN(tel))) {
+                $.post("./checkin", {
+                        "cy": cy,
+                        "tel": tel,
+                        "code": code,
+                        "pass": pass,
+                        "state":4,
+                    }, function (r) {
+                        if (r.message == 'ok') {
+                            alert("绑定成功")
+                            setTimeout(window.location.reload())
+                        }else{
+                            mui.toast(r.message,{ duration:'long', type:'div' }) ; 
+                            console.log('登录失败：'+r);
+                        }
+                    })
+            } else {
+                $(".asigntel").html("请填写正确的手机号码")
+            }
+        }
+    }); 
+
+    function changearea(e) {
+        var tel = e;
+        tel = tel.replace("+", "");
+        tel = tel.replace(" ", "");
+        tel = tel.replace("-", "");
+        return tel
+    }
+    function faq(){
+        $("#back1").hide();
+        $("#back4").show();
+        $("#faq-md").addClass("page-show");
+        $("#faq-md").removeClass("page-hide");
+    }  
+    $("#back5").click(function(){
+        $("#back4").hide();
+        $("#back1").show();
+        $("#faq-md").addClass("page-hide");
+        $("#faq-md").removeClass("page-show");
+    })
+    function code(){
+        $("#back1").hide();
+        $("#back2").show();
+        $("#cy-md").css({
+            "height":"",
+            "overflow-y":"auto"
+		 });
+        $("#cy-md").addClass("page-show");
+        $("#cy-md").removeClass("page-hide");
+    }  
+    $("#back3").click(function(){
+        $("#back2").hide();
+        $("#back1").show();
+        $("#cy-md").css({
+            "height":"100vh",
+            "overflow-y":"hidden"
+		 });
+        $("#cy-md").addClass("page-hide");
+        $("#cy-md").removeClass("page-show");
+    })
+    function choose(s){
+        $("#back2").hide();
+        $("#back1").show();
+        if(s>10000){
+            var l=5;
+        }else if(s>1000){
+            var l=4;
+        }else if(s>100){
+            var l=3;
+        }else if(s>10){
+            var l=2;
+        }else{
+            var l=1;
+        }
+        var w=l*8+52;
+        w=w+'px';
+        $("#tel").css("padding-left",w);
+        $("#cy").html(s);
+        $("#cy-md").css({
+            "height":"100vh",
+            "overflow-y":"hidden"
+		 });
+        $("#cy-md").addClass("page-hide");
+        $("#cy-md").removeClass("page-show");            
+        
+
+    }
+ 
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+</body>
+
+</html>
+

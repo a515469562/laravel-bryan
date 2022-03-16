@@ -1,0 +1,136 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>未明学院——开营仪式</title>
+    <meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+    body{
+        margin:0;
+    }
+    .lecture-player{
+        width:100vw;
+        height: 100vh;
+    }
+</style>
+</head>
+
+<body class="mui-ios mui-ios-9 mui-ios-9-1 lecture">
+   
+<div id="app">
+    <div class="lecture-player">
+       {if $check==1}     
+            <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.7.2/skins/default/aliplayer-min.css" />
+            <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/de/prismplayer/2.7.2/aliplayer-min.js"></script>     
+            <div  id="player">
+                <div  class="prism-player" id="player-con" ></div>
+            <script>
+                var url1='{$url1}';
+                var player = new Aliplayer({
+                    "id": "player-con",
+                    "source": 'http://workshop.compassedu.hk/znz/opening.m3u8?auth_key='+url1 ,
+                    "width": "100%",
+                    "height": "100%",
+                    "autoplay": false,
+                    "isLive": true,
+                    "cover": "",
+                    "rePlay": false,
+                    "playsinline": true,
+                    "preload": false,
+                    "controlBarVisibility": "click",
+                    "showBarTime": 3000,
+                    "useH5Prism": true,
+                                        "skinLayout": [
+                                {
+                                "name": "bigPlayButton",
+                                "align": "cc"
+                                },
+                                {
+                                "name": "controlBar",
+                                "align": "blabs",
+                                "x": 0,
+                                "y": 0,
+                                "children": [
+                                    {
+                                    "name": "liveDisplay",
+                                    "align": "tlabs",
+                                    "x": 15,
+                                    "y": 6
+                                    },
+                                    {
+                                    "name": "fullScreenButton",
+                                    "align": "tr",
+                                    "x": 10,
+                                    "y": 14
+                                    },
+                                    {
+                                    "name": "setting",
+                                    "align": "tr",
+                                    "x": 15,
+                                    "y": 12
+                                    },
+                                    {
+                                    "name": "volume",
+                                    "align": "tr",
+                                    "x": 5,
+                                    "y": 10
+                                    }
+                                ]
+                                }
+                            ]
+                  }, function (player) {
+                      console.log("播放器创建了。");
+                    }
+                  );
+  
+ 
+    </script>  
+    </div>
+    {else}
+    <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css" />
+    <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>     
+    <div  id="player">
+        <div  class="prism-player" id="player-con" ></div>
+    <script>
+        var url='{$url}';
+        var player = new Aliplayer({
+                id: "player-con",
+                     autoplay: true,
+                     isLive:true,
+                     playsinline:true,
+                     width:"100%",
+                     height:"100%",
+                     controlBarVisibility:"always",
+                     useH5Prism:false,
+                     useFlashPrism:false,
+                     source:'rtmp://workshop.compassedu.hk/znz/opening_ud?auth_key='+url,
+                     cover:"",
+                     skinLayout:[{"name":"controlBar","align":"blabs","x":0,"y":0,"children":[{"name":"fullScreenButton","align":"tr","x":10,"y":22},
+                            {"name":"volume","align":"tr","x":10,"y":22},
+                            {"name":"playButton","align":"tl","x":15,"y":12}]},
+                            {"name":"fullControlBar","align":"tlabs","x":0,"y":0,"children":[{"name":"fullTitle","align":"tl","x":25,"y":6},
+                            {"name":"fullNormalScreenButton","align":"tr","x":24,"y":13},
+                            {"name":"fullTimeDisplay","align":"tr","x":10,"y":12},
+                            {"name":"fullZoom","align":"cc"}]}]
+                     },function(player){
+                        console.log("播放器创建了。");
+                      }
+                );
+
+
+</script>  
+</div>
+    {/if}
+        </div>   
+</div>      
+<script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?50037c835a3d4475f3cf72a4868228fc";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+</body></html>

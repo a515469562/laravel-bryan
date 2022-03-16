@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$result['title']}_未明学院</title>   
+<meta name="keywords" content="未明学院,{$result['title']}">
+<meta name="description" content="未明学院的{$result['title']}项目是未明学院老师精心打造，{$result['title']}项目特色为{$result['description']}，{$result['desc_title']}，{$result['point_title']}。">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+
+<link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+<script type=text/javascript src="/public/static/index/JS/vue.min.js"></script>
+<script type=text/javascript src="/public/static/index/JS/clipboard.min.js"></script>
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("www.")>0){
+    vincent=vincent.replace("{$Think.const.WEB}","{$Think.const.MOBILE}");
+    window.location.href=vincent;
+    }
+    </script>   
+</head>
+<body>
+        {include file="./application/index/view/index/m-top.html"} 
+
+
+    <div id=app class="pro-bottom-1" style="padding-top:48px;">
+            <div class="course-top-m"><!--顶部-->
+                <img class="bg-img-m" alt="{$result['title']}" src="http://img.compassedu.hk/{$result['bg1']}?imageMogr2/auto-orient/thumbnail/x161/blur/1x0/quality/75" alt="{$result['title']}">
+                <div class="c-top-title-m">
+                    <span>{$result['title']}</span>
+                </div>
+                <div class="c-top-desc-m">{$result['description']}</div>
+                <div class="c-top-admin-m">
+                    <div class="c-top-admin-detail-m">
+                        <div class="c-top-admin-1-m">课程价格<div class="right">已报人数：<span>{$result['quota']-$result['number']}/{$result['quota']}人</span></div></div>
+                        <div class="c-top-admin-2-m">
+                            <span style="font-size:16px;">¥</span>{$result['fee']}
+                        <div class="right">
+                        {if $result['checkdate']==1}{$result['ydate']}报名截止{else}报名已结束{/if}</div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            
+            <div class="course-container-m course-desc-m" id="tab1"><!--课程介绍-->
+                <div class="desc-title-m">项目基本介绍</div>
+                <!--<div class="desc-title-1">{$result['desc_title']}</div>-->
+                <div class="desc-desc-m">{$result['desc_body']}</div>
+                <div class="desc-img-m"><!--导师介绍-->
+                    <img alt="{$teacher['wmxy_tea']}" src="http://img.compassedu.hk/{$teacher['img_tea']}?imageMogr2/auto-orient/thumbnail/245x/blur/1x0/quality/75">
+                    <div class="desc-img-tea-m">{$teacher['wmxy_tea']}</div>
+                </div>
+            </div>
+            
+            <div class="course-container-m course-point-m"><!--特色优势-->
+                <div class="desc-title-m">项目特色及优势介绍</div>
+                
+                    <div class="point-detail-m">
+                        <div class="detail-order-m">1</div>
+                        <div class="detail-title-m">{$result['point_1_title']}</div>
+                        <div class="detail-desc-m">{$result['point_1_body']}</div>
+                    </div>
+                    <div class="point-detail-m">
+                        <div class="detail-order-m">2</div>
+                        <div class="detail-title-m">{$result['point_2_title']}</div>
+                        <div class="detail-desc-m">{$result['point_2_body']}</div>
+                    </div>
+                    <div class="point-detail-m">
+                        <div class="detail-order-m">3</div>
+                        <div class="detail-title-m">{$result['point_3_title']}</div>
+                        <div class="detail-desc-m">{$result['point_3_body']}</div>
+                    </div>
+                    <div class="point-img-m"><img src="http://img.compassedu.hk/{$result['point_img']}?imageMogr2/auto-orient/thumbnail/!80p/blur/1x0/quality/75"alt="项目特色及优势介绍"></div>
+                
+            </div>
+            
+            <div  id="tab2" class="course-container-m course-gain-m"><!--成果-->
+                <img alt="往期课程项目成果展示" class="bg-img-m" src="http://img.compassedu.hk/{$result['bg2']}?imageMogr2/auto-orient/thumbnail/!90p/rotate/90/background/I0ZGRkZGRg==/blur/1x0/quality/75">
+            
+                        <div class="desc-title-m"style="color:#ffffff">往期课程项目成果展示</div>
+                        <div class="desc-title-1-m">{$result['gain_title']}</div>
+                    
+                            <img alt="{$result['gain_1_title']}" src="http://img.compassedu.hk/{$result['gain_1_img']}?imageMogr2/auto-orient/thumbnail/!80p/blur/1x0/quality/75" style="width:100%">
+                            <div class="gain-title-m">{$result['gain_1_title']}</div>
+                            <div class="gain-desc-m">{$result['gain_1_body']}</div>
+                    
+                        
+                            <img alt="{$result['gain_2_title']}" src="http://img.compassedu.hk/{$result['gain_2_img']}?imageMogr2/auto-orient/thumbnail/!80p/blur/1x0/quality/75" style="width:100%">
+                            <div class="gain-title-m">{$result['gain_2_title']}</div>
+                            <div class="gain-desc-m">{$result['gain_2_body']}</div>
+                    
+                            <img alt="{$result['gain_3_title']}" src="http://img.compassedu.hk/{$result['gain_3_img']}?imageMogr2/auto-orient/thumbnail/!80p/blur/1x0/quality/75" style="width:100%">
+                            <div class="gain-title-m">{$result['gain_3_title']}</div>
+                            <div class="gain-desc-m" style="margin-bottom:0px">{$result['gain_3_body']}</div>
+                        
+                
+            </div>
+            
+            
+            <!-- 课程 -->
+            <div  id="tab3" style="background-color:#f7f7f7;padding:24px 20px 15px">
+            
+            <div class="m-course-ap">课程安排</div>
+            {volist name="list" id="co"}
+            <div class="m-course-part">
+                <div class="m-course-tar color-{$key}">
+                    第{if $co.num_ct==1}一{elseif $co.num_ct==2}二{elseif $co.num_ct==3}三{elseif $co.num_ct==4}四{elseif $co.num_ct==5}五{elseif $co.num_ct==6}六{elseif $co.num_ct==7}七{elseif $co.num_ct==8}八{elseif $co.num_ct==9}九{/if}阶段</div>
+                        
+                    <div class="m-course-t">{$co.title_ct}</div>
+            
+                    <div class="m-course-d"><b>{$co.title_1_ct}：</b>{$co.body_1_ct}</div>
+                    
+                    {if $co.title_2_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_2_ct}：</b>{$co.body_2_ct}</div>
+                    {/if}
+                    {if $co.title_3_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_3_ct}：</b>{$co.body_3_ct}</div>
+                    {/if}
+                    {if $co.title_4_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_4_ct}：</b>{$co.body_4_ct}</div>
+                    {/if}
+                    {if $co.title_5_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_5_ct}：</b>{$co.body_5_ct}</div>
+                    {/if}
+                    {if $co.title_6_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_6_ct}：</b>{$co.body_6_ct}</div>
+                    {/if}
+                    {if $co.title_7_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_7_ct}：</b>{$co.body_7_ct}</div>
+                    {/if}
+                    {if $co.title_8_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_8_ct}：</b>{$co.body_9_ct}</div>
+                    {/if}
+                    {if $co.title_9_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_9_ct}：</b>{$co.body_9_ct}</div>
+                    {/if}
+                    {if $co.title_10_ct!=''}
+                    <div class="m-course-d"><b>{$co.title_10_ct}：</b>{$co.body_10_ct}</div>
+                    {/if}
+            
+            </div>
+                {/volist}
+            </div>
+            
+            <div class="pub-pj">
+                <img alt="学员评价" class="bg-img-m" src="http://img.compassedu.hk/{$result['bg2']}?imageMogr2/auto-orient/thumbnail/!90p/rotate/90/background/I0ZGRkZGRg==/blur/1x0/quality/75"> 
+                <div class="pub-pj-index">学员评价</div>
+                {volist name="pjlist" id="pj" offset="0" length='3'}
+                <div class="pj-detail">
+                    <div class="pj-line">
+                        <img alt="{$pj.name}头像" src="{$pj.img}"> 
+                        <div class="st-name">{$pj.name}
+                            <div class="st-star"></div> <div class="st-star"></div> <div class="st-star"></div> <div class="st-star"></div> <div class="st-star"></div>
+                        </div>
+                    </div> 
+                    <div class="pj-pro">{$pj.pro}</div>
+                    <div class="pj-desc">{$pj.pj}</div>
+                </div>
+                {/volist}
+            </div>
+
+            <!-- FAQ -->
+            <div class="m-c-faq-cont">
+            <div class="m-c-faq-title">常见问题说明</div>
+            
+            {if $result['teacher']==2||$result['teacher']==4}
+            <div class="m-c-faq-q">训练营持续时间多久？</div>
+            <div class="m-c-faq-a">训练营为期四周，其中前两周是理论知识的学习以及示范项目的讲解，后两周授课老师和助教将会协助学员完成指定项目。</div>
+            
+            <div class="m-c-faq-q">训练营是以怎样的方式进行？</div>
+            <div class="m-c-faq-a">训练营采用了直播授课+作业录屏讲解的授课方式，同时我们运用大量心理学知识及经验，通过微信班级群+小程序打卡作业+名师全程陪伴的方式，激发出学员的学习动力。学习是可以成为一件很有意思的事情。</div>
+            
+            <div class="m-c-faq-q">分配的项目是自己独立完成，还是老师带着做？</div>
+            <div class="m-c-faq-a">我们的主讲老师和助教老师会带着你手把手的写代码，做项目，帮你更好的掌握理论知识，陪你一起去踩实践过程中会遇到的坑。</div>
+            
+            <div class="m-c-faq-q">完成项目制学习后，我们简历上的项目经历会不会雷同？</div>
+            <div class="m-c-faq-a">针对每个不同的班级，我们都设计了不同的项目，而且确保该项目仅针对此次班级，不会被重复使用。</div>
+            
+            <div class="m-c-faq-q">项目完成后，我可以得到什么？</div>
+            <div class="m-c-faq-a"style="margin-bottom:0px">每个项目完成后，我们都会协助学生完成该项目的项目报告，报告完成后我们将颁发未明学院授予的项目结课证书。</div>
+            
+            
+            
+            {else if $result['teacher']==1||$result['teacher']==3}
+            <div class="m-c-faq-q">训练营持续时间多久？</div>
+            <div class="m-c-faq-a">数据分析项目制训练营为期四周，其中前两周是理论知识的学习以及示范项目的讲解，后两周授课老师和助教将会协助学员完成指定项目。</div>
+            
+            <div class="m-c-faq-q">训练营是以怎样的方式进行？</div>
+            <div class="m-c-faq-a">数据分析项目制训练营采用了直播授课+作业录屏讲解的授课方式，同时我们运用大量心理学知识及经验，通过微信班级群+小程序打卡作业+名师全程陪伴的方式，激发出学员的学习动力。学习数据分析是可以成为一件很有意思的事情。</div>
+            
+            <div class="m-c-faq-q">分配的项目是自己独立完成，还是老师带着做？</div>
+            <div class="m-c-faq-a">我们的主讲老师和助教老师会带着你手把手的写代码，做项目，帮你更好的掌握数据分析的理论，陪你一起去踩实践过程中会遇到的坑。</div>
+            
+            <div class="m-c-faq-q">完成项目制学习后，我们简历上的项目经历会不会雷同？</div>
+            <div class="m-c-faq-a">针对每个不同的班级，我们都设计了不同的项目，而且确保该项目仅针对此次班级，不会被重复使用。</div>
+            
+            <div class="m-c-faq-q">项目完成后，我可以得到什么？</div>
+            <div class="m-c-faq-a" style="margin-bottom:0px">每个项目完成后，我们都会协助学生完成该项目的项目报告，报告完成后我们将颁发未明学院授予的项目结课证书。</div>
+            
+            
+            {/if}
+            
+            
+            
+            </div>
+                <div class="pro-apply-btn pro-apply-btn-1" style="z-index:99">
+                        <!--<a href="https://e-132293.chatnow.meiqia.com/dist/standalone.html"><div class="pro-apply-button contact">我要咨询</div></a>-->
+                    <div class="pro-apply-button contact"  @click="contact" data-clipboard-text="enaca8">我要报名</div>
+                </div>
+        
+        <transition name = "fade">
+            <div v-show = "show" class="class-tab"  id="tab">
+                <div class="class-tab-list" :class="{'class-tab-list-active': num==1 }" @click="to1()">项目介绍</div>
+                <div class="class-tab-list" :class="{'class-tab-list-active': num==2 }" @click="to2()">成果展示</div>
+                <div class="class-tab-list" :class="{'class-tab-list-active': num==3 }" @click="to3()">课程安排</div>
+            </div>
+        </transition>
+    </div>  
+    
+    <script type=text/javascript src="/public/static/index/JS/mui.min.js"></script>
+    <script>
+        var vm = new Vue({
+        el: '#app',
+            data: {
+                show:false,
+                tab2:'',
+                tab3:'',
+                num:1,
+            },
+        created:function(){
+            $(window).scroll(function(){
+                            var windowHeight=$(window).height();
+                            var scrollTop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                            vm.tab1=($("#tab1").offset().top-$("#tab").outerHeight())*1+1+100;       
+                                
+                            if(scrollTop>vm.tab1){
+                                vm.show = true;
+                                if(vm.tab2==''){
+                                    vm.tab2=($("#tab2").offset().top-$("#tab").outerHeight())*1+1-48;       
+                                }
+                                if(vm.tab3==''){
+                                    vm.tab3=($("#tab3").offset().top-$("#tab").outerHeight())*1+1-48;       
+                                }
+                                if(scrollTop<vm.tab2-1){
+                                    vm.num=1;
+                                }
+                                else if(scrollTop>=vm.tab2-1&&scrollTop<vm.tab3-1){
+                                    vm.num=2;
+                                }else if(scrollTop>=vm.tab3-1){
+                                    vm.num=3;
+                                }
+                            }else{
+                                vm.show = false;
+                            }
+                            });
+                            
+            
+            },
+            methods: {
+            to1:function(){
+                $('html,body').animate({scrollTop: 0}, 800);
+                
+            },     
+            to2:function(){
+                $('html,body').animate({scrollTop: this.tab2}, 800);
+            
+            },
+            to3:function(){
+                $('html,body').animate({scrollTop: this.tab3}, 800);
+                
+            },
+            contact:function(){
+                mui.confirm('添加好友enaca8 后，课程助理会详细和您介绍报名流程', '已复制课程助理微信', ['取消', '打开微信'], function(e) 
+                {
+                    if (e.index == 1) {
+                        window.location.href="weixin://";
+                    } else {
+                    }	
+                });
+            }
+        }
+        });
+    
+        var clipboard = new ClipboardJS('.contact');
+                        clipboard.on('success', function(e) {
+                        e.clearSelection();
+                        //复制成功
+                        });
+                        clipboard.on('error', function(e) {
+                        //复制失败
+                        });
+    </script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</html>

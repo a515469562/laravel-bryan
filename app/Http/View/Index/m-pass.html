@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+<script type="text/javascript" src="/public/static/index/JS/jquery.cookie.js"></script>
+<link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+<script type="text/javascript" src="/public/static/index/JS/mui.min.js"></script>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        background:#f7f7f7;
+    }
+    #code-get{
+        /*border: solid;*/
+        font-size: 16px;
+        color: rgba(0,80,179,0.85);
+        letter-spacing: 0;
+        line-height: 21px;
+        float:right;
+        padding-top:3px;
+    }    
+    .guest-pass-new input{
+        font-size: 16px;
+        color: #999999;
+        letter-spacing: 0;
+        line-height: 21px;
+        width:70%;
+    }
+    #pass1{
+      width:100%;  
+    }
+    .guest-pass-new span{
+        /*border: solid;*/
+        font-size: 16px;
+        color: rgba(0,80,179,0.85);
+        letter-spacing: 0;
+        line-height: 21px;
+        float:right;
+        padding-top:13px;
+        margin-top: 13px;
+        margin-right: 5px;
+    }
+    .guest-pass-new{
+        font-size: 16px;
+        color: #333333;
+        letter-spacing: 0;
+        line-height: 41px;
+        border-bottom: 1px #f7f7f7 solid;
+    }
+    </style>
+</head>
+<body>
+        <header class="header">
+        <a  href="./guest"><div class="jump-index-m"></div></a>
+        <img class="header-logo" src="http://img.compassedu.hk/wmxy/back-white.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/75">  
+        <span style="padding-left:55px;">修改密码</span>
+        </header>
+        <div class="header-bg">
+        
+        </div>
+
+        <div class="guest-pass">
+            <div class="guest-pass-tel" id="tel">{$Think.session.guestinfo.tel_guest}</div>
+            <!-- <div class="login-code" id="code-div"> -->
+            <div class="guest-pass-new">
+                <input id="code" type="tel" placeholder="请输入验证码" >
+                <span id="code-get">获取验证码</span>
+            </div>
+            <!-- </div> -->
+            <div class="guest-pass-new"><input id="pass1" type="password" placeholder="请输入新密码至少6位，必须包含字母和数字"></div>
+            <!-- <div class="guest-pass-new"><input id="pass2" type="password" placeholder="请再次输入新密码"></div> -->
+        </div>
+        <div class="guest-pass-btn">
+            <div class="login-btn">
+                <button id="login-btn">登录</button>
+            </div>
+        </div>
+        <script>
+            $("#login-btn").click(function(){
+                if($("#login-btn").hasClass("ready")){
+                    var pass1=$("#pass1").val();
+                    var code=$("#code").val();
+                    var c1=check(pass1);
+                    // var c2=check(pass1);
+                    if(!c1){
+                        mui.alert('密码必须包含数字和字母','','知道了');
+                        return flase;
+                    }
+                    // if (pass1!=pass2){
+                    //     mui.alert('两次密码不相同','','知道了');
+                    //     return flase;
+                    // }
+                    $.post('./changepass',{'tel':$('#tel').html(),'captcha':code,'np':pass1}, function(result){
+                        mui.alert('密码设置成功','','知道了',function(){
+                            $('#pass1').val("");
+                            $('#code').val("");
+                        });
+                    });
+                }
+            })
+            $("#pass1,#code").keyup(function () {
+                var pass1=$("#pass1").val();
+                var code=$("#code").val();
+                // var pass2=$("#pass2").val();
+                if (pass1 != "" && pass1.length >= 6 && code != "" && code.length >= 6) {
+                    $("#login-btn").addClass("ready")
+                } else {
+                    $("#login-btn").removeClass("ready")
+                }
+                
+            });
+            function check(s){
+                var reg=new RegExp(/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/);
+                if(reg.test(s)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+
+
+            $.cookie('presenturl',window.location.href);
+            if($.cookie("secondsremained")>0){
+                 var count=$.cookie("secondsremained");　
+            }else{
+                var count=60;
+            }
+    
+        if ($.cookie("secondsremained") > 1) {
+            $("#code-get").css("color", "rgba(0, 0, 0, 0.45)");
+            $("#code-get").html("重新获取(" + count + "s)");
+            $("#code-get").attr("disabled", "disabled");
+                count--;
+            var date = new Date();
+            var c=count+1;
+            date.setTime(date.getTime()+c*1000);
+            $.cookie("secondsremained", count,{expires:date});
+            setTimeout(GetNumber, 1000);
+        }
+        else {
+            $("#code-get").html("获取验证码");
+            $("#code-get").css("color", " rgba(0,80,179,0.85)");
+            $("#code-get").attr("disabled", false);
+        }
+        
+        function GetNumber(s) {
+            if (s > 0) {
+                count = s
+            }
+            count--;
+            if (count < 1) {
+                $("#code-get").html("获取验证码");
+                $("#code-get").css("color", " rgba(0,80,179,0.85)");
+                $("#code-get").attr("disabled", false);
+            } else {
+                $("#code-get").css("color", "rgba(0, 0, 0, 0.45)");
+                $("#code-get").html("重新获取(" + count + "s)");
+                $("#code-get").attr("disabled", "disabled");
+                var date = new Date();
+                var c = count + 1;
+                date.setTime(date.getTime() + c * 1000);
+                $.cookie("secondsremained", count,{expires:date});
+                
+                setTimeout(GetNumber, 1000)
+            }
+        };           
+
+        $("#code-get").click(function () {
+            if ($(this).html() == "获取验证码") {
+                var tel = $("#tel").html();
+                posttel(tel);
+            }
+        });
+
+        function posttel(tel) {
+            $.post("/sendmsge", {
+                "tel": tel
+            }, function (result) {
+                var date = new Date();
+                date.setTime(date.getTime() + 60 * 1000);
+                $.cookie("secondsremained", 60,{expires:date});
+                GetNumber(60)
+            })
+        }
+
+        </script>
+        
+</body>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</html>
+

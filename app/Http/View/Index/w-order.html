@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<link href="/public/static/index/CSS/wmxy-custom.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+
+</head>
+
+
+<body style="background: #f7f7f7;">
+
+ {include file="./application/index/view/index/w-top-1.html"} 
+
+ <div class="cust-container" style="min-height:600px;overflow: hidden;">
+    <div class="row"> 
+{include file="./application/index/view/index/w-side.html"} 
+
+        <div class="col-xs-9" style="padding-left:0px">               
+            <div class="order-top">
+                <div class="order-title">
+                    <div class="order-title-tab1">
+                        <div class="npay active">待付款订单</div>
+                        <div class="nline"></div>
+                    </div>
+                    <div class="order-title-tab2">
+                        <div class="ypay">已付款订单</div>
+                        <div class="yline"></div>    
+                    </div>
+                </div>
+                <script>
+                $("#my_order").addClass("open");
+                $("#my_order_tag").addClass("open");
+                $('.npay').click(function(){
+                    $('.ypay').removeClass("active");
+                    $('.npay').addClass("active");
+                    $('#ypay').hide();$('.yline').hide();
+                    $('#npay').show();$('.nline').show();
+                });
+                $('.ypay').click(function(){
+                    $('.npay').removeClass("active");
+                    $('.ypay').addClass("active");
+                    $('#npay').hide();$('.nline').hide();
+                    $('#ypay').show();$('.yline').show();
+                });
+                </script>
+
+                <section id="npay"> 
+                {if $order1}
+                    {volist name="order1" id="o"}
+                    <div class="order-list">
+                        <div class="part-ordr">
+                            <form  role="form" name="alipayment{$o.id_order}" action="./alipay.trade.page.pay-PHP-UTF-8/pagepay/pagepay.php" method=post target="_blank">
+                            <div class="part-order-title">
+                                <div class="p1">{$o.pro}</div>
+                                <div class="p2">创建时间：{$o.ct_order}</div>
+                            </div>
+                            <div class="part-order-desc">
+                                <span>订单描述：</span>{$o.desc_order}
+                            </div>
+                            <input type="text" id="price"style="display:none" name="WIDtotal_fee" value="{$o.price_order}" readonly="true">
+                            <input type="text" id="item"style="display:none" name="WIDsubject" value="{$o.item_order}" readonly="true" >
+                            <input type="text" id="order_no" name="WIDout_trade_no"style="display:none" value="{$o.code_order}" readonly="true" >
+                            <input type="text" id="WIDtotal_amount"style="display:none"  name="WIDtotal_amount" value="{$o.price_order}" readonly="true">
+                            <div class="part-order-price">
+                                订单金额：<span>￥{$o.price_order}</span> 
+                                <button onclick="payment('{$o.id_order}')">立即付款</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    {/volist}
+                {else}
+                    <div class="order-blank">
+                        <img src="http://img.compassedu.hk/wmxy/nonebag.png">
+                        <div class="order-blank-tip">您尚未有待付款订单</div>
+                    </div>
+                {/if}       
+                </section>
+                <section id="ypay" style="display:none">
+                {if $order2}
+                    {volist name="order2" id="o"}
+                    <div class="order-list">
+                        <div class="part-ordr">
+                            <div class="part-order-title">
+                                <div class="p1">{$o.pro}</div>
+                                <div class="p2">创建时间：{$o.ct_order}</div>
+                            </div>
+                            <div class="part-order-desc">
+                                <span>订单描述：</span>{$o.desc_order}
+                            </div>
+                            <div class="part-order-price-1">
+                                订单金额：<span>￥{$o.price_order}</span> 
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                {else}
+                    <div class="order-blank">
+                        <img src="http://img.compassedu.hk/wmxy/nonebag.png">
+                        <div class="order-blank-tip">您尚未有已付款订单</div>
+                    </div>
+                {/if}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+{include file="./application/index/view/index/w-bottom-1.html"} 
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>零基础Python训练营</title>   
+<meta name="keywords" content="零基础Python训练营">
+<meta name="description" content="零基础Python训练营">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+    
+<link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+<script type=text/javascript src="/public/static/index/JS/mui.min.js"></script>
+<script type=text/javascript src="/public/static/index/JS/vue.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type=text/javascript src="/public/static/index/JS/jquery.cookie.js"></script>
+<style>
+    [v-cloak] {
+            display: none;
+        }
+        html,body{
+            font-size:13.3333333333vw;
+            font-family: 'Helvetica Neue',Helvetica,sans-serif;
+            width: 100%;
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background:#f7f7f7;
+        }
+        .apply-index{
+
+        }
+        .notScroll{
+            height:100vh;
+            overflow: hidden;
+        }
+        .bg-img{
+            width:100vw;
+        }
+        .img2{
+            position: fixed;
+            top:0;
+            z-index:999;
+        }
+        .img3{
+            position: fixed;
+            top:5.6rem;
+            left:2.8rem;
+            width:1.82rem!important;
+            height:1.82rem!important;
+            z-index:9999;
+        }
+        .img4{
+            position: fixed;
+            top:50%;
+            right:0;
+            width:40px!important;
+            height:40px!important;
+            z-index:999999;
+        }
+        .myimg img{
+            position: absolute;
+            width:.86rem;
+            height: .86rem;
+            left: 3.32rem;
+            top:5.17rem;
+            border-radius: 100%;
+        }
+        .avatar{
+            position: absolute;
+            width: 5.8rem;
+            top: 13.7rem;
+            left: .85rem;
+            height: 2.66rem;
+            font-size:.2rem;
+        }
+        .guest-div{
+            width:1.16rem;
+            margin-bottom:.25rem;
+            padding:0 .19rem;
+            float:left;
+            text-align: center;
+            overflow: hidden;
+        }
+        .active{
+            width:.78rem;
+            height:.78rem;
+            border:1px #00b48a solid;
+            border-radius: 100%;
+            float:left;
+            text-align: center;
+            font-size:.6rem;
+            line-height: .76rem;
+            margin-bottom:.1rem;
+            position: relative;
+        }
+        .active img{
+            width:100%;
+            height:100%;
+            border-radius: 100%;
+        }
+        .inactive{
+            width:.78rem;
+            height:.78rem;
+            border:1px #6a7c77 dashed;
+            background-color:#e8efed;
+            border-radius: 100%;
+            float:left;
+            text-align: center;
+            color:#6a7c77;
+            font-size:.6rem;
+            line-height: .76rem;
+            margin-bottom:.1rem;
+        }
+        .avatar-name{
+            width:1rem;
+            margin-left:-0.11rem;
+            text-align: center;
+            font-size: .12rem;
+            line-height: 1;
+            float: left;
+            color:#6a7e78;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .avatar-self{
+            position: absolute;
+            font-size: .1rem;
+            line-height:.22rem;
+            text-align: center;
+            width: .68rem;
+            height: .22rem;
+            border-radius: .095rem;
+            background-color: #00b48a;
+            bottom: -1px;
+            left: .05rem;
+            color: #fff;
+        }
+        .invite{
+            position: absolute;
+            top:10.45rem;
+            left:.75rem;
+            height:.96rem;
+            width:6rem;
+            z-index:99;
+        }
+        .direct{
+            position: absolute;
+            top:11.66rem;
+            left:2.47rem;
+            height:.22rem;
+            width:2.56rem;
+            z-index:99;
+        }
+        .button-1{
+            position: absolute;
+            top:10.4rem;
+            left:.65rem;
+            height:.96rem;
+            width:2.88rem;
+            z-index:99;
+        }
+        .button-2{
+            position: absolute;
+            top:10.4rem;
+            left:3.96rem;
+            height:.96rem;
+            width:2.88rem;
+            z-index:99;
+        }
+        .button-3{
+            position:fixed;
+            top:6.78rem;
+            left:2.32rem;
+            height:.96rem;
+            width:2.88rem;
+            z-index:9999;
+        }
+        .button-4{
+            position: fixed;
+            top:7rem;
+            left:2.31rem;
+            height:.96rem;
+            width:2.88rem;
+            z-index:9999;
+        }
+        .button-5{
+            position:fixed;
+            top:8.4rem;
+            left:.74rem;
+            height:.96rem;
+            width:6rem;
+            z-index:9999;
+        }
+        .button-6{
+            position: fixed;
+            top:9.69rem;
+            left:.34rem;
+            height:.96rem;
+            width:6.88rem;
+            z-index:99999;
+        }
+        .button-7{
+            position: fixed;
+            top:7.15rem;
+            left:.67rem;
+            height:.96rem;
+            width:6rem;
+            z-index:9999;
+        }
+        .button-8{
+            position:  fixed;
+            top:7.14rem;
+            left:.3rem;
+            height:.96rem;
+            width:6.88rem;
+            z-index:99999;
+        }
+        .button-9{
+            position: fixed;
+            top:8.15rem;
+            left:3.46rem;
+            height:.58rem;
+            width:.58rem;
+            z-index:9999;
+        }
+        .button-10{
+            position: fixed;
+            top:9.22rem;
+            left:3.46rem;
+            height:.58rem;
+            width:.58rem;
+            z-index:9999;
+        }
+        .button-cancel{
+            position:fixed;
+            top:10.66rem;
+            left:3.46rem;
+            height:.58rem;
+            width:.58rem;
+            z-index:9999;
+        }
+        .tel-div{
+            position:fixed;
+            left:1rem;
+            height:.71rem!important;
+            padding:.22rem 0 .22rem .9rem!important;
+            width:5.5rem!important;
+            z-index:9999; 
+            font-size: .24rem!important;
+            line-height: .47rem!important;
+            color:#6a7c78!important;
+            border: none!important;
+        }
+        .code-div{
+            position:fixed;
+            left:1rem;
+            height:.71rem!important;
+            padding:.22rem 0!important;
+            width:3.5rem!important;
+            z-index:9999; 
+            font-size: .24rem!important;
+            line-height: .47rem!important;
+            color:#6a7c78!important;
+            border: none!important;
+        }
+        .send-div{
+            position:fixed;
+            left:4.6rem;
+            height:.71rem;
+            padding-top:.22rem;
+            padding-bottom: .22rem;
+            width:1.9rem;
+            z-index:9999; 
+            font-size: .24rem;
+            line-height: .27rem;
+            color:#6a7c78;
+            text-align: right;
+            border: none;
+        }
+        .login-cy{
+            position: fixed;
+            left: 1rem;
+            height: .71rem;
+            padding-top: .22rem;
+            padding-bottom: .22rem;
+            z-index: 9999;
+            color: #6a7c78;
+            border: none;
+            background: transparent url(http://img.compassedu.hk/wmxy/drop.png?imageMogr2/auto-orient/thumbnail/14x/blur/1x0/quality/75) no-repeat 100% 50%;
+            background-size: .187rem;
+            padding-right: .3rem;
+            color: #333333;
+            letter-spacing: 0;
+            font-size: .24rem;
+            line-height: .27rem;
+        }
+        .page-show {
+            left: 0!important;
+            animation: show 0.3s;
+            -moz-animation: show 0.3s;
+            -webkit-animation: show 0.3s;
+            -o-animation: show 0.3s;
+        }
+        .page-hide {
+            left: 100vw!important;
+            animation: hide 0.3s;
+            -moz-animation: hide 0.3s;
+            -webkit-animation: hide 0.3s;
+            -o-animation: hide 0.3s;
+        }
+        @keyframes show
+        {
+            from {left:100vw;}
+            to {left:0;}
+        }
+
+        @-moz-keyframes show
+        {
+            from {left:100vw;}
+            to {left:0;}
+        }
+
+        @-webkit-keyframes show
+        {
+            from {left:100vw;}
+            to {left:0;}
+        }
+
+        @-o-keyframes show
+        {
+            from {left:100vw;}
+            to {left:0;}
+        }
+        @keyframes hide
+        {
+            from {left:0;}
+            to {left:100vw;}
+        }
+
+        @-moz-keyframes hide
+        {
+            from {left:0;}
+            to {left:100vw;}
+        }
+
+        @-webkit-keyframes hide
+        {
+            from {left:0;}
+            to {left:100vw;}
+        }
+
+        @-o-keyframes hide
+        {
+            from {left:0;}
+            to {left:100vw;}
+        }
+        .jump-index-m {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 1rem;
+            width: 2.6rem;
+            z-index: 999;
+        }
+        .login-header {
+            width: 100%;
+            height: .88rem;
+            background: #fff;
+            padding-left:.2rem;
+            position: fixed;
+            top:0;
+            left: 100vw;
+        }
+        .cy-0 {
+            background: #f7f7f7;
+            padding: 5px 20px;
+            font-size: 12px;
+        }
+        .cy-1 {
+            padding: 8px 20px;
+            font-size: 14px;
+            line-height: 21px;
+            color: #333;
+            border-bottom: 1px #f7f7f7 solid;
+            background: #fff;
+        }
+        .header-logo {
+            position: absolute;
+            top: 13px;
+            left: 20px;
+        }
+        .cy-1 span {
+            float: right;
+            color: #999;
+        }
+        .cy-page {
+            position: absolute;
+            top: 0rem;
+            width: 100vw;
+            left: 100vw;
+            z-index: 999999;
+            min-height: 100vh;
+            background: #f7f7f7;
+            overflow-y: hidden;
+            height: 100vh;
+        }
+        .mask{
+            width:100vw;
+            height:100vh;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:98;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app"  v-cloak>
+        <a href="https://e-132293.chatnow.meiqia.com/dist/standalone.html"><img class="bg-img img4" src="http://camp.enaca.cn/hd/kefu.png"></a>
+        <section v-if="status==1">
+            <div class="apply-index">
+                <img class="bg-img" src="http://camp.enaca.cn/hd/1.jpg" >
+                <img class="bg-img img2" src="http://camp.enaca.cn/hd/6.png" v-show="step==5">
+                <div class="button-4" @click="toStep(6)" v-show="step==5"></div>
+                <img class="bg-img img2" src="http://camp.enaca.cn/hd/7.jpg" v-show="step==6">
+                <div class="button-5" @click="toStep(7)" v-show="step==6"></div>
+                <img class="bg-img img2" src="http://camp.enaca.cn/hd/8.jpg" v-show="step==7">
+                <div class="button-6" @click="toStep(11)" v-show="step==7"></div>
+
+                <img class="bg-img img2" src="http://camp.enaca.cn/hd/11.png" v-show="step==11||step==12">
+                <img class="bg-img img3" src="http://camp.enaca.cn/hd/tokefu11.png" v-show="step==11&&kind==0">
+                <img class="bg-img img3" src="http://camp.enaca.cn/hd/tokefu11.png" v-show="step==11&&kind==1">
+                <img class="bg-img img3" src="http://camp.enaca.cn/hd/tokefu13.png" v-show="step==12">
+
+                
+
+                <div v-show="step==6||step==8">
+                    <input class="tel-div" type="tel"  placeholder="请输入手机号">
+                    <input class="code-div" type="tel"  placeholder="请输入验证码">
+                    <div class="send-div"><span id="code-get" @click="codeget()">获取验证码</span></div>
+                    <div class="login-cy" @click="code()">+<span id="cy">86</span></div> 
+ 
+                </div>
+
+                <div class="invite" @click="toStep(2)"  v-show="step!=5&&step!=7"></div>
+                <img class="bg-img img2" src="http://camp.enaca.cn/hd/2.png" @click="cancel()" v-show="step==2">
+
+                <div class="direct" @click="toStep(8)"  v-show="step!=5&&step!=7"></div>  
+                <img class="bg-img img2" src="http://camp.enaca.cn/hd/9.jpg" v-show="step==8">
+                <div class="button-7" @click="toStep(9)" v-show="step==8"></div>
+                <img class="bg-img img2" src="http://camp.enaca.cn/hd/10.jpg" v-show="step==9">
+                <div class="button-8" @click="toStep(12)" v-show="step==9"></div>
+            </div>
+        </section>
+
+        <section v-if="status==3||status==4">
+                <div class="apply-index">
+                        <img class="bg-img" src="http://camp.enaca.cn/hd/3.jpg" v-if="status==3">
+                        <div class="button-1" @click="toStep(3)"   v-if="status==3"></div>
+                        <img class="bg-img img2" src="http://camp.enaca.cn/hd/4.png" v-show="step==3"  v-if="status==3">
+                        <div class="button-3" @click="add()"  v-show="step==3"  v-if="status==3"></div>
+
+                        <img class="bg-img" src="http://camp.enaca.cn/hd/3-1.jpg" v-if="status==4">
+
+                        <div class="button-2" @click="toStep(4)"  ></div>
+                        <img class="bg-img img2" src="http://camp.enaca.cn/hd/5.png" v-show="step==4">
+                        <div class="button-10" @click="cancel()"  v-show="step==3||step==4"></div>
+                    </div>            
+        </section>
+        <img class="bg-img img2" src="http://camp.enaca.cn/hd/apply-ending.png" v-show="step==13">
+        <div class="myimg" v-if="status==3||status==4">
+            <img v-bind:src="list[0].img">
+        </div>
+        <div class="avatar"  >
+            <div  v-for="(item,index) in list">
+                <div v-if="item.img!=''" class="guest-div">
+                        <div class="active">
+                            <img v-bind:src="item.img">
+                            <div v-if="index==0" class="avatar-self">团长</div>
+                        </div>
+                        <div v-html="item.nick"  class="avatar-name"></div>
+                    
+                </div>
+                <div v-else class="guest-div">
+                    <div class="inactive">?</div>
+                    <div class="avatar-name">待邀请</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="cy-page" id="cy-md">
+    <div class="login-header" id="back2" style="text-align: center;">
+        <div id="back3" class="jump-index-m"></div>
+        <div style="line-height: 50px;font-size: 18px;color:#333">选择国家和地区</div>
+        <img class="header-logo" src="http://img.compassedu.hk/wmxy/back.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/75">                
+        
+    </div>
+    <div style="padding-top:.88rem">
+            <div id="name" style="padding-top:10px;">
+
+            </div>
+    </div>
+    </section>
+    <div class="mask"></div>
+        <script type="text/javascript">
+            
+            var vm = new Vue({
+                    el: '#app',
+                    data: {
+                        uid:"{$uid}",
+                        gid:"{$Think.session.wmxyinfo.id}",
+                        myimg:"{$Think.session.wmxyinfo.img}",
+                        oid:"{$Think.session.wmxyinfo.openid}",
+                        list:[],
+                        status:0,
+                        cid:"{$cid}",
+                        step:1,
+                        st:1,
+                        addState:0,
+                        type:1,
+                        kind:0,
+                        order:0,
+                    },
+                    mounted:function(){
+                        $.get("/getapply", { "id":"{$uid}","cid":"{$cid}"},
+                            function(data){
+                                if(data[0]['gid']!=vm.gid){
+                                    vm.st=3;
+                                }
+                                data.forEach(function(item,index,arr){
+                                    vm.list.push(item);
+                                    if(item.zid==vm.gid&&vm.st==3){
+                                        vm.st=4;
+                                    }
+                                });
+                                if(vm.list[9]['img']!=''){
+                                    if(vm.st==1){
+                                        vm.step=5;
+                                        document.addEventListener('touchmove',vm.bodyScorll,{passive:false});
+                                    }else if(vm.st==3){
+                                        vm.st=4;
+                                    }
+                                }
+                                if(vm.list[0]['status']==1&&vm.st==1){
+                                    vm.step=11;
+                                    document.addEventListener('touchmove',vm.bodyScorll,{passive:false});
+                                }else if(vm.list[0]['status']==2&&vm.st==1){
+                                    vm.step=12;
+                                    document.addEventListener('touchmove',vm.bodyScorll,{passive:false});
+                                }else{
+                                    vm.step=13;
+                                    document.addEventListener('touchmove',vm.bodyScorll,{passive:false});
+                                }
+                                vm.status=vm.st;
+                                vm.kind=vm.gid%2; 
+                                        //微信分享
+                                    $.get("http://m.enaca.cn/getShare", 
+                                    {"url":location.href.split('#')[0]}).done(function (data) {
+                                    // 注意这里的url，一定要这样写，也就是动态获取，不然也不会成功的。
+                                        console.log(data);
+                                        if (data) {
+                                            var wx_info = data;
+                                            if (wx_info.signature != null) {
+                                                // 配置
+                                                wx.config({
+                                                    debug: false,   // 测试阶段，可以写为true，主要是为了测试是否配置成功
+                                                    appId: wx_info.appId,
+                                                    timestamp: wx_info.timestamp,
+                                                    nonceStr: wx_info.nonceStr,
+                                                    signature: wx_info.signature,
+                                                    jsApiList: ['chooseImage','checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 
+                                                        'onMenuShareQZone']
+                                                });
+                                                //每次课程修改项
+                                                var title = "为我助力参加零基础Python训练营，免费报名还送戴森吹风机、Beats无线耳机！";
+                                                var desc = "为我助力参加零基础Python训练营，免费报名还送戴森吹风机、Beats无线耳机！";
+                                                var imgUrl = "http://camp.enaca.cn/wmxy-logo-share.jpg?imageMogr2/auto-orient/thumbnail/60x60%3E/blur/1x0/quality/90";
+                                                var link = "http://m.enaca.cn/apply?uid="+vm.gid;
+
+                                                // 分享给朋友、QQ、微博
+                                                var shareData = {
+                                                    "imgUrl": imgUrl,
+                                                    "title": title,
+                                                    "desc": desc,
+                                                    'link': link,
+                                                };
+                                                // 分享到朋友圈
+                                                var shareToTimeline = {
+                                                    "imgUrl": imgUrl,
+                                                    "title": title, 
+                                                    'link': link,
+                                                    "desc": desc,
+                                                };
+                                                wx.ready(function() {
+                                                    wx.onMenuShareTimeline(shareToTimeline);
+                                                    wx.onMenuShareAppMessage(shareData);
+                                                    wx.onMenuShareQQ(shareData);
+                                                    wx.onMenuShareQZone(shareData);
+
+                                                    wx.error(function(res) {
+                                                        alert(res.errMsg);
+                                                    });
+                                                });
+                                            }
+                                        }
+                                    }).fail(function (msg) {
+                                    console.log("error:" + msg);
+                                    });
+                            });
+                           
+                    },
+                    methods: {
+                        toStep:function(a){
+                            document.addEventListener('touchmove',vm.bodyScorll,{passive:false});
+                            if(a==6||a==8){
+                                if(a==8&&'{$Think.session.wmxyinfo.guest}'>0){
+                                    a=9;
+                                    vm.type=2;
+                                }else if(a==6&&'{$Think.session.wmxyinfo.guest}'>0){
+                                    a=7;
+                                    vm.type=1;
+                                }else{
+                                    if(a==6){
+                                        vm.type=1;
+                                        $(".tel-div").css("top","6.13rem");
+                                        $(".code-div").css("top","7.22rem");
+                                        $(".send-div").css("top","7.22rem");
+                                        $(".login-cy").css("top","6.13rem");
+                                    }else if(a==8){
+                                        vm.type=2;
+                                        $(".tel-div").css("top","4.88rem");
+                                        $(".code-div").css("top","5.97rem");
+                                        $(".send-div").css("top","5.97rem");
+                                        $(".login-cy").css("top","4.88rem");
+                                    }
+
+                                    
+                                    $.getJSON ("/code.text", function (data)  
+                                    {  
+                                        var t1='';
+                                        $.each (data, function (i, item)  
+                                        {  
+                                            var k=item.key;
+                                            t1+='<div class="cy-0">'+k+'</div>';
+                                            var d=item.data;
+                                            $.each (d, function (i1, item1) 
+                                            {
+                                                t1+='<div class="cy-1" onclick="choose('+item1.phoneCode+')">'+item1.countryName+'<span>+'+item1.phoneCode+'</span></div>';
+                                            }); 
+                                            
+                                        }); 
+                                        $("#name").append (t1);   
+                                    });
+                                }
+                                if(a==7||a==9){
+                                    $.post("/newOrderWx", {
+                                    "id": vm.gid,
+                                    "cid":'{$cid}',
+                                    "type": vm.type
+                                }, function (result) {
+                                    vm.step=a;
+                                    vm.order=result;
+                                    }
+                                )
+                                }else{
+                                    vm.step=a;
+                                }
+                                
+                            }else if(a==7||a==9){
+                                if(a==9){
+                                    vm.type=2;
+                                }else if(a==7){
+                                    vm.type=1;
+                                }
+                                var cy = changearea($("#cy").html());
+                                var tel = $(".tel-div").val();
+                                var code = $(".code-div").val();
+                                $.post("/checkLoginWx", {
+                                    "tel": tel,
+                                    "cy": cy,
+                                    "cid":'{$cid}',
+                                    "code":code,
+                                    "type":vm.type
+                                }, function (result) {
+                                    if(result=="3"||result=="2"){
+                                        if(vm.type==1){
+                                            a=6;
+                                        }else{
+                                            a=8;
+                                        }
+                                        mui.toast('验证码不正确！',{ duration:'long', type:'div' });
+                                    }else if(result=="1"){
+                                        if(vm.type==1){
+                                            a=6;
+                                        }else{
+                                            a=8;
+                                        }
+                                        mui.toast('网络异常，请刷新重试！',{ duration:'long', type:'div' });
+                                    }else{
+                                        vm.order=result;
+                                        vm.step=a;
+                                    }
+                                    
+                                })
+                            }else if(a==11){
+                                mui.toast('订单正在生成中，请稍等~',{ duration:'long', type:'div' });
+                                 /*$.get("/getorderwx", {
+                                    "gid": '{$Think.session.wmxyinfo.id}',
+                                    "type": 1,
+                                    "cid":vm.cid,
+                                }, function (result) {
+                                    var oid=result;
+                                    callpay(oid,1);
+                                });*/
+                                callpay(vm.order,1);
+                            }else if(a==12){
+                                mui.toast('订单正在生成中，请稍等~',{ duration:'long', type:'div' });
+                                /* $.get("/getorderwx", {
+                                    "gid": '{$Think.session.wmxyinfo.id}',
+                                    "type": 2,
+                                    "cid":vm.cid,
+                                }, function (result) {
+                                    var oid=result;
+                                    callpay(oid,2);
+                                });*/
+                                callpay(vm.order,2);
+                            }else{
+                                vm.step=a;
+                            }
+
+                            
+                        },
+                        code:function(){
+                            $("#cy-md").css({
+                                "height":"",
+                                "min-height":"100%",
+                                "overflow-y":"auto"
+                            });
+                            $(document).scrollTop(0);
+                            document.removeEventListener('touchmove',vm.bodyScorll ,{passive:false});
+                            $("#cy-md").addClass("page-show");
+                            $("#cy-md").removeClass("page-hide");  
+                            $("#back2").addClass("page-show");
+                            $("#back2").removeClass("page-hide"); 
+                            $('body,html').removeClass('notScroll');
+                            $(document).off('scroll.unable');
+                            
+                        },
+                        cancel:function(a){
+                            vm.step=1;
+                            document.removeEventListener('touchmove',vm.bodyScorll ,{passive:false});
+                            $('body,html').removeClass('notScroll');
+                            $(document).off('scroll.unable');
+                        },
+                        add:function(a){
+                            if(vm.addState==1){
+                                return false;
+                            }
+                            vm.addState=1;
+                            var data={
+                                'uid':vm.uid,
+                                'gid':vm.gid,
+                                'cid':vm.cid,
+                            };
+                            $.post("/addapply",data,function(s){
+                                if(s=="ok"){
+                                $.get("/getapply", { "id":"{$uid}","cid":"{$cid}"},
+                                function(data){
+                                    vm.list=[];
+                                    data.forEach(function(item,index,arr){
+                                        vm.list.push(item);
+                                    });
+                                    vm.status=4;
+                                    vm.step=1;
+                                    vm.addState=0;
+                                    document.removeEventListener('touchmove',vm.bodyScorll ,{passive:false});
+                                });
+                                }else{
+                                    mui.toast('网络异常，请重试！',{ duration:'long', type:'div' });
+                                }
+                                
+                            });
+                        },
+                        bodyScorll:function(event){                               
+                            event.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)
+                        },
+                        codeget:function(){
+                            if ($("#code-get").html() == "获取验证码") {
+                                var cy = changearea($("#cy").html());
+                                var tel = $(".tel-div").val();
+                                
+                                if ((cy == 86 && checktel(tel))||(cy != 86 && !isNaN(tel)) ){
+                                    posttel(tel, cy);
+                                } else {
+                                    mui.toast('请输入正确的手机号码',{ duration:'long', type:'div' }) ;            
+                                }
+                            }
+                        },
+                    },
+
+            });
+
+            
+            $("#back3").click(function(){
+                $("#cy-md").css({
+                    "height":"100vh",
+                    "overflow-y":"hidden"
+                });
+                $("#cy-md").addClass("page-hide");
+                $("#cy-md").removeClass("page-show");
+                $("#back2").removeClass("page-show");
+                $("#back2").addClass("page-hide"); 
+                $('body,html').addClass('notScroll');
+                $(document).on('scroll.unable');
+                
+            })
+            function choose(s){
+                if(s>10000){
+                    var l=5;
+                }else if(s>1000){
+                    var l=4;
+                }else if(s>100){
+                    var l=3;
+                }else if(s>10){
+                    var l=2;
+                }else{
+                    var l=1;
+                }
+                var w=l*0.24+0.42;
+                w=w+'rem';
+                $(".tel-div").css("padding-left",w);
+                $("#cy").html(s);
+                $("#cy-md").css({
+                    "height":"100vh",
+                    "overflow-y":"hidden"
+                });
+                $("#cy-md").addClass("page-hide");
+                $("#cy-md").removeClass("page-show");
+                $("#back2").removeClass("page-show");
+                $("#back2").addClass("page-hide"); 
+                $('body,html').addClass('notScroll');
+                $(document).on('scroll.unable');
+            }
+            function changearea(e) {
+                var tel = e;
+                tel = tel.replace("+", "");
+                tel = tel.replace(" ", "");
+                tel = tel.replace("-", "");
+                return tel
+            }
+            function checktel(e) {
+                var tel = e;
+                var myreg = /^(((1[0-9]{1}))+\d{9})$/;
+                if (!myreg.test(tel)) {
+                    return false
+                } else {
+                    return true
+                }
+            }  
+            function posttel(tel, cy) {
+                $.post("/sendmsgeWx", {
+                    "tel": tel,
+                    "cy": cy,
+                }, function (result) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + 60 * 1000);
+                    $.cookie("secondsremained", 60,{expires:date});
+                    GetNumber(60)
+                })
+            }
+            function GetNumber(s) {
+                if (s > 0) {
+                    count = s
+                }
+                count--;
+                if (count < 1) {
+                    $("#code-get").html("获取验证码");
+                    $("#code-get").css("color", " rgba(0,80,179,0.85)");
+                    $("#code-get").attr("disabled", false);
+                } else {
+                    $("#code-get").css("color", "rgba(0, 0, 0, 0.45)");
+                    $("#code-get").html("重新获取(" + count + "s)");
+                    $("#code-get").attr("disabled", "disabled");
+                    var date = new Date();
+                    var c = count + 1;
+                    date.setTime(date.getTime() + c * 1000);
+                    $.cookie("secondsremained", count,{expires:date});
+                    
+                    setTimeout(GetNumber, 1000)
+                }
+            }; 
+</script>
+        <script type="text/javascript">
+            //调用微信JS api 支付
+            function jsApiCall(s,b)
+            {
+                var id=s;
+                jstype=b;
+                $.post("./getorder", {
+                "id": id,
+            }, function (r) {
+                var jsApiParameters= eval('(' + r + ')');
+                 // 建议使用这中方式发起支付.
+                 WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                     //公众号名称，由商户传入
+                     
+                     "timeStamp":jsApiParameters['timeStamp'],
+                     "appId":jsApiParameters['appId'],  //时间戳，自1970年以来的秒数
+                     "nonceStr":jsApiParameters['nonceStr'],    //随机串
+                     "package":jsApiParameters['package'],
+                     "signType":'MD5',     //微信签名方式：
+                     "paySign":jsApiParameters['paySign']        //微信签名
+                  }, function(res){
+                 // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                     $.post("./finOrder", {
+                        "gid": vm.gid,
+                        "cid":vm.cid,
+                        "type":jstype,
+                    }, function (r) {
+                            if(jstype==1){
+                                vm.step=11;
+                            }else if(jstype==2){
+                                vm.step=12;
+                            }
+                            
+                        });
+                   }
+                  }
+                 );
+                });
+            }
+    
+            function callpay(s,b)
+            {
+
+                if (typeof WeixinJSBridge == "undefined"){
+                    if( document.addEventListener ){
+                        document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                    }else if (document.attachEvent){
+                        document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                        document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                    }
+                }else{
+                    
+                    jsApiCall(s,b);
+                }
+            }
+        </script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+
+</html>
+

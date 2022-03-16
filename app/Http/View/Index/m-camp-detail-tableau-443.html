@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+
+<title>未明学院</title>   
+
+<meta name="keywords" content="未明学院">
+
+<meta name="description" content="未明学院">
+
+
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+
+    </script>
+
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+
+<script type=text/javascript src="/public/static/index/JS/jquery.cookie.js"></script>
+
+<link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+
+<script type=text/javascript src="/public/static/index/JS/mui.min.js"></script>
+
+<script type=text/javascript src="/public/static/index/JS/vue.min.js"></script>
+
+<script src="//cdn.staticfile.org/plupload/2.1.2/plupload.full.min.js"></script>
+
+<script src="https://unpkg.com/qiniu-js/dist/qiniu.min.js"></script>
+
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+
+
+<style>
+
+    [v-cloak] {
+
+            display: none;
+
+        }
+
+        @font-face {
+
+            font-family: "wmxy";
+
+            src: url('/public/static/index/fonts/simsun.ttf') format("truetype");
+
+        }
+
+        html,body{
+
+            font-family: 'Helvetica Neue',Helvetica,sans-serif;
+
+            width: 100%;
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            background:#f7f7f7;
+
+        }
+
+        .mui-icon-arrowdown:before{
+
+            content: none;
+
+        }
+
+        .mui-icon-arrowdown:after{
+
+            content: '\e581';
+
+        }
+
+        p{
+
+            margin:0;
+
+            line-height: 22.5px!important;
+
+            font-size: 15px!important;
+
+            white-space: normal!important;
+
+            color:#666;
+
+        }
+
+        .camp-upload-bg{
+
+            background: rgba(0,0,0,0.51);
+
+            position: fixed;
+
+            top:0;
+
+            left:0;
+
+            height:100vh;
+
+            width:100vw;
+
+            z-index:9998;
+
+        }
+
+        .upload-area{
+
+            background: #fff;
+
+            position: fixed;
+
+            bottom:0px;
+
+            left:0;
+
+            min-height:280px;
+
+            width:100vw;
+
+            z-index:9999;
+
+            padding-top:10px;
+
+            animation:up 1s;
+
+            -moz-animation: up 1s;	/* Firefox */
+
+            -webkit-animation: up 1s;	/* Safari 和 Chrome */
+
+            -o-animation: up 1s;	
+
+        }
+
+        @keyframes up
+
+        {
+
+            from {bottom:-280px;}
+
+            to {bottom:0;}
+
+        }
+
+
+
+        @-moz-keyframes up /* Firefox */
+
+        {
+
+            from {bottom:-280px;}
+
+            to {bottom:0;}
+
+        }
+
+
+
+        @-webkit-keyframes up /* Safari 和 Chrome */
+
+        {
+
+            from {bottom:-280px;}
+
+            to {bottom:0;}
+
+        }
+
+
+
+        @-o-keyframes up /* Opera */
+
+        {
+
+            from {bottom:-280px;}
+
+            to {bottom:0;}
+
+        }
+
+        .textw-div{
+
+            padding:17px 20px;
+
+            border-top: 1px solid #DDDDDD;
+
+        }
+
+        .textw{
+
+            background: #FFFFFF;
+
+            border:none!important;
+
+            font-size: 14px;
+
+            color: #BBBBBB;
+
+            letter-spacing: 0;
+
+            line-height:21px;
+
+            padding:0!important;
+
+            height:63px;
+
+        }
+
+        #imgInp{
+
+            display:none;
+
+        }
+
+        .imgbutton{
+
+            width:55px;
+
+            height:55px;
+
+            border: 1px solid #DDDDDD;
+
+            position: relative;
+
+        }
+
+        .imgbutton img{
+
+            position: absolute;
+
+            width: 20px;
+
+            height: 20px;
+
+            top: 17.5px;
+
+            left: 17.5px;
+
+        }
+
+        .up-imgs-div{
+
+            overflow: hidden;
+
+            padding:5px 20px;
+
+            width:100%;
+
+        }
+
+        .btndiv{
+
+            float:left;
+
+        }
+
+        .blah{
+
+            width:55px;
+
+            height:55px;
+
+            object-fit: cover;
+
+            display:none;
+
+            margin-right:10px;
+
+        }
+
+        .up-imgs{
+
+            margin-right:10px
+
+        }
+
+        .plusbox{
+
+            display: inline-block;
+
+            position:  relative;
+
+            margin-right: 10px;
+
+            float:left;
+
+            width:55px;
+
+        }
+
+        .deletecoin{
+
+            width:20px;
+
+            height: 20px;
+
+            position: absolute;
+
+            right: 0px;
+
+            top:-5px;
+
+        }
+
+        .camp-finish{
+
+            background: #f2f2f2;
+
+            position: fixed;
+
+            top:0;
+
+            left:0;
+
+            height:100vh;
+
+            width:100vw;
+
+            z-index:999;
+
+            padding-top: 22px;
+
+            text-align: center;
+
+        }
+
+        .camp-finish-img{
+
+            width:90px;
+
+            height:90px;
+
+            margin-bottom: 10px;
+
+        }
+
+        .finish-text{
+
+            font-size: 18px;
+
+            color: #333333;
+
+            text-align: center;
+
+            line-height: 25px;
+
+        }
+
+        .select-div{
+
+            position: absolute;
+
+            top: 0;
+
+            left: 50%;
+
+            width: 50px;
+
+            text-align: center;
+
+            height: 36px;
+
+        }
+
+        .select-div select{
+
+            padding: 0;
+
+            width: 100px;
+
+            height: 36px;
+
+            margin: 0 0 0 -50px;
+
+            background-color:transparent;
+
+            color:transparent;
+
+        }
+
+        .dk-ava img{
+
+            border-radius:100%;
+
+        }
+
+        .share-text{
+
+            margin: -20px auto;
+
+            z-index: 9;
+
+            position: relative;
+
+            padding: 28px 0 37.5px 0;
+
+            color: #fff;
+
+            text-align: center;
+
+            top: -90.63vw;
+
+        }
+
+        .share-cancel{
+
+            position: relative;
+
+            top: -80vw;
+
+        }
+
+        .share-text .share-1{
+
+            font-size: 14px;
+
+            line-height: 26px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .share-text .share-2{
+
+            font-size: 12px;
+
+            line-height: 18.5px;
+
+            margin-bottom:5.5px;
+
+        }
+
+        .share-2 img{
+
+            position: relative;
+
+            top: 3px;
+
+            left: 2px;
+
+            width:14px;
+
+            height:14px;
+
+            margin:0 4px;
+
+        }
+
+        .share-div{
+
+            position: fixed;
+
+            z-index: 99999;
+
+            text-align: center;
+
+            top: -10vh;
+
+            width: 100%;
+
+            left: 0;
+
+        }
+
+        .share-div img{
+
+            max-width:100%;
+
+        }
+
+        .share-div-img{
+
+            position: fixed;
+
+            z-index: 999999;
+
+            top: 76.5vw;
+
+            left: 64.53333vw;
+
+            width:14.8vw;
+
+            height:14.8vw;
+
+        }
+
+        .share-div-last{
+
+            position: fixed;
+
+            z-index: 99999;
+
+            text-align: center;
+
+            top: -15vw;
+
+            width: 100%;
+
+            left: 0;
+
+        }
+
+        .share-div-last img{
+
+            max-width:100%;
+
+        }
+
+        .share-cancel-last{
+
+            position: relative;
+
+            top: -62vw;
+
+        }
+
+        #ruler {
+
+        position:absolute;
+
+        visibility: hidden;
+
+        white-space: nowrap;
+
+        z-index: -100;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div id="app"  v-cloak>
+
+        <div class="camp-head">
+
+            <div class="pre" v-if="question.order_dk!=1&loading" v-html=pre @click="toPage(1,1)"></div>
+
+            <div class="now mui-icon mui-icon-arrowdown" v-text=question.title></div>
+
+            <div class="select-div">
+
+            <select v-model="selected" @change="toPage(selected,2)" v-html=questionText></select>
+
+            </div>
+
+            <div class="next" v-if="question.cpg_dk!=cid&loading" v-html=next @click="toPage(2,1)"></div>
+
+        </div>
+
+        <div class="camp-container-1  pictures">
+
+            <div class="camp-container-title">作业内容</div>
+
+            <div class="camp-container-content" v-html=question.content_dk v-bind:id="order[question.order]" v-bind:class="{campcontent:isActive[question.order]}"></div>
+
+            <div @click="all(question.order)" class="show-more"  v-show='hide[question.order]' v-text=more[question.order]></div>
+
+        </div>
+
+
+
+        <div class="signin" v-show="status&&click">
+
+            <button @click="change()">打卡</button>
+
+        </div>
+
+
+
+        <div class="camp-container-2  pictures"  v-show="!status">
+
+            <div class="camp-container-title">作业答案</div>
+
+            <div class="camp-container-content" v-html=answer.content_dk v-bind:id="order[answer.order]" v-bind:class="{campcontent:isActive[answer.order]}"></div>
+
+            <div @click="all(answer.order)" class="show-more"  v-text=more[answer.order]></div>
+
+        </div>
+
+
+
+        <div class="camp-container-2  pictures"  v-show="!status">
+
+            <div class="camp-container-title">我的打卡</div>
+
+            <div class="dk-content camp-my" v-html=my.content_dk v-bind:id="order[my.order]" v-bind:class="{campcontent:isActive[my.order]}"></div>
+
+            <div @click="all(my.order)" class="show-more-1 camp-my"  v-show='hide[my.order]' v-text=more[my.order]></div>
+
+            <div class="dk-content-pic camp-my" v-html="my.pic_dk"  id="mypictures"></div>
+
+        </div>
+
+
+
+        <div class="camp-container pictures"  v-show="!status">
+
+            <div class="camp-container-all">全部打卡</div>
+
+            <div class="camp-all" v-for="(item,index) in list">
+
+                <div class="dk-ava">
+
+                    <img v-bind:src="item.wmxy_pic_guest">
+
+                    <div class="nickname" v-html="item.wmxy_nick_guest"></div>
+
+                    <div>完成<span v-text="item.sum"></span>次打卡</div>
+
+                </div>
+
+                <div class="dk-content" v-html="item.content_dk"  v-bind:id="order[item.order]"  v-bind:class="{campcontent:isActive[item.order]}"></div>
+
+                <div @click="all(item.order)" class="show-more-1"  v-show='hide[item.order]' v-text=more[item.order]></div>
+
+                <div class="dk-content-pic imgs-box" v-html="item.pic_dk" v-bind:id="item.picorder"></div>
+
+                <div class="dk-time" v-html="item.time_dk"></div>
+
+            </div>
+
+        </div>
+
+        <span id="ruler"></span>
+
+        <div class="camp-upload-bg" v-show="dkPage1||(!status&&vm.nowNum==14&&lastcheck)" @click="close()"></div>
+
+        <div class="upload-area" v-show="dkPage">
+
+            <div class="textw-div">
+
+                <textarea class="textw" placeholder="请输入文字" type="text"></textarea>
+
+            </div>
+
+                <span id='uploadSpan'><input type='file' id="imgInp"  accept="image/*" multiple/></span>
+
+                <div class="up-imgs-div">
+
+                    <div class="up-imgs">
+
+                            
+
+                    </div>
+
+                    <div class="btndiv">
+
+                        <button class="imgbutton"><img src="http://img.compassedu.hk/wmxy/add.png"></button>
+
+                        
+
+                    </div>
+
+                </div>  
+
+                <div class="signin">
+
+                    <button onclick="send()">打卡</button>
+
+                </div>
+
+        </div> 
+
+        <!-- 每次课程修改项num==14 -->
+
+        <div class="share-div" v-show="share1&&vm.nowNum<14">
+
+            <!-- <img src="http://camp.enaca.cn/shareBg.png?imageView2/0/q/75"> -->
+
+            <img src="http://camp.enaca.cn/shareBg7.png?imageView2/0/q/75">
+
+            <div class="share-text">
+
+                <div class="share-1" v-html=shareText></div>
+
+                <!-- <div class="share-2">点击<span style="color:#ffcc1a">右上角</span><img src="http://camp.enaca.cn/toshare2.png?imageMogr2/auto-orient/thumbnail/38x/blur/1x0/quality/75">
+
+                    <span>分享至</span><span style="color:#ffcc1a">朋友圈</span><img src="http://camp.enaca.cn/toshare1.png?imageMogr2/auto-orient/thumbnail/38x/blur/1x0/quality/75"><span style="margin-left:2px">完成打卡</span></div> -->
+
+            </div>
+
+            <img @click="reload()" class="share-cancel" src="http://camp.enaca.cn/toshare4.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/90">
+
+        </div>
+
+        <div class="share-div-last" v-show="(share1&&vm.nowNum==14)||(!status&&vm.nowNum==14&&lastcheck)">
+
+            <!-- <img src="http://camp.enaca.cn/shareBg1.png?imageView2/0/q/75"> -->
+
+            <img src="http://camp.enaca.cn/shareBg5.png?imageView2/0/q/75">
+
+            <img class="share-div-img" src="http://camp.enaca.cn/shareBgPython2.jpg?imageView2/0/q/75">
+
+            <img @click="reload()" class="share-cancel-last" src="http://camp.enaca.cn/toshare4.png?imageMogr2/auto-orient/thumbnail/25x/blur/1x0/quality/90">
+
+        </div>
+
+    </div>
+
+
+
+
+
+        <script type="text/javascript">
+
+            var vm = new Vue({
+
+                    el: '#app',
+
+                    data: {
+
+                        loading:true,
+
+                        gid:'{$Think.session.guestinfo.id_guest}',
+
+                        sum:'{$sum}',
+
+                        pre:'',
+
+                        next:'',
+
+                        maxid:'{$cpgid}',
+
+                        cid:'{$now}',
+
+                        cpg:'{$now}',
+
+                        admin:'{$admin}',
+
+                        my:"",
+
+                        question:"",
+
+                        answer:"",
+
+                        list:[],
+
+                        isActive:[],
+
+                        hide:[],
+
+                        more:[],
+
+                        H:[],
+
+                        order:[],
+
+                        selected:'',
+
+                        nowNum:'',
+
+                        lastNum:'',
+
+                        dkPage:false,
+
+                        dkPage1:false,
+
+                        share1:false,
+
+                        final:false,
+
+                        click:true,
+
+                        status:true,
+
+                        questionText:"",
+
+                        step:'',
+
+                        slength:"",
+
+                        title:"",
+
+                        link:"",
+
+                        shareText:"",
+
+                        page:0,
+
+                        end:0,
+
+                        loadingmore:0,
+
+                        after:'{$after}',
+
+                        lastcheck:true,
+
+                    },
+
+                    mounted:function(){
+
+                        $.get("http://m.enaca.cn/getcamp", { "id":'{$now}'},
+
+                            function(data){
+
+                                if(vm.gid==5600||vm.gid==17817){
+
+                                        vm.status=false;
+
+                                    }
+
+                                data.forEach(function(item,index,arr){
+
+                                    item['order']=index;
+
+                                    item['picorder']="img_box"+index;
+
+                                    if(item['guest_dk']==vm.gid){
+
+                                        vm.my=item;
+
+                                        vm.status=false;
+
+                                    }else if(item['type_dk']==1){
+
+                                        vm.step=item['title_cs'];
+
+                                        vm.question=item;
+
+                                        vm.question['title']="第"+item['order_dk']+"次作业";
+
+                                        num=item['order_dk']+1;
+
+                                        text="";
+
+                                        for(i=1;i<num;i++){
+
+                                            if(i==item["order_dk"]){
+
+                                                vm.selected=item['order_dk'];
+
+                                                vm.nowNum=item['order_dk'];
+
+                                                vm.lastNum=item['order_dk'];
+
+                                                f='{$after}';
+
+                                                if(f>0){
+
+                                                    //每次课程修改项
+
+                                                vm.shareText="再坚持"+f+"天，掌握Tableau基础<br/>抽取AirPods、Tableau圣经实体书！";
+
+                                                }else{
+
+                                                vm.shareText="坚持完成所有打卡，掌握Tableau基础<br/>抽取AirPods、Tableau圣经实体书！";
+
+                                                }
+
+                                                text+="<option selected value='"+i+"'>第"+i+"次作业</option>";
+
+                                            }else{
+
+                                                text+="<option value='"+i+"'>第"+i+"次作业</option>";
+
+                                            }
+
+                                        }
+
+                                        vm.questionText=text;
+
+                                        if(item['order_dk']!=1){
+
+                                            vm.pre="上一次";
+
+                                        };
+
+                                        if(item['cpg_dk']!=vm.cid){
+
+                                            vm.next="下一次";
+
+                                        }
+
+                                    }else if(item['type_dk']==2){
+
+                                        vm.answer=item;
+
+                                    }else{
+
+                                        vm.list.push(item);
+
+                                    }
+
+                                    vm.H[index]=0;
+
+                                    if(item['type_dk']==1||item['type_dk']==2){
+
+                                        vm.more[index]="展开全部";
+
+                                    }else{
+
+                                        vm.more[index]="展开";
+
+                                    }
+
+                                    vm.isActive[index]=false;
+
+                                    vm.hide[index]=false;
+
+                                    vm.order[index]='order'+index;
+
+                                })
+
+                                
+
+                                $(window).scroll(function(){
+
+                                var windowHeight=$(document).height();
+
+                                var scrollTop=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+
+                                var viewHeight=window.screen.height;
+
+                                
+
+                                if((viewHeight+scrollTop+89>windowHeight)&&vm.end!=1&&vm.status==false&&vm.loadingmore!=1){
+
+                                    vm.loadingmore=1;
+
+                                    vm.page++;
+
+                                    $.get("http://m.enaca.cn/getcampmore", { "page":vm.page, "id":vm.cpg},
+
+                                    function(d){
+
+                                        if(d!="1"){
+
+                                            d.forEach(function(item1,index1,arr1){
+
+                                            vm.list.push(item1);
+
+                                        });
+
+                                        vm.$nextTick(function(){
+
+                                            vm.loadingmore=0;
+
+                                        });
+
+                                        }else{
+
+                                            vm.end=1;
+
+                                            vm.loadingmore=0;
+
+                                        }
+
+                                        
+
+                                    });
+
+                                }
+
+                                });
+
+                                if(vm.my==""||vm.admin==1){
+
+                                    img2=new Image();
+
+                                    src2="{$Think.session.guestinfo.wmxy_pic_guest}";
+
+                                    img2.setAttribute('crossorigin', 'anonymous'); 
+
+                                    img2.setAttribute('onerror', "img2.setAttribute('src','http://camp.enaca.cn/def.jpg')");
+
+                                    img2.setAttribute('src', src2);
+
+                                    img2.onload = function(){
+
+                                        createImage();
+
+                                    }
+
+                                }
+
+                                vm.temp=vm.question['content_dk'];
+
+                                vm.$nextTick(function(){
+
+
+
+                                    console.log("maxid:",vm.maxid);
+
+                                    console.log("cid:",vm.cid);
+
+                                    console.log("cpgid:",vm.cpg);
+
+                                vm.H.forEach(function(item,key,arr){
+
+                                    if(item==0){
+
+                                        var a="order"+key;
+
+                                        vm.H[key] =$("#"+a).height();
+
+                                    }
+
+                                    if(item!=1){
+
+                                        Vue.set(vm.isActive,key,true);
+
+                                        vm.$nextTick(function(){
+
+                                            if($("#"+a).height()<vm.H[key]){
+
+                                                Vue.set(vm.hide,key,true);
+
+                                            }
+
+                                        })
+
+                                        
+
+                                    }
+
+                                })
+
+                                })
+
+
+
+                                        //微信分享
+
+                                        $.get("http://m.enaca.cn/getShare", 
+
+                                    {"url":location.href.split('#')[0]}).done(function (data) {
+
+                                    // 注意这里的url，一定要这样写，也就是动态获取，不然也不会成功的。
+
+                                        console.log(data);
+
+                                        if (data) {
+
+                                            var wx_info = data;
+
+                                            if (wx_info.signature != null) {
+
+                                                // 配置
+
+                                                wx.config({
+
+                                                    debug: false,   // 测试阶段，可以写为true，主要是为了测试是否配置成功
+
+                                                    appId: wx_info.appId,
+
+                                                    timestamp: wx_info.timestamp,
+
+                                                    nonceStr: wx_info.nonceStr,
+
+                                                    signature: wx_info.signature,
+
+                                                    jsApiList: ['chooseImage','checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 
+
+                                                        'onMenuShareQZone']
+
+                                                });
+
+                                                //每次课程修改项
+
+                                                var title = "我正在参加未明学院【Tableau打卡营】，已完成第"+vm.nowNum+"课时";
+
+                                                var desc = "我正在参加未明学院【Tableau打卡营】，已完成第"+vm.nowNum+"课时";
+
+                                                var imgUrl = "http://camp.enaca.cn/wmxy-logo-share.jpg?imageMogr2/auto-orient/thumbnail/60x60%3E/blur/1x0/quality/90";
+
+                                                var link = "http://m.enaca.cn/share?cpg="+vm.cpg+"&id="+"{$Think.session.guestinfo.id_guest}";
+
+
+
+                                                // 分享给朋友、QQ、微博
+
+                                                var shareData = {
+
+                                                    "imgUrl": imgUrl,
+
+                                                    "title": title,
+
+                                                    "desc": desc,
+
+                                                    'link': link,
+
+                                                    success: function () { 
+                                                    // 用户确认分享后执行的回调函数
+                                                    MtaH5.clickShare('wechat_friend');  //这里加上h5分享代码
+                                                    },
+                                                    cancel: function () { 
+                                                        // 用户取消分享后执行的回调函数
+                                                    }
+
+                                                };
+
+                                                // 分享到朋友圈
+
+                                                var shareToTimeline = {
+
+                                                    "imgUrl": imgUrl,
+
+                                                    "title": title, 
+
+                                                    'link': link,
+
+                                                    "desc": desc,
+
+                                                    success: function () { 
+                                                    // 用户确认分享后执行的回调函数
+                                                    MtaH5.clickShare('wechat_moments');  //这里加上h5分享代码
+                                                    },
+                                                    cancel: function () { 
+                                                        // 用户取消分享后执行的回调函数
+                                                    }
+
+                                                }
+
+                                                wx.ready(function() {
+
+                                                    wx.onMenuShareTimeline(shareToTimeline);
+
+                                                    wx.onMenuShareAppMessage(shareData);
+
+                                                    wx.onMenuShareQQ(shareData);
+
+                                                    wx.onMenuShareQZone(shareData);
+
+
+
+                                                    wx.error(function(res) {
+
+                                                        alert(res.errMsg);
+
+                                                    });
+
+                                                });
+
+                                            }
+
+                                        }
+
+                                    }).fail(function (msg) {
+
+                                    console.log("error:" + msg);
+
+                                    });
+
+                            });
+
+                            
+
+                    },
+
+                    methods: {
+
+                        close:function(a){
+
+                                if(vm.dkPage==true){
+
+                                vm.dkPage=false;
+
+                                vm.dkPage1=false;
+
+                                $(".upload-area").removeClass("camp-bottom");
+
+                                vm.click=true;
+
+                                }
+
+                        },
+
+                        all:function(a){
+
+                            var id=a;
+
+                            vm.H[id]=1;
+
+                            Vue.set(vm.isActive,id,!vm.isActive[id]);
+
+                            if(vm.more[id]=='展开全部'){
+
+                                vm.more[id]='收起内容';
+
+                            }else if(vm.more[id]=='收起内容'){
+
+                                vm.more[id]='展开全部';
+
+                            }else if(vm.more[id]=='展开'){
+
+                                vm.more[id]='收起';
+
+                            }else if(vm.more[id]=='收起'){
+
+                                vm.more[id]='展开';
+
+                            }
+
+                            
+
+                        },
+
+                        reload:function(){
+
+                            if(!vm.status&&vm.nowNum==14){
+
+                                vm.lastcheck=false;
+
+                                dkPage1=false;
+
+                            }else{
+
+                                surl='';
+
+                                this.toPage(3,1);
+
+                                vm.share1=false;
+
+                            }
+
+                        },
+
+                        change:function(){
+
+                            vm.dkPage=true;
+
+                            vm.dkPage1=true;
+
+                            $(".upload-area").addClass("camp-bottom");
+
+                            vm.click=false;
+
+                        },
+
+                        toPage:function(a,b){
+
+                            $('.textw').val("");
+
+                            $(".up-imgs").html("");
+
+                            vm.loading=false;
+
+                            $('html,body').animate({scrollTop: 0},'slow');
+
+                            if(b==1){
+
+                                if(a==1){
+
+                                    vm.cpg=vm.cpg-1;
+
+                                }else if(a==2){
+
+                                    vm.cpg=vm.cpg*1+1;
+
+                                }
+
+                            }else{
+
+                                vm.cpg=vm.cpg*1-vm.nowNum+a*1;
+
+                            }
+
+                            
+
+
+
+                            $.get("http://m.enaca.cn/getcamp", { "id":vm.cpg},
+
+                            function(data){
+
+                                vm.final=false;
+
+                                vm.dkPage=false;
+
+                                vm.dkPage1=false;
+
+                                vm.hare1=false,
+
+                                vm.click=true;
+
+                                vm.status=true;
+
+                                vm.my="";
+
+                                vm.question="";
+
+                                vm.answer="";
+
+                                vm.list=[];
+
+                                vm.isActive=[];
+
+                                vm.hide=[];
+
+                                vm.more=[];
+
+                                vm.H=[];
+
+                                vm.order=[];
+
+                                vm.page=0;
+
+                                vm.end=0;
+
+                                if(vm.nowNum==14){
+
+                                    vm.lastcheck=false;
+
+                                }else{
+
+                                    vm.lastcheck=true;
+
+                                }
+
+                                if(vm.gid==5600||vm.gid==17817||vm.gid==16158){
+
+                                        vm.status=false;
+
+                                    }
+
+                                data.forEach(function(item,index,arr){
+
+                                    item['order']=index;
+
+                                    item['picorder']="img_box"+index;
+
+                                    if(item['guest_dk']==vm.gid){
+
+                                        vm.my=item;
+
+                                        vm.status=false;
+
+                                    }else if(item['type_dk']==1){
+
+                                        vm.step=item['title_cs'];
+
+                                        vm.question=item;
+
+                                        vm.question['title']="第"+item['order_dk']+"次作业";
+
+                                        num=item['order_dk']+1;
+
+                                        text="";
+
+                                        for(i=1;i<vm.lastNum+1;i++){
+
+                                            if(i==item["order_dk"]){
+
+                                                vm.selected=item['order_dk'];
+
+                                                text+="<option selected value='"+i+"'>第"+i+"次作业</option>";
+
+                                            }else{
+
+                                                text+="<option value='"+i+"'>第"+i+"次作业</option>";
+
+                                            }
+
+                                        }
+
+                                        vm.nowNum=item['order_dk'];
+
+                                        f='{$after}';
+
+                                        //每次课程修改项
+
+                                        if(f>0){
+
+                                        vm.shareText="再坚持"+f+"天，掌握Tableau基础<br/>抽取AirPods、Tableau圣经实体书！";
+
+                                        }else{
+
+                                        vm.shareText="坚持完成所有打卡，掌握Tableau基础<br/>抽取AirPods、Tableau圣经实体书！";
+
+                                        }
+
+                                        //每次课程修改项
+
+                                        vm.title = "我正在参加未明学院【Tableau打卡营】，已完成第"+vm.nowNum+"课时";
+
+                                        vm.link = "http://m.enaca.cn/share?cpg="+vm.cpg+"&id="+"{$Think.session.guestinfo.id_guest}";
+
+                                            var shareData = {
+
+                                                "imgUrl": "http://camp.enaca.cn/wmxy-logo-share.jpg?imageMogr2/auto-orient/thumbnail/60x60%3E/blur/1x0/quality/75",
+
+                                                "title": vm.title,
+
+                                                "desc": vm.title,
+
+                                                'link': vm.link,
+
+                                                success: function () { 
+                                                    // 用户确认分享后执行的回调函数
+                                                    MtaH5.clickShare('wechat_friend');  //这里加上h5分享代码
+                                                },
+                                                cancel: function () { 
+                                                    // 用户取消分享后执行的回调函数
+                                                }
+
+                                            };
+
+                                        
+
+                                            var shareToTimeline = {
+
+                                                "imgUrl": "http://camp.enaca.cn/wmxy-logo-share.jpg?imageMogr2/auto-orient/thumbnail/60x60%3E/blur/1x0/quality/75",
+
+                                                "title": vm.title, 
+
+                                                'link': vm.link,
+
+                                                "desc":vm.title,
+
+                                                success: function () { 
+                                                    // 用户确认分享后执行的回调函数
+                                                    MtaH5.clickShare('wechat_moments');  //这里加上h5分享代码
+                                                },
+                                                cancel: function () { 
+                                                    // 用户取消分享后执行的回调函数
+                                                }
+
+                                            }
+
+                                                wx.onMenuShareTimeline(shareToTimeline);
+
+                                                wx.onMenuShareAppMessage(shareData);
+
+                                                wx.onMenuShareQQ(shareData);
+
+                                                wx.onMenuShareQZone(shareData);
+
+                                        vm.questionText=text;
+
+                                        if(item['order_dk']!=1){
+
+                                            vm.pre="上一次";
+
+                                        };
+
+                                        if(item['cpg_dk']!=vm.cid){
+
+                                            vm.next="下一次";
+
+                                        }
+
+                                    }else if(item['type_dk']==2){
+
+                                        vm.answer=item;
+
+                                    }else{
+
+                                        vm.list.push(item);
+
+                                    }
+
+                                    vm.H[index]=0;
+
+                                    if(item['type_dk']==1||item['type_dk']==2){
+
+                                        vm.more[index]="展开全部";
+
+                                    }else{
+
+                                        vm.more[index]="展开";
+
+                                    }
+
+                                    vm.isActive[index]=false;
+
+                                    vm.hide[index]=false;
+
+                                    vm.order[index]='order'+index;
+
+                                });
+
+                                if(vm.my==""||vm.admin==1){
+
+                                    createImage();
+
+                                    console.log("aa");
+
+                                }
+
+                                vm.temp=vm.question['content_dk'];
+
+                                vm.$nextTick(function(){
+
+                                    console.log("maxid:"+vm.maxid);
+
+                                    console.log("cid:"+vm.cid);
+
+                                    console.log("cpgid:"+vm.cpg);
+
+                                vm.loading=true;
+
+                                vm.H.forEach(function(item,key,arr){
+
+                                    if(item==0){
+
+                                        var a="order"+key;
+
+                                        vm.H[key] =$("#"+a).height();
+
+                                    }
+
+                                    if(item!=1){
+
+                                        Vue.set(vm.isActive,key,true);
+
+                                        vm.$nextTick(function(){
+
+                                            if($("#"+a).height()<vm.H[key]){
+
+                                                Vue.set(vm.hide,key,true);
+
+                                            }
+
+                                        })
+
+                                        
+
+                                    }
+
+                                })
+
+                                });
+
+                            });
+
+                        }
+
+                    },
+
+
+
+            })
+
+            
+
+
+
+    
+
+      
+
+        </script>
+
+<script type=text/javascript src="/public/static/index/JS/showPic.js"></script>
+
+        <script>
+
+                var upState=0;
+
+                var upnum=0;
+
+                var count=0;
+
+                var src="";
+
+                var iurl="";
+
+                var surl="";
+
+                var upImgageToken='{$token}';
+
+                var ImgageToken='{$imgtoken}';
+
+                var config = {
+
+                    useCdnDomain: true,
+
+                    region: null
+
+                    };
+
+                var putExtra = {
+
+                    fname: "",
+
+                    params: {},
+
+                    mimeType: ["image/png", "image/jpeg", "image/gif"] || null
+
+                    };
+
+                var observer = {
+
+                    next(res){
+
+                        console.log("正在上传");
+
+                    },
+
+                    error(err){
+
+                        console.log(err.message);
+
+                        
+
+                    }, 
+
+                    complete(res){
+
+                            upState++;
+
+                    }
+
+                }
+
+                var observer1 = {
+
+                    next(res){
+
+                        console.log("正在上传");
+
+                    },
+
+                    error(err){
+
+                        console.log(err.message);
+
+                    }, 
+
+                    complete(res){
+
+                        console.log("完成");
+
+                    }
+
+                }
+
+                function readURL(input) {
+
+                    if (input.files && input.files[0]) {
+
+                        var size = $("#imgInp")[0].files[0].size;
+
+                        if(size<4*1024*1024){
+
+                            console.log(size);
+
+                            $(".up-imgs").append("<div class='plusbox' id='box"+upnum+"'><img class='blah' src=''name=''><img src='http://img.compassedu.hk/wxdelete.png?imageMogr2/auto-orient/thumbnail/20x20%3E/blur/1x0/quality/75|imageslim' id='"+upnum+"'class='deletecoin'></div>");
+
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+
+                                src=e.target.result;
+
+                                t = (new Date()).valueOf();
+
+                                key ="wmxy/"+vm.gid+"-"+t+".jpg";
+
+                                iurl="http://img.compassedu.hk/"+key;
+
+                                $('.blah').eq(count).attr('name',iurl);
+
+                                durl=dataURLtoBlob(src);
+
+                                var observable = qiniu.upload(durl, key, upImgageToken, putExtra, config)
+
+                                var subscription = observable.subscribe(observer);
+
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+
+                            input.files[0]="";
+
+                            $(".blah").eq(count).show();
+
+                            console.log("show"+count);
+
+                        }else{
+
+                                alert("请上传小于4MB的图片");
+
+                                $('#imgInp').val("");
+
+                        }
+
+                        
+
+                    }
+
+                }
+
+            $("#imgInp").change(function(){
+
+            
+
+                readURL(this);
+
+            });
+
+
+
+            function checkIos () {
+
+                var u = navigator.userAgent, app = navigator.appVersion;
+
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+
+                var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+                if (isAndroid) {
+
+                    return false;
+
+                }
+
+                if (isIOS) {
+
+            　　　　return true;
+
+                }
+
+            };
+
+
+
+            $(".imgbutton").click(function(){
+
+                    wx.chooseImage({
+
+                    count: 9, // 默认9，这里每次只处理一张照片
+
+                    sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有, 'compressed'
+
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+
+                    success: function(res) {
+
+                        var localId=[];
+
+                        res.localIds.forEach(function(v,i){
+
+                            s=v.toString();
+
+                            
+
+                                wx.getLocalImgData({
+
+                                localId: s, // 图片的localID
+
+                                success: function(res) {
+
+                                    console.log(res);
+
+                                    if(checkIos()) {
+
+                                        console.log('ios');
+
+                                        //这里需要注意的是，尽管ios返回的是base64编码的字符串，但前缀还是有点不一样，是：'data:image/jgp/png;base64'；
+
+                                        //网上很多文章都说要按一下方式替换掉‘jgp’为‘jpeg’，但实际操作发现，不替换也可以正常显示，所以本人就不替换了，直接取值使用
+
+                                        imgUrl = res.localData.replace('jgp', 'jpeg');//替换‘jgp’为‘jpeg’
+
+                                        //imgUrl = res.localData;//赋值显示
+
+                                    } else {
+
+                                        imgUrl = 'data:image/jpeg;base64,' + res.localData; // localData是图片的base64数据，可以用img标签显示
+
+                                    }
+
+                                  
+
+                                    t = (new Date()).valueOf();
+
+                                    key ="wmxy/"+vm.gid+"-"+t+"-"+upnum+".jpg";
+
+                                    
+
+                                    iurl="http://img.compassedu.hk/"+key;
+
+                                    surl=surl+"<img src='"+iurl+"?imageView2/5/w/110/h/110/q/75' />";
+
+                                   
+
+                                    durl=dataURLtoBlob(imgUrl);
+
+                                    setTimeout(
+
+                                        $(".up-imgs").append("<div class='plusbox' id='box"+upnum+"'><img class='blah' src='"+imgUrl+"'name='"+iurl+"'><img src='http://img.compassedu.hk/wxdelete.png?imageMogr2/auto-orient/thumbnail/20x20%3E/blur/1x0/quality/75|imageslim' id='"+upnum+"'class='deletecoin'></div>")
+
+                                         , 1000 
+
+                                    )
+
+                                    $(".blah").show();
+
+                                    
+
+                                    var observable = qiniu.upload(durl, key, upImgageToken, putExtra, config);
+
+                                   
+
+                                    var subscription = observable.subscribe(observer);
+
+                                    
+
+                                    upnum++;
+
+                                }
+
+                            });
+
+                        });
+
+                        
+
+                        
+
+                    }
+
+                });
+
+                
+
+            })
+
+            //打卡事件
+
+            sendSt=1;
+
+            function send(){
+
+                if(sendSt==1){
+
+                    sendSt=0;
+
+                }else{
+
+                    return;
+
+                };
+
+                
+
+                if(upState!=upnum){
+
+                    mui.toast('图片上传中，请稍等',{ duration:'long', type:'div' });
+
+                    sendSt=1;
+
+                    return; 
+
+                }
+
+                
+
+                var p=$('.textw').val();
+
+                if(p==""){
+
+                    mui.toast('请填写打卡内容',{ duration:'long', type:'div' });
+
+                    sendSt=1;
+
+                    return; 
+
+                };
+
+                if(surl==""){
+
+                    mui.toast('请上传图片',{ duration:'long', type:'div' });
+
+                    sendSt=1;
+
+                    return; 
+
+                }
+
+                $.post("http://m.enaca.cn/savecamp",{"surl":surl,"para":p,"courseid":'{$courseid}',"cpgid":vm.cpg},function(r){
+
+                    if (r!=99){
+
+                        vm.sum++;
+
+                        vm.final=true;
+
+                        vm.dkPage=false;
+
+                        vm.share1=true;
+
+                        if(vm.cid<vm.maxid){
+
+                        vm.lastNum++;
+
+                        vm.cid++;
+
+                        sendSt=1;
+
+                        upState=0;
+
+                        upnum=0;
+
+                        surl='';
+
+                        p='';
+
+                        }
+
+                    }else{
+
+                        mui.alert('网络异常，打卡未完成','','重试');
+
+                    }
+
+                });
+
+            };
+
+            function dataURLtoBlob(dataurl) {
+
+                var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+
+                    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+
+                while (n--) {
+
+                    u8arr[n] = bstr.charCodeAt(n);
+
+                }
+
+                return new Blob([u8arr], { type: mime });
+
+            }
+
+            //上传图片事件
+
+            $('.up-imgs').on('click','.deletecoin',function(){
+
+                    id=$(this).attr('id');
+
+                    var thissrc=$("#box"+id+" .blah").attr('name');
+
+                   
+
+                    thissrc="<img src='"+thissrc+"?imageView2/5/w/110/h/110/q/75' />";
+
+                    console.log("触发删除点击事件src为"+thissrc);
+
+                    $('#box'+id).remove();//
+
+                    surl=surl.replace(thissrc,"");
+
+                    console.log("删除第"+id+"张SQL存储:"+surl);
+
+                    count=$('.plusbox').length;
+
+            })
+
+            
+
+
+
+
+
+            function all(selector, contextElement) {
+
+                var nodeList,
+
+                    list = [];
+
+                if (contextElement) {
+
+                    nodeList = contextElement.querySelectorAll(selector);
+
+                } else {
+
+                    nodeList = document.querySelectorAll(selector);
+
+                }
+
+                if (nodeList && nodeList.length > 0) {
+
+                    list = Array.prototype.slice.call(nodeList);
+
+                }
+
+                return list;
+
+                }
+
+                //点击小图展开图片轮播
+
+                $(".pictures").on('click','img',function(){	 
+
+                    var urls = [];
+
+                    var imgs = all('img',all('#'+$(this).parent().attr("id"))[0]);
+
+                    imgs.forEach(function(v,i){
+
+                        s=v.src;
+
+                        s=s.replace("?imageView2/5/w/110/h/110/q/75","");
+
+                        urls.push(s);
+
+                    })
+
+                    var current = this.src.replace("?imageView2/5/w/110/h/110/q/75","");
+
+
+
+                    var obj = {
+
+                        urls : urls,
+
+                        current : current
+
+                    };
+
+                    if($('#__previewImage-container').css('opacity')==0){
+
+                        $('#__previewImage-container').css('opacity',1);
+
+                    }
+
+                    previewImage.start(obj);
+
+                })
+
+
+
+                function Rect(x, y, w, h) {
+
+                    return {x:x, y:y, width:w, height:h};
+
+                }
+
+                //每次课程修改项
+
+                function createImage(){
+
+                    if(vm.nowNum==14){
+
+                    var c=document.createElement("canvas");
+
+                        c.width =750;
+
+                        c.height =1206;
+
+                        var img=new Image();
+
+                        var src1="http://camp.enaca.cn/end-443.jpg?imageView2/1/w/750/h/1206/q/95";
+
+                        img.setAttribute('crossorigin', 'anonymous'); 
+
+                        img.src=src1;
+
+                        var ctx=c.getContext("2d");
+
+                        img.onload = function(){                          
+
+                        ctx.drawImage(img,0,0,750,1206);
+
+                        ctx.beginPath(); 
+
+                            ctx.save();
+
+                            ctx.arc(375,332,48, 0, 2 * Math.PI);
+
+                            ctx.clip();
+
+                            ctx.drawImage(img2,327,284,96,96);
+
+                            ctx.restore();
+
+                            ctx.closePath(); 
+
+                        var resultBase64 = c.toDataURL('image/jpeg') ;// 转为jpeg压缩图片大小
+
+                        var canvasBlob = dataURLtoBlob(resultBase64);
+
+                        var key1="share/"+"{$Think.session.guestinfo.id_guest}"+"/"+vm.cpg+"/enaca.jpg";
+
+                        var observable1 =qiniu.upload(canvasBlob, key1, ImgageToken, putExtra, config);
+
+                        var subscription = observable1.subscribe(observer1);                            
+
+                        }
+
+                    }else{
+
+                    var w=750;
+
+                    var h=1206;
+
+                    console.log("b");
+
+                        var c=document.createElement("canvas");
+
+                        c.width =750;
+
+                        c.height =1206;
+
+                        var img=new Image();
+
+                        
+
+                        var src1="http://camp.enaca.cn/share-383.jpg?imageView2/1/w/750/h/1206/q/95";
+
+                        img.setAttribute('crossorigin', 'anonymous'); 
+
+                        img.src=src1;
+
+
+
+                        
+
+                        var ctx=c.getContext("2d");
+
+                        img.onload = function(){
+
+                            
+
+                            console.log("1");
+
+                            ctx.drawImage(img,0,0,750,1206);
+
+
+
+                            ctx.beginPath(); 
+
+                            ctx.save();
+
+                            ctx.arc(375,82, 47.5, 0, 2 * Math.PI);
+
+                            ctx.clip();
+
+                            ctx.drawImage(img2, 327.5,34.5,95,95);
+
+                            ctx.restore();
+
+                            ctx.closePath(); 
+
+                            
+
+                            ctx.beginPath(); 
+
+                            ctx.save(); 
+
+                            var gradient = ctx.createLinearGradient(120,287, 325, 492);
+
+                            gradient.addColorStop(0, '#68a2fe');
+
+                            gradient.addColorStop(1, '#4269d7');
+
+                            
+
+                            ctx.lineWidth = 16; 
+
+                            ctx.strokeStyle = gradient;
+
+                            ctx.arc(222.5,389.5,94,-0.5* Math.PI, (-0.5+vm.nowNum/9) * Math.PI); 
+
+                            ctx.stroke();
+
+                            ctx.restore();
+
+                            ctx.closePath(); 
+
+
+
+                            ctx.beginPath(); 
+
+                            ctx.font = "bold 36px wmxy";
+
+                            ctx.fillStyle ="#424869";
+
+                            ctx.textAlign='center';
+
+                            ctx.fillText("{$Think.session.guestinfo.wmxy_nick_guest}", 375, 179);
+
+
+
+                            ctx.fillStyle ="#7580a7";
+
+                            ctx.font = "26px wmxy";
+
+                            ctx.textAlign='left';
+
+                            ctx.fillText("Tableau打卡营学习", 355, 220);;
+
+                            ctx.textAlign='right';
+
+                            ctx.fillText("在", 229, 220);
+
+
+
+                            ctx.fillStyle ="#5d84da";
+
+                            ctx.font = "26px wmxy";
+
+                            ctx.textAlign='right';
+
+                            ctx.fillText("未明学院", 342, 220);
+
+
+
+                            
+
+                            ctx.textAlign='center';
+
+                            ctx.fillText(vm.step, 375, 260);
+
+                            ctx.closePath(); 
+
+                                ctx.fillStyle ="#4269d7";
+
+                                ctx.font = "bold 50px wmxy";
+
+                                ctx.textAlign='right';
+
+                                ctx.fillText(vm.nowNum, 220, 418);
+
+
+
+
+
+                            ctx.closePath();
+
+
+
+                            var resultBase64 = c.toDataURL('image/jpeg') ;// 转为jpeg压缩图片大小
+
+                            $("#testimg").attr("src",resultBase64);
+
+                            var canvasBlob = dataURLtoBlob(resultBase64);
+
+                            var key1="share/"+"{$Think.session.guestinfo.id_guest}"+"/"+vm.cpg+"/enaca.jpg";
+
+                            var observable1 =qiniu.upload(canvasBlob, key1, ImgageToken, putExtra, config);
+
+                            var subscription = observable1.subscribe(observer1);
+
+                        }
+
+                    }
+
+                }
+
+
+
+                String.prototype.visualLength = function(size,family)
+
+                    {
+
+                        var ruler = $("#ruler").css({
+
+                            "font-size":size || "inherit",
+
+                            "font-family":family || "inherit"
+
+                        });
+
+                        ruler.text(this);
+
+                        return ruler.width();
+
+                    }
+
+
+
+</script>
+<script>
+        var _mtac = {"performanceMonitor":1};
+        (function() {
+            var mta = document.createElement("script");
+            mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+            mta.setAttribute("name", "MTAH5");
+            mta.setAttribute("sid", "500685669");
+            mta.setAttribute("cid", "500685671");
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(mta, s);
+        })();
+  </script>
+  
+<script>
+
+var _hmt = _hmt || [];
+
+(function() {
+
+  var hm = document.createElement("script");
+
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+
+  var s = document.getElementsByTagName("script")[0]; 
+
+  s.parentNode.insertBefore(hm, s);
+
+})();
+
+</script>
+
+</body>
+
+
+
+</html>
+
+
+

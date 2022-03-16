@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=yes">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>未明学院——用数据为成长赋能</title>   
+<meta name="keywords" content="未明学院,数据分析,职业探索,技能提升">
+<meta name="description" content="未明学院精心打造python编程+数据分析课，专为求职转行/职场跃迁/数据赋能的零基础职场人士准备，带你从0到1学习python编程基础和数据分析，掌握数据分析核心技能，用数据驱动业务增长，用数据为成长赋能。">
+<meta name="baidu-site-verification" content="I95CZ2b5CX" />
+<meta name="360-site-verification" content="85ce0cb535c493be5cd1df0ca5fa6271" />
+<meta name="sogou_site_verification" content="ys4C1Dx5if"/>
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("m.")>0){
+    vincent=vincent.replace("{$Think.const.MOBILE}","{$Think.const.WEB}");
+    window.location.href=vincent;
+    }
+    </script> 
+</head>
+<body style="background: #f7f7f7;">
+
+ {include file="./application/index/view/index/w-top.html"} 
+
+<div class="index-top">
+    <h1>让未来触手可及</h1>
+    <h2>把握未来是一种能力，最重要的是实践。这里提供各种行业知识与实战项目，带你探索行业，掌握行业实战硬技能</h2>
+    <a href="/course" target="_blank"><button>开始学习</button></a>
+</div>
+<div class="index-course-body">
+    <div class="index-hot">热门课程</div>
+    
+    <div class="course-body-desc">
+        {volist name="result" id="vo"}
+        <a href="/course/{$vo.id}" target="_blank">
+            <div class="course-body-desc-body   class-{$vo.checkdate}">
+                <div class="course-body-desc-body-img">
+                    <img alt=" {$vo.title}" src= "http://img.compassedu.hk/{$vo.img}?imageMogr2/auto-orient/thumbnail/339x/blur/1x0/quality/75"> 
+                    <div class="course-tabs">
+                    {if $vo.tab1name!=''}<div class="course-tab">{$vo.tab1name}</div>{/if}
+                    {if $vo.tab2name!=''}<div class="course-tab">{$vo.tab2name}</div>{/if}
+                    {if $vo.tab3name!=''}<div class="course-tab">{$vo.tab3name}</div>{/if}
+                    </div>
+               </div>
+                <div class="course-body-desc-body-title">
+                    {$vo.title}    
+                </div>
+                <div class="course-body-desc-body-contant">
+                    {$vo.description}  
+                </div>
+                <div class="course-body-desc-body-bottom">
+                <div class="course-body-desc-body-bottom1">
+                    已报人数：{$vo.quota-$vo.number}/{$vo.quota}人                  
+                </div>
+                {if $vo.checkdate==1}
+                <div class="course-body-desc-body-bottom2">
+                  {$vo.day}开课
+                </div>  
+                {elseif $vo.checkdate==2}
+                <div class="course-body-desc-body-bottom3">
+                报名已结束
+                </div>
+                {/if}
+              </div>
+            </div>
+        </a> 
+        {/volist}
+
+    </div>
+    <a href="/course" target="_blank"><button>查看更多热门课程</button></a>
+</div>
+<!--
+<div class="index-free">
+    <div class="index-free-contain">
+        <div class="index-free-desc">
+            <div class="free-title">免费Python打卡营</div>
+            <div class="free-desc">python零基础的同学，可以通过免费python打卡营来完成python工具从0到1的突破。<br/>
+                打卡营旨在通过项目制教学的方式，每天通过2-3个小时的学习，完成一个入门级的python项目并因此掌握python编程。
+            </div>
+            <a href="/python" target="_blank"><button>免费学习</button></a>
+        </div>
+        <div class="index-free-img">
+            <img alt="免费Python打卡营" src="http://img.compassedu.hk/wmxy/index-python-pic.jpg?imageMogr2/auto-orient/thumbnail/356x/blur/1x0/quality/75">
+        </div>
+    </div>
+</div>
+-->
+<div class="index-key">
+    <div class="index-key-title">为什么选择未明学院</div>
+    <div class="key-1">
+        <img alt="高含金量的实战项目" src="http://img.compassedu.hk/wmxy/index-choose-1.png?imageMogr2/auto-orient/thumbnail/497x/blur/1x0/quality/75">
+        <div class="key-contain">
+            <div class="key-title">高含金量的实战项目</div>
+            <div class="key-desc">未明学院的学员参加的每个项目都是来自于企业界的热点真实项目。
+                未明学院将这些来企业界的项目进行提炼，按照难度、所属行业、对口专业、使用模型、使用工具等进行细分，
+                学员可以根据自己的需求选择更适合自己的项目，从而真正了解行业对人才的需求，积累实战技能，
+                找准职业方向的同时提升职场竞争力。
+            </div>
+        </div>
+    </div>
+    <div class="key-2">
+        <div class="key-contain">
+            <div class="key-title">项目制学习，大幅提高学习效率</div>
+            <div class="key-desc">学习是反人性的。而项目制学习，
+                把整个项目拆分到每次课程的教学及作业中，将会大大提高学习的成就感，
+                因此提高项目的完成率、强化知识的理解。未明学院的课程按照项目制的教学理念，
+                打破先学理论知识再做项目低完课率的教学方式，将理论知识及项目实战有效结合，
+                每次课程学员都会有看得见的收获。
+            </div>
+        </div>
+        <img alt="项目制学习，大幅提高学习效率" src="http://img.compassedu.hk/wmxy/index-choose-2.png?imageMogr2/auto-orient/thumbnail/357x/blur/1x0/quality/75">
+    </div>
+    <div class="key-1">
+        <img alt="陪伴式教学" src="http://img.compassedu.hk/wmxy/index-choose-3.png?imageMogr2/auto-orient/thumbnail/497x/blur/1x0/quality/75">
+        <div class="key-contain">
+            <div class="key-title">陪伴式教学</div>
+            <div class="key-desc">学习是孤独的，如果有同学和老师陪伴，
+                大家都朝着一个方向努力，那么学习就没有那么枯燥，会变得有趣很多。
+                在整个课程设计中，未明学院采用大量心理学的知识经验，通过课程直播、微信群、
+                小程序作业、作业讲解等方式，让每个学员在学习的过程中有名师以及同学陪伴，
+                学习可以是一件很有意思的事情。
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="index-about">
+    <div class="about-contain">
+        <div class="about-title">关于未明学院</div>
+        <img alt="关于未明学院" src="http://img.compassedu.hk/wmxy/index-about.png?imageMogr2/auto-orient/thumbnail/480x/blur/1x0/quality/75">
+        <div class="about-desc">
+                <p>未明学院专注于通过项目制教学，带学员深入了解真实的行业需求，教授学员行业实战所需技能。</p>
+                <p>本着让学习更有趣、让学员找准未来方向、提升职业竞争力的教学理念，
+                    未明学院为每一组学员设计紧跟企业界热点的实战项目，通过项目制学习（PBL）的方式，
+                    让学员直接参与到未来行业实战场景，加深对行业认识的同时，收获行业所需人才需要具备的硬技能。</p>
+                </p>未明学院成立一年多来，已经帮助数千位学员深入了解行业，
+                找到努力的方向并收获实战技能，这样的项目实战经历也帮助其大幅提升求职竞争力，
+                许多学员拿到了诸如中信证券、 阿里巴巴等知名企业的全职offer，
+                以及哥伦比亚大学， 牛津大学等世界知名学府的研究生offer。</p>
+        </div>
+    </div>
+</div>
+<div class="index-eva">
+    <div class="index-eva-contain">
+        <div class="index-eva-title">学员评价</div>
+        {volist name="pjlist" id="pj"}
+        <div class="index-pj-img">
+       
+            <img src="{$pj.img}" alt="{$pj.name}头像">
+            <div class="index-pj-name">{$pj.name}</div>
+            <div class="pj-star">
+                <div class="pj-star-1"></div>
+                <div class="pj-star-1"></div>
+                <div class="pj-star-1"></div>
+                <div class="pj-star-1"></div>
+                <div class="pj-star-1"></div>
+            </div>
+            <div class="index-pj-pro"><a title="{$pj.pro}">{$pj.pro}</a></div>
+            <div class="index-pj-desc">{$pj.pj}</div>
+        </div>
+        {/volist}
+    </div>
+</div>
+{include file="./application/index/view/index/w-bottom.html"} 
+<script>
+    function change(x){
+        $(".course-body-top1").removeClass("selected");
+        $("#x"+x).addClass("selected");
+        if(x==0){
+            $(".course-body-desc-body").show();
+        }else{
+            $(".course-body-desc-body").hide();
+            $(".class-"+x).show();
+        }
+
+        
+    }
+</script>
+
+</body>
+
+
+</html>

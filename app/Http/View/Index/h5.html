@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>热门新兴学科申请必修课</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/public/static/index/CSS/mui.min.css">
+	<style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			padding:0;
+			margin:0;
+		}
+		.getPage button{			
+		    position: fixed;
+		    bottom: 0rem;
+		    left: 0rem;
+		    z-index: 1;
+
+			background: linear-gradient(180deg, #FFFFFF -194.44%, rgba(255, 255, 255, 0) 100%), #3B86FA;
+			width: 100%;
+			height: 50px;
+			font-family: PingFang SC;
+			font-size: 15px;
+			color: white;
+			font-style:normal;
+		}
+		.getPage img{			
+			width: 100%;
+			/*border:solid;*/
+		}
+		div .pcontent{
+			margin-top: -5px;
+		}
+	</style>
+	<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<div id='getPage' class='getPage' >
+	<div><img src="/public/static/source/remen1.jpg" ></div>
+	<div><img class='pcontent' src="/public/static/source/remen2.jpg" ></div>
+	<div><img class='pcontent' src="/public/static/source/remen3.jpg" ></div>	
+	<button id='apbtn'>立即预约</button>
+</div>
+<div id='textAreas' style="display: none;" value='znz558'></div>
+<script type="text/javascript" src="/public/static/index/JS/mui.min.js"></script>
+<script >
+	$('#apbtn').click(function(){
+	//使用函数
+	  	var val = $("#textAreas").attr('value');
+	  	Clipboard.copy(val);
+	  	mui.confirm('请添加微信：znz558<br/>开课当天将统一拉群', '已复制课程顾问微信', ['取消', '打开微信'], function(e) 
+        {
+            if (e.index == 1) {
+                window.location.href="weixin://";
+            } else {
+            }	
+        },'div');
+	});
+	//点击空白关闭
+	mui('body').on('tap', '.mui-popup-backdrop', function() {  
+    	// mui.trigger(document.querySelector('.mui-popup-button-bold'),'tap');  
+    	mui.closePopup();
+	});
+
+	//定义函数
+    window.Clipboard = (function(window, document, navigator) {
+	  var textArea,
+	      copy;
+	  // 判断是不是ios端
+	  function isOS() {
+	    return navigator.userAgent.match(/ipad|iphone/i);
+	  }
+	  //创建文本元素
+	  function createTextArea(text) {
+	    textArea = document.createElement('textArea');
+	    textArea.innerHTML = text;
+	    textArea.value = text;
+	    document.body.appendChild(textArea);
+	  }
+	  //选择内容
+	  function selectText() {
+	    var range,
+	        selection;
+
+	    if (isOS()) {
+	      range = document.createRange();
+	      range.selectNodeContents(textArea);
+	      selection = window.getSelection();
+	      selection.removeAllRanges();
+	      selection.addRange(range);
+	      textArea.setSelectionRange(0, 999999);
+	    } else {
+	      textArea.select();
+	    }
+	  }
+
+	//复制到剪贴板
+	  function copyToClipboard() {        
+	    try{
+	      if(document.execCommand("Copy")){ 
+	        console.log("复制成功")
+	      }else{
+	        console.log("复制失败！请手动复制！");
+	      }
+	    }catch(err){
+	      console.log("复制错误！请手动复制！")
+	    }
+	    document.body.removeChild(textArea);
+	  }
+
+	  copy = function(text) {
+	    createTextArea(text);
+	    selectText();
+	    copyToClipboard();
+	  };
+
+	  return {
+	    copy: copy
+	  };
+  	})(window, document, navigator);
+
+</script>
+</body>
+</html>

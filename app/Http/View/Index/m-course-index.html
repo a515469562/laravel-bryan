@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>精品课程_未明学院</title>   
+<meta name="keywords" content="未明学院,精品课程">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<link href="/public/static/index/CSS/wmxy-m.css?v={$Think.const.MCSS}" rel=stylesheet>
+<script type="text/javascript">
+    var vincent=window.location.href;
+    if(vincent.indexOf("www.")>0){
+    vincent=vincent.replace("{$Think.const.WEB}","{$Think.const.MOBILE}");
+    window.location.href=vincent;
+    }
+    </script>   
+    <style>
+    .course-bottom{
+        padding-bottom:85px!important;
+    }
+    </style>
+</head>
+<body>
+        {include file="./application/index/view/index/m-top.html"} 
+
+
+<div class="index-top">
+<a href="/"><div class="to-index">首页<div class="line"></div></div></a>
+<!--<a href="/python"><div class="to-free">免费课程<div class="line"></div></div></a>-->
+<a href="/course"><div class="to-course active">精品课程<div class="line"></div></div></a>
+</div>
+<div class="course1-body-m" >
+     
+     <div class="course1-body-top-m">
+         <a onclick="change(0)" herf="javascript:void(0)">
+             <div class="course1-body-top1-m selected-m" id="x0">
+                     全部
+             </div>
+         </a>
+         <a onclick="change(1)" herf="javascript:void(0)">
+             <div class="course1-body-top1-m" id="x1">
+                     进行中
+             </div>
+         </a>
+         <a onclick="change(2)" herf="javascript:void(0)">
+             <div class="course1-body-top1-m" id="x2">
+                     已结束
+             </div>
+         </a>
+     </div>
+     {volist name="result" id="co"}
+    <a href="/course/{$co.id}">
+    <div class="course1-body-desc-body-m  class-{$co.checkdate}">
+        <div class="course1-contarin">
+            <div class="course1-body-desc-body-img-m">
+                <img alt="{$co.title}" src= "http://img.compassedu.hk/{$co.mobile}?imageView2/5/w/80/h/80/q/75"> 
+            </div>
+            <div class="course1-desc">
+                <div class="course1-body-desc-body-title-m ellipsis">
+                    {$co.title}   
+                </div>
+                <div class="course1-tabs-m ellipsis">
+                    {if $co.tab1name!=''}{$co.tab1name}{/if}
+                    {if $co.tab2name!=''} · {$co.tab2name}{/if}
+                    {if $co.tab3name!=''} · {$co.tab3name}{/if}
+                </div>
+                <div class="course1-body-desc-body-bottom-m">               
+                    已报人数：{$co.quota-$co.number}/{$co.quota} 人
+                    {if $co.checkdate==1}<span class="open">{$co.day}开课</span>{else}<span>报名已结束</span>{/if}
+            </div>
+            </div>
+        </div>
+    </div>
+    </a>
+     {/volist}
+    
+ </div>
+ <div class="pro-apply-btn pro-apply-btn-1" style="z-index:99">
+        <a href="https://e-132293.chatnow.meiqia.com/dist/standalone.html"><div class="pro-apply-button contact">我要咨询</div></a>
+</div>
+ {include file="./application/index/view/index/m-bottom.html"} 
+
+                  
+</body>
+<script>
+
+    function change(x){
+        $(".course1-body-top1-m").removeClass("selected-m");
+        $("#x"+x).addClass("selected-m");
+        if(x==0){
+            $(".course1-body-desc-body-m").show();
+        }else{
+            $(".course1-body-desc-body-m").hide();
+            $(".class-"+x).show();
+        }
+
+        
+    }
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f103248b4ce29f2480202f085e63e6b0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</html>

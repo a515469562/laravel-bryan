@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<link href="/public/static/index/CSS/wmxy-custom.css?v={$Think.const.CSS}" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<style>
+    .wenjuan {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 920px;
+    height: 80%;
+    background: #fff;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 9999999999999;
+    display: none;
+}
+.md-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    z-index: 9999995;
+    opacity: 1;
+    background: rgba(1,1,1,0.6);
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+.wj-load {
+    padding: 40px 60px;
+    overflow-x: hidden;
+    height: 100%;
+}
+.wj-title {
+    text-align: center;
+    color: #1eb9ee;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom:30px;
+}
+.col-xs-4 {
+    width: 33.33333333333333%;
+    float: left;
+}
+.wj-q {
+    color: #000;
+    font-size: 16px;
+    line-height: 22px;
+    margin-left: 40px;
+}
+.wj-op {
+    padding: 10px 40px 30px 40px;
+    width: 100%;
+    float: left;
+    line-height: 30px;
+    margin-left: 40px;
+}
+.col-xs-3 {
+    width: 245px;
+    float: left;
+}
+.wj-op span {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.uncheck {
+    float: left;
+    background: transparent url("http://camp.enaca.cn/uncheck.png") no-repeat center left;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+}
+.check {
+    float: left;
+    background: transparent url("http://camp.enaca.cn/check.png") no-repeat center left;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+}
+.wj-button {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+.wj-sub {
+    background-color: #1eb9ee;
+    border: 1px solid #1eb9ee;
+    width: 120px;
+    font-size: 16px;
+    line-height: 30px;
+    color: #fff;
+    margin-top: 0px;
+    border-radius: 4px;
+    padding: 0 20px;
+    float: unset;
+}
+</style>
+</head>
+
+
+<body style="background: #f7f7f7;">
+ {include file="./application/index/view/index/w-top-1.html"} 
+
+ <div class="cust-container" style="min-height:600px;overflow: hidden;">
+    <div class="row"> 
+{include file="./application/index/view/index/w-side.html"} 
+
+        <div class="col-xs-9" style="padding-left:0px">               
+            <div class="event-top">
+                {if $result}
+                    {volist name="result" id="a"}
+                        {if $a.overdue!=1}
+                            <a onclick="jump('{$a.course_buy}')" target="_blank">
+                            <div class="part-event">
+                                <div class="part-img">
+                                    <img src ="{$a.img}">
+                                </div>
+                                <div class="part-content">
+                                    <div class="ucn">
+                                        {$a.title}{if $a.info!=""||$a.info!=NULL||$a.info}（{$a.info}）{/if}
+                                    </div>
+                                    <div class="lh">
+                                        <span class="spanc">
+                                        {if $a.course_buy==486}开课时间：11月2日
+                                        {elseif $a.course_buy==500}开课时间：12月14日
+                                        {elseif $a.course_buy==514}开课时间：1月11日
+                                        {else}
+                                            {if $a.order==1}结营时间：{$a.end}
+                                            {elseif $a.order==2}项目进行中
+                                            {elseif $a.order==3}开营时间：{$a.date}
+                                            {elseif $a.order==4}下次开课时间：{$a.date}
+                                            {/if}
+                                        {/if}
+                                        </span>
+                                    </div>
+                                    {if $a.course_buy!=486 && $a.course_buy!=500 && $a.course_buy!=514}
+                                    <button>
+                                            {if $a.order==3}
+                                            查看课表
+                                            {elseif $a.order==4}
+                                            继续学习
+                                            {else}
+                                            回看学习
+                                            {/if}
+                                    </button>
+                                    {else}
+                                    <button>
+                                    开始闯关
+                                    </button>
+                                    {/if}
+                                </div>
+                            </div></a>
+                        {else}
+                            <div class="part-event">
+                                <div class="part-img">
+                                    <img src ="{$a.img}">
+                                </div>
+                                <div class="part-content">
+                                    <div class="ucn">
+                                        {$a.title}{if $a.info!=""||$a.info!=NULL||$a.info}（{$a.info}）{/if}
+                                    </div>
+                                    <div class="lh">
+                                        <span class="spanc">
+                                            {if $a.order==1}结营时间：{$a.end}
+                                            {elseif $a.order==2}项目进行中
+                                            {elseif $a.order==3}开营时间：{$a.date}
+                                            {elseif $a.order==4}下次开课时间：{$a.date}
+                                            {/if}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        {/if}
+                    {/volist}
+                {else}
+                    <div class="order-blank">
+                        <img src="http://img.compassedu.hk/wmxy/nonebag.png">
+                        <div class="order-blank-tip">您尚未报名任何课程</div>
+                    </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="wenjuan" class="wenjuan"></div>
+<div id="md-overlay" class="md-overlay"></div>
+<script>
+$("#my_skill").addClass("open");
+$("#my_skill_tag").addClass("open");
+    function jump(s){
+        var token = "{$Think.session.guestinfo.token}";
+        token = encodeURIComponent(token);
+        url = "http://47.100.110.16:90/skill-course/#/index?course=1&token="+token;
+        if(s==486){
+            window.open(url);
+            return false;
+        }else if(s == 500){
+            var stime = 1576285200000;//2019-12-14 09:00:00
+            var now = Date.parse(new Date());
+            if (now < stime) {
+                alert('python技能营将于2019年12月14日 9点开启，敬请期待');
+                return false;
+            }else{
+                window.open(url);
+                return false;
+            }
+        }else if(s == 514){
+            var stime = 1578704400000;//2020年1月11日 9点
+            var now = Date.parse(new Date());
+            if (now < stime) {
+                alert('Python网络爬虫课程将于2020年1月11日 9点开启，敬请期待');
+                return false;
+            }else{
+                window.open(url);
+                return false;
+            }
+        }
+
+        var eva="{$eva}";
+        var id="{$Think.session.guestinfo.id_guest}";
+        if(eva!=1){
+            var top = $(document).scrollTop();
+            $(document).on('scroll.unable', function(e) {
+            $(document).scrollTop(top);
+            })
+            $("#wenjuan").load("http://www.enaca.cn/skillwj",function(){
+                $("#wenjuan").show();
+                $("#md-overlay").css("visibility","visible")
+            })
+        }else{
+            url="http://www.enaca.cn/classroom/"+s;
+            window.open(url);
+        }
+            
+    }
+       
+
+</script>
+{include file="./application/index/view/index/w-bottom-1.html"} 
+
+</body>
+
+
+</html>

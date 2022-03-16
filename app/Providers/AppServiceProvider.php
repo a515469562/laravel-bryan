@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Service\Origin\Mysql;
+use App\Service\Origin\MysqlManager;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

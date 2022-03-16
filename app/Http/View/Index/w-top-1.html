@@ -1,0 +1,474 @@
+<script type=text/javascript src="/public/static/index/JS/jquery.cookie.js"></script>
+
+<header class="header header-bg">
+    <div class="header-contain trans">
+        
+        <a href="./" target="_blank"><div class="jump-index"></div></a>
+        {if $Think.session.guestinfo.id_guest>0}
+        <div id="fat-menu">
+        <a href="javascript:void(0)" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="{$Think.session.guestinfo.wmxy_pic_guest}" class="topa-img img-circle avatar-navbar">
+        </a>
+        
+        <ul id="ul-hide"class="dropdown-menu" role="menu" aria-labelledby="drop3" >
+                <li role="presentation"><a class="topa tagbg1"role="menuitem" tabindex="-1" href="/order" >我的订单</a></li>
+                <li role="presentation"><a class="topa tagbg2"role="menuitem" tabindex="-1" href="/event" >我的活动</a></li>
+                <li role="presentation"><a class="topa tagbg3"role="menuitem" tabindex="-1" href="/skill" >精品课程</a></li>
+                <li role="presentation"><a class="topa tagbg4"role="menuitem" tabindex="-1" href="/setting" >个人设置</a></li>
+                <li role="presentation"><a class="topa tagbg5"role="menuitem" tabindex="-1" href="/logout" >退出账号</a></li>
+            </ul></div>
+        {else}
+        <button id="login" class="login">登录</button>
+        <button id="reg" class="register">注册</button>
+        {/if}
+        <a href="/certificate" target="_blank"><div class="header-navbar">证书查询</div></a>
+        <a href="/course" target="_blank"><div class="header-navbar">精品课程</div></a>
+        <a href="/dataset" target="_blank"><div class="header-navbar">数据集</div></a>
+        <!--<a href="/python" target="_blank"><div class="header-navbar">免费课程</div></a>-->
+       
+    </div>
+</header>
+<div id="overlay" class="overlay"></div>
+<div id="overlay-w" class="overlay-w">
+  <div class="log-head">
+    <div class="log-headline"><img src="http://img.compassedu.hk/wmxy/logo-w.png?imageMogr2/auto-orient/thumbnail/x40/blur/1x0/quality/75" > <span class="log-span">×</span></div>
+  </div>
+  <div class="log-area">
+        <div  class="log-tab">
+            <div class="log-tab-item mar selected"id="wx-dl" >微信登录</div>
+            <div class="log-tab-item  mar" id="code-dl">验证码登录</div>
+            <div class="log-tab-item "id="pass-dl" >账号登录</div>
+        </div>
+
+        <div class="reg-topic" style="display:none">绑定手机号</div>
+          
+        <div class="dl-info-area-code" style="display:none">
+
+            <div class="div-tel-input">
+                <div class="ano tel-ano">手机号</div>
+                <div class="form-group1" >
+                    <span class="form-group-addon">
+                        <select class="select-nation"id="area">
+                    </span>
+                    <input id="dltel" type="text" name="telephone" placeholder="输入手机号码">
+                    <span class="form-group-addon">
+                        <p id="btnCode" class="inputspan send-code">发送验证码</p>
+                    </span>
+                </div>
+            </div><!--div-tel-input-->
+
+            <div class="asigntel"></div>
+            <div class="div-pass-input">
+                <div class="ano pass-ano">验证码</div>
+                <input type="text" autocomplete="off" id="code"name="code" placeholder="输入6位验证码" class="lgcode">
+                <input type="password" autocomplete="off" id="pass"name="pass" placeholder="请输入密码" class="lgcode" style="display:none">
+                <div class="asigncode"></div>
+            </div><!--div-pass-input-->
+
+            <div class="div-dl-button"><button class="overlay-button">绑定</button></div>
+          
+        </div><!-- dl-info-area-code -->
+
+
+
+        <div class="dl-area-wx">
+            <div class="login-box-body wxp"style="text-align: center;">
+            <script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+            <div id="login_container"></div>
+        </div>
+        <div style="font-size: 20px;
+            color: rgba(0,0,0,0.85);
+            letter-spacing: 0;
+            text-align: center;margin-top:5px;margin-bottom:14px;">微信扫一扫即可登录</div>
+        </div>
+        <div class="div-asi"><span class="asi-ask"></span>
+            <span class="asi-click"></span>
+        </div>
+</div><!--login-area-->
+</div>
+
+
+
+<script>
+    $.getJSON ("http://www.enaca.cn/code.text", function (data)  
+    {  
+        var t1='';
+        $.each (data, function (i, item)  
+        {  
+            var k=item.key;
+            var d=item.data;
+            t1+='<optgroup label="'+k+'">';
+            $.each (d, function (i1, item1) 
+            {              
+             t1+='<option value="'+item1.phoneCode+'">'+item1.countryName+'</option>';
+            }); 
+            t1+='</optgroup>';
+        });  
+        $ ("#area").append (t1);   
+    });  
+    $.cookie('presenturl',window.location.href);
+    if($.cookie("secondsremained")>0){
+  		 var count=$.cookie("secondsremained");　
+  	}else{
+  		var count=60;
+  	}
+    
+    if ($.cookie("secondsremained") > 1) {
+  	  $(".inputspan").attr("disabled", "disabled");
+        $(".inputspan").css("color", "rgba(0, 0, 0, 0.45)");
+        $(".inputspan").css("cursor", "unset");
+        $(".inputspan").html("重新获取(" + count + "s)");
+     		count--;
+          var date = new Date();
+          var c=count+1;
+          date.setTime(date.getTime()+c*1000);
+          $.cookie("secondsremained", count,{expires:date});
+          setTimeout(GetNumber, 1000);
+     }
+     else {
+  	   $(".inputspan").html("发送验证码");
+         $(".inputspan").css("color", " rgba(0,80,179,0.85)");
+         $(".inputspan").attr("disabled", false);
+         $(".inputspan").css("cursor", "pointer");
+     }
+    
+    function GetNumber(s) {
+  	    if (s > 0) {
+  	        count = s
+  	    }
+  	    count--;
+  	    if (count < 1) {
+  	        $(".inputspan").html("发送验证码");
+  	        $(".inputspan").css("color", " rgba(0,80,179,0.85)");
+  	        $(".inputspan").attr("disabled", false);
+  	        $(".inputspan").css("cursor", "pointer");
+  	    } else {
+  	        $(".inputspan").attr("disabled", "disabled");
+  	        $(".inputspan").css("color", "rgba(0, 0, 0, 0.45)");
+  	        $(".inputspan").css("cursor", "unset");
+  	        $(".inputspan").html("重新获取(" + count + "s)");
+  	        var date = new Date();
+  	        var c = count + 1;
+  	        date.setTime(date.getTime() + c * 1000);
+  	        $.cookie("secondsremained", count,{expires:date});
+  	        
+  	        setTimeout(GetNumber, 1000)
+  	    }
+  	};
+    
+    var state=0;
+    var pre=0;
+      
+    $(document).ready(function () {
+        var stateus='{$hasnotbe}';
+        if(stateus==1){
+            displayzhuce(1);
+            overlayshow();
+            state=4;
+        }
+        url = "http://www.enaca.cn/checkLogin";
+            var obj = new WxLogin({
+                self_redirect: false,
+                id: "login_container",
+                appid: "wxf192d129c2291b53",
+                scope: "snsapi_login",
+                redirect_uri: url,
+                state: "996633",
+                style: "",
+                href: "//www.compassedu.hk/tpl/mainvl/css/qr.css",
+            });
+    })
+    $("#reg").click(function () {
+        state=3;
+        pre=0;
+        clearnasign();
+  	    displayzhuce();
+  	    overlayshow()
+  	});
+    $("#login").click(function () {
+        state=0;
+        page=0;
+        clickstyle("#wx-dl");
+        $(".log-tab").show();
+        $(".reg-topic").hide();
+        $(".overlay-button").html("登录");
+        $(".asi-ask").html("没有账号？");
+        $(".asi-click").html("点击注册");
+        overlayshow()
+      });
+
+    $("#code-dl").click(function () {
+        state=1;
+  	    clickstyle("#code-dl");
+  	    changemodel("#code");
+  	    $("#code").show();
+  	    $("#pass").hide();
+  	    $(".pass-ano").html("验证码");
+  	    $(".inputspan").show();
+  	    
+  	});
+  	$("#pass-dl").click(function () {
+        state=2;
+  	    clickstyle("#pass-dl");
+  	    changemodel("#pass");
+  	    $("#code").hide();
+  	    $("#pass").show();
+  	    $(".pass-ano").html("密码");
+  	    $(".inputspan").hide();
+  	});
+  	$("#wx-dl").click(function () {
+        state=0;
+  	    clickstyle("#wx-dl");
+  	});      
+
+    function overlayshow() {
+        var top = $(document).scrollTop();
+        $(document).on('scroll.unable', function(e) {
+        $(document).scrollTop(top);
+        })
+  	    $("#overlay-w").show();
+  	    $("#overlay").css("visibility", "visible")
+    }
+    
+  	function overlayhide() {
+        $(document).off('scroll.unable');
+  	    $("#overlay").css("visibility", "hidden");
+  	    $("#overlay-w").hide()
+  	}
+    $("#overlay").click(function () {
+  	    overlayhide()
+    });
+    $(".log-span").click(function () {
+        overlayhide()
+    });
+      function clickstyle(e) {
+        clearnasign();
+  	    $(".log-tab-item").removeClass("selected");
+        $(e).addClass("selected")
+        if(e=="#wx-dl"){
+            $(".dl-info-area-code").hide();
+  	        $(".dl-area-wx").show()
+        }else{
+            $(".dl-area-wx").hide();
+  	        $(".dl-info-area-code").show()
+        } 
+  	}
+  	function changemodel(el) {
+          var tel = $("#dltel").val();
+          if(el==1||el==4||el==3){
+            var code = $("#code").val();
+          }else if(el==2){
+            var code = $("#pass").val();
+          }else{
+            var code = $(el).val();
+          }
+  	    if (tel != "" && code != ""  && code.length >= 6 ) {
+            $(".overlay-button").addClass("overlay-button-click")
+  	    } else {
+            $(".overlay-button").removeClass("overlay-button-click")
+  	    }
+    }
+    
+      
+
+//
+$(".asi-click").click(function () {
+        clearnasign();
+  	    if (state==3) {
+            state=pre;
+  	        if (state==1||state==2) {
+  	            $("#code").hide();
+  	            $("#pass").show();
+  	            $(".pass-ano").html("密码");
+  	            $(".inputspan").hide();
+  	            changemodel("#pass")
+  	        } else {
+  	            if ($("#wx-dl").hasClass("selected")) {
+  	                $(".dl-area-wx").show();
+  	                $(".dl-info-area-code").hide();
+  	                changemodel("#code")
+  	            }
+  	        }
+  	        $(".reg-topic").hide();
+  	        $(".log-tab").show();
+  	        $(".overlay-button").html("登录");
+  	        $(".asi-ask").html("没有账号？");
+  	        $(".asi-click").html("点击注册")
+  	    } else {
+              pre=state;
+              state=3;
+  	        changemodel("#code");
+  	        displayzhuce()
+  	    }
+      });
+      
+      function displayzhuce(a) {
+  	    $("#code").show();
+  	    $("#pass").hide();
+        $(".log-tab").hide();
+  	    $(".reg-topic").show();
+        $(".inputspan").show();
+        if(a==1){
+            $(".reg-topic").html("绑定手机号");
+            $(".overlay-button").html("绑定");
+            $(".asi-ask").html("");
+  	        $(".asi-click").html("");
+        }else{
+            $(".reg-topic").html("注册");
+            $(".overlay-button").html("注册");
+            $(".asi-ask").html("已有账号？");
+  	        $(".asi-click").html("马上登录");
+        }
+  	    $(".pass-ano").html("验证码");
+  	    $(".dl-area-wx").hide();
+  	    $(".dl-info-area-code").show()
+      }
+      
+$(".inputspan").click(function () {
+  	    clearnasign();
+  	    if ($(this).css("cursor") == "pointer") {
+  	        var cy = changearea($("#area").val());
+  	        var tel = $("#dltel").val();
+  	        
+  	        if ((cy == 86 && checktel(tel))||(cy != 86 && !isNaN(tel)) ){
+                posttel(tel, cy);
+  	        } else {
+  	            $(".asigntel").html("请输入正确的手机号码") 	            
+  	        }
+  	    }
+      });
+$(".overlay-button").click(function () {
+clearnasign();
+if ($(this).hasClass("overlay-button-click")) {
+    var cy = changearea($("#area").val());
+    var tel = $("#dltel").val();
+    var code = $("#code").val();
+    var pass = $("#pass").val();
+    if ((cy == 86 && checktel(tel)) || (cy != 86 && !isNaN(tel))) {
+        console.log(tel);
+        console.log(cy);
+        console.log(code);
+        console.log(pass);
+        console.log(state);
+        $.post("http://www.enaca.cn/checkin", {
+                "cy": cy,
+                "tel": tel,
+                "code": code,
+                "pass": pass,
+                "state":state,
+            }, function (r) {
+                if (r == 1) {
+                    alert("注册成功");
+                    setTimeout(window.location.reload());
+                }else if (r == 2)  {
+                    $(".asigncode").html("验证码已超时");
+                }else if (r == 3) {
+                    $(".asigncode").html("验证码错误");
+                }else if (r == 4) {
+                    alert("登录成功");
+                    setTimeout(window.location.reload());
+                }else if (r == 5) {
+                    $(".asigncode").html("手机号或密码错误");
+                }else{
+                    $(".asigncode").html("未知错误，请刷新页面后重试");
+                }
+            })
+    } else {
+        $(".asigntel").html("请填写正确的手机号码")
+    }
+}
+});     
+      
+    function posttel(tel, cy) {
+  	    $.post("http://www.enaca.cn/sendmsge", {
+  	        "tel": tel,
+  	        "cy": cy
+  	    }, function (result) {
+  	        var date = new Date();
+  	        date.setTime(date.getTime() + 60 * 1000);
+  	        $.cookie("secondsremained", 60,{expires:date});
+  	        GetNumber(60)
+  	    })
+      }
+      
+    function checktel(e) {
+  	    var tel = e;
+  	    var myreg = /^(((1[0-9]{1}))+\d{9})$/;
+  	    if (!myreg.test(tel)) {
+  	        return false
+  	    } else {
+  	        return true
+  	    }
+    }  
+      
+    function changearea(e) {
+        var tel = e;
+        tel = tel.replace("+", "");
+        tel = tel.replace(" ", "");
+        tel = tel.replace("-", "");
+        return tel
+    }
+      
+    function clearnasign() {
+        $(".asigntel").html("");
+        $(".asigncode").html("")
+    }
+
+    $("#dltel").blur(function(){changemodel(state);})
+  	$("#dltel").keyup(function(){
+  		if(event.keyCode==13){
+  			$(".overlay-button").click();
+  		}else{
+            changemodel(state);
+  		}
+  	})
+    $("#code,#pass").keyup(function () {
+        if (event.keyCode == 13 && $(this).val().length > 5) {
+            $(".overlay-button").click();
+        }else{
+            changemodel(this);
+        }
+    });
+
+    
+    
+    $("#dltel").bind("input propertychange", function () {
+        if ($("#dltel").val() != "") {
+            inputspancanclick()
+        } else {
+            inputspanunclick()
+        }
+    });
+
+    function inputspancanclick() {
+        if($("#btnCode").css("cursor")!="auto"||$("#btnCode").attr("disabled")!="disabled"){
+            $(".inputspan").css("color", " rgba(0,80,179,0.85)");
+            $(".inputspan").css("cursor", "pointer")
+        }
+    }  	
+    function inputspanunclick() {
+  	    $(".inputspan").css("color", "rgba(0, 0, 0, 0.45)");
+  	    $(".inputspan").css("cursor", "auto")
+  	}
+
+    $(".select-nation").change(function () {
+  	    var m = $(".form-group1").width();
+  	    var t = $(this).find("option:selected");
+  	    var l = t.text().length;
+  	    if (l <= 5) {
+  	        $(".select-nation").width(l * 17 + 24)
+  	    } else {
+  	        $(".select-nation").width(109)
+  	    }
+    });
+      
+    $("#fat-menu").mouseover(function () {
+  	    $("#ul-hide").show();
+  	    $(".topa-img").css("border", "2px solid rgba(30,185,238,0.5)");
+  	});
+  	$("#fat-menu").mouseout(function () {
+  	    $("#ul-hide").hide();
+  	    $(".topa-img").css("border", "2px solid transparent");
+  	});
+
+    </script>

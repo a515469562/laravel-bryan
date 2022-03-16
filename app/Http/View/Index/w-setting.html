@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="{$Think.const.LOGO}">
+<title>{$Think.const.TITLE}</title>   
+<meta name="keywords" content="未明学院,大学生,职业探索,技能提升">
+<meta name="description" content="未明学院专注专注大学生职业探索与技能提升。未明学院本着让学习更有趣、让学员的简历不再单薄的教学理念，未明学院为每一组学员设计紧跟企业界热点的数据处理项目，通过项目制学习（PBL）的方式，让学员在掌握数据处理技能的同时，收获一个高含金量的项目经历。">
+
+
+<link href="/public/static/index/CSS/wmxy.css?v={$Think.const.CSS}" rel=stylesheet>
+<link href="/public/static/index/CSS/wmxy-custom.css?v={$Think.const.CSS}" rel=stylesheet>
+<link href="/public/static/index/CSS/ImgCropping.css" rel=stylesheet>
+<link href="/public/static/index/CSS/cropper.min.css" rel=stylesheet>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="http://code.jquery.com/jquery-2.0.0.min.js"><\/script>');
+    </script>
+<script src="/public/static/index/JS/cropper.min.js"></script>
+<script src="https://unpkg.com/qiniu-js/dist/qiniu.min.js"></script>
+<style>
+.col-xs-9{padding-top:20px}.form-group-addon{display: block;}.hasbindv img{width:25px}.hasbind a{cursor: default;}.bind-asign-a{font-size:16px;color:rgb(204,204,204)}.newpassa{display: -webkit-box;margin: 10px 0px;}.newpass{display: -webkit-box;margin: 0px 0px 10px 0px}#bind,#passset{display:none}#btbc{margin-left: 45%;border-radius:4px;background-color:#1eb9ee;color:white;border:1px #1eb9ee solid;padding: 5px 30px;}#tel{width:400px!important}.save-area-div{width: 60%;margin-top: 40px;}.notby img{margin-top:100px}.notby div{font-size:18px ;color:rgb(51,51,51);margin-top:50px}.notby{text-align: center;min-height: 620px;}.tailoring-container{display:none}.change-img-box{width: 320px;height: 320px;border: solid 1px #555;padding: 5px;margin-top: 10px}.change-pic{display:none}.head-asign{color:rgb(204, 204, 204)}#replaceImg1{color:#1eb9ee;cursor: pointer;line-height: 1.8;}.p25{padding:25px}li[class^="tg"],.in1{display: -webkit-box;}.row.top-mate{height:100%}.container{    min-height: 600px;padding-left: 15px;padding-right: 15px;}.sidebar #cust>li>a{border:none!important;background-color:white}#cust{border:none!important}li{line-height:.5}ul{margin:10px 0}a{color:#666}.sidebar{background-color:white}.row{margin-top:10px}.button{border-radius:4px;background-color:#1eb9ee;color:white;border:1px #1eb9ee solid;padding:5px 30px}#keyw{border-radius:50px!important}.active{border-radius:8px;background-color:#1eb9ee;color:white!important;padding:8px}.clss{padding:8px;margin:0}.cate{padding:8px}.row{margin-top:10px}body{overflow-y:hidden;background-color:#f8f8f8;padding-left:calc(100vw - 100%)}.navbar{padding-left:calc(100vw - 100%)}.tar{border-left:5px #1eb9ee solid;margin-right:20px}.tartes{display:-webkit-inline-box;margin-left:-5px;line-height:2;position:relative;top:12px}.t1{font-size:20px;color:#333;margin:10px 0 10px 20px}.t2{color:#999;margin:10px 0 10px 20px}a{cursor:pointer}.br{border-right:1px solid #999}.br1{border-right:4px solid #1eb9ee!important}.wid{width:100px;color:#666}.bpass{background-color:#1eb9ee;width:120px;height:37px;border:1px solid #1eb9ee;color:white;margin:30px 0 0 360px}input{width:300px;text-indent:1em;color:#ccc;border:1px solid #eceff2;padding:4px 0}.ic1{width:90px;height:90px}.main-info{width:10%;text-align:-webkit-auto;padding:5px 0}h3{font-size:18px;color:#ccc;margin-bottom:15px}.dbox{display:-webkit-box;width:100%;margin:10px 0}input{width:400px;color:#666}.in2{margin-top:50px}.in3{margin-top:50px;margin-bottom:200px}.bind-r{display:flex;width:100%}.bind-s1{font-size:16px;color:#666;width:30%}.bind-r1{margin:25px 0 10px 0}.bind-s2{color:#1eb9ee;cursor:pointer}.bind-s2 a{color:rgb(30,183,258);display:none}.bind-s3{color:#1eb9ee;cursor:pointer;margin-left:15px}.open{color:#1eb9ee}.border-aline{padding:15px 1.5px!important;margin:0}.border-bline{padding:15px 1px!important;margin:0}.br{margin:0}
+</style> 
+</head>
+
+<body style="background: #f7f7f7;">
+
+ {include file="./application/index/view/index/w-top-1.html"} 
+
+ <div class="cust-container" style="min-height:600px">
+        <div class="row" style="height:100%;height:100%;padding: 50px 0px 0px 50px;">
+        <div class="col-xs-3">
+        <div class="sidebar">
+            <ul id="cust">
+                   
+        <li class="tg1" style="display: -webkit-box;"><a name="1" class="aa th1 open">个人信息</a><p class="c-1 br br1 border-bline"></p></li>
+                        
+        <li class="tg2" style="display: -webkit-box;"><a name="2" class="th2 aa">密码设定</a><p class="c-2 br border-aline"></p></li>
+                        
+        <li class="tg3" style="display: -webkit-box;"><a name="3" class="th3 aa">账号绑定</a><p class="c-3 br border-aline"></p></li>
+                            </ul>
+                            
+        <!-- <script>
+        $('.tg1').click(function(){
+            $('.br').removeClass('br1');$('.c-1').addClass('br1');
+            $('.br').removeClass('border-aline');$('.br').removeClass('border-bline');
+            $('.c-2').addClass('border-bline');$('.c-3').addClass('border-bline');
+            $('.aa').removeClass('open');$('.th1').addClass('open'); 
+            $('#passset').hide();$('#bind').hide();$('#info').show();
+            });
+        $('.tg2').click(function(){
+            $('.br').removeClass('br1');$('.c-2').addClass('br1');
+            $('.br').removeClass('border-aline');$('.br').removeClass('border-bline');
+            $('.c-1').addClass('border-bline');$('.c-3').addClass('border-bline');
+            $('.aa').removeClass('open');$('.th2').addClass('open'); 
+            $('#info').hide();$('#bind').hide();$('#passset').show();
+            });
+        $('.tg3').click(function(){
+            $('.br').removeClass('br1');$('.c-3').addClass('br1');
+            $('.br').removeClass('border-aline');$('.br').removeClass('border-bline');
+            $('.c-2').addClass('border-bline');$('.c-1').addClass('border-bline');
+            $('.aa').removeClass('open');$('.th3').addClass('open'); 
+            $('#info').hide();$('#passset').hide();	$('#bind').show();
+            });
+        </script>	 -->
+        <script>$(".tg1").click(function(){$(".br").removeClass("br1");$(".c-1").addClass("br1");$(".br").removeClass("border-aline");$(".br").removeClass("border-bline");$(".c-2").addClass("border-bline");$(".c-3").addClass("border-bline");$(".aa").removeClass("open");$(".th1").addClass("open");$("#passset").hide();$("#bind").hide();$("#info").show()});$(".tg2").click(function(){$(".br").removeClass("br1");$(".c-2").addClass("br1");$(".br").removeClass("border-aline");$(".br").removeClass("border-bline");$(".c-1").addClass("border-bline");$(".c-3").addClass("border-bline");$(".aa").removeClass("open");$(".th2").addClass("open");$("#info").hide();$("#bind").hide();$("#passset").show()});$(".tg3").click(function(){$(".br").removeClass("br1");$(".c-3").addClass("br1");$(".br").removeClass("border-aline");$(".br").removeClass("border-bline");$(".c-2").addClass("border-bline");$(".c-1").addClass("border-bline");$(".aa").removeClass("open");$(".th3").addClass("open");$("#info").hide();$("#passset").hide();$("#bind").show()});</script>				
+                            </div>
+        </div>
+        
+        
+        <div class="col-xs-9">
+        <div id="info">
+        <div class="in1" style="display: -webkit-box;">
+        
+        <div><img src="{$Think.session.guestinfo.wmxy_pic_guest}" id="guestpic" class="img-circle ic1"></div>
+        <div class="" style="padding:25px">
+        <div class="mate-upload1" id="replaceImg1" name="mateupload1" style="color: rgba(0,80,179,0.85);cursor: pointer;line-height: 1.8;">选择图片<span class="uploadifyQueueItem"></span></div>
+        <div class="" style="color:rgb(204, 204, 204)">支持jpg、png、jpeg、bmp，图片大小5M以内。</div>
+        </div>
+        <div style="display:none">
+        <button id="replaceImg" class="l-btn">更换图片</button>
+        <div style="width: 320px;height: 320px;border: solid 1px #555;padding: 5px;margin-top: 10px">
+            <img id="finalImg" src="" width="100%">
+        </div>
+        
+        </div>
+        <!--图片裁剪框 start-->
+        <div style="display: none" class="tailoring-container">
+            <div class="black-cloth" onclick="closeTailor(this)"></div>
+            <div class="tailoring-content" style="top: 70px; left: 572px;">
+                    <div class="tailoring-content-one">
+                        <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                            <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+                            选择图片
+                        </label>
+                        <div class="close-tailoring" onclick="closeTailor(this)">×</div>
+                    </div>
+                    <div class="tailoring-content-two">
+                        <div class="tailoring-box-parcel">
+                            <img id="tailoringImg">
+                        </div>
+                        <div class="preview-box-parcel">
+                            <p>图片预览：</p>
+                            <div class="square previewImg"></div>
+                            <div class="circular previewImg"></div>
+                        </div>
+                    </div>
+                    <div class="tailoring-content-three">
+                        <button class="l-btn cropper-reset-btn">复位</button>
+                        <button class="l-btn cropper-rotate-btn">旋转</button>
+                        <button class="l-btn cropper-scaleX-btn">换向</button>
+                        <button class="l-btn sureCut" id="sureCut">确定</button>
+                    </div>
+                </div>
+        </div>
+        <!--图片裁剪框 end-->
+        <script>
+        
+            //弹出框水平垂直居中
+            (window.onresize = function () {
+                var win_height = $(window).height();
+                var win_width = $(window).width();
+                if((win_height - 560)<0)
+                {
+                    var b=win_height-40;
+                    $(".tailoring-content").height(b);
+                    var a=b*768/560;
+                    $(".tailoring-content").width(a);
+                    var h=20;
+                }else
+                    {
+                    $(".tailoring-content").height("560px");
+                    $(".tailoring-content").width("768px");
+                    var h=(win_height -560)/2;
+                    }
+                if (win_width <= 768){
+                    
+                    $(".tailoring-content").css({
+                        "top": h,
+                        "left": 0,
+                        //"height":($(window).height())/2,"width":($(window).width())/2,
+                    });
+                }else{
+                    $(".tailoring-content").css({
+                        "top": h,
+                        "left":(win_width - $(".tailoring-content").outerWidth())/2,
+                        //"height":($(window).height())/2,"width":($(window).width())/2
+                    });
+                }
+            })();
+        
+            //弹出图片裁剪框
+            $("#replaceImg1").on("click",function () {
+                $(".tailoring-container").toggle();
+            });
+            //图像上传
+            function selectImg(file) {
+                if (!file.files || !file.files[0]){
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    var replaceSrc = evt.target.result;
+                    //更换cropper的图片
+                    $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+                }
+                reader.readAsDataURL(file.files[0]);
+            }
+            //cropper图片裁剪
+            $('#tailoringImg').cropper({
+                aspectRatio: 1/1,//默认比例
+                preview: '.previewImg',//预览视图
+                guides: false,  //裁剪框的虚线(九宫格)
+                autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+                movable: false, //是否允许移动图片
+                dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+                movable: true,  //是否允许移动剪裁框
+                resizable: true,  //是否允许改变裁剪框的大小
+                zoomable: false,  //是否允许缩放图片大小
+                mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+                touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+                rotatable: true,  //是否允许旋转图片
+                crop: function(e) {
+                    // 输出结果数据裁剪图像。
+                }
+            });
+            //旋转
+            $(".cropper-rotate-btn").on("click",function () {
+                $('#tailoringImg').cropper("rotate", 45);
+            });
+            //复位
+            $(".cropper-reset-btn").on("click",function () {
+                $('#tailoringImg').cropper("reset");
+            });
+            //换向
+            var flagX = true;
+            $(".cropper-scaleX-btn").on("click",function () {
+                if(flagX){
+                    $('#tailoringImg').cropper("scaleX", -1);
+                    flagX = false;
+                }else{
+                    $('#tailoringImg').cropper("scaleX", 1);
+                    flagX = true;
+                }
+                flagX != flagX;
+            });
+        
+          
+            function putb641(picBase){
+                var picUrl=picBase;
+                picBase=picBase.substring(22);
+                function fileSize(str)
+                {
+                    var fileSize;
+                    if(str.indexOf('=')>0)
+                    {
+                        var indexOf=str.indexOf('=');
+                        str=str.substring(0,indexOf);//把末尾的’=‘号去掉
+                    }
+        
+                    fileSize=parseInt(str.length-(str.length/8)*2);
+                    return fileSize;
+                }
+        
+                /*把字符串转换成json*/
+                function strToJson(str)
+                { 
+                    var json = eval('(' + str + ')'); 
+                    return json; 
+                } 
+        
+        
+                var url = "http://up.qiniu.com/putb64/"+fileSize(picBase); 
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange=function()
+                {
+                    if (xhr.readyState==4){
+                        var keyText=xhr.responseText;
+        
+                        /*返回的key是字符串，需要装换成json*/
+                        keyText=strToJson(keyText);
+        
+                        /* http://ojvh6i96g.bkt.clouddn.com/是我的七牛云空间网址，keyText.key 是返回的图片文件名*/
+                        picUrl="http://ojvh6i96g.bkt.clouddn.com/"+keyText.key;
+                        alert(picUrl);
+        
+                    }
+                }
+                xhr.open("POST", url, true); 
+                xhr.setRequestHeader("Content-Type", "application/octet-stream"); 
+                xhr.setRequestHeader("Authorization", "UpToken 这里填写你的token（注意前面的UpToken后面有空格）"); 
+                xhr.send(picBase);
+        
+             }
+            function putb64(picBase){   //七牛云官方文档方法
+                /*picUrl用来存储返回来的url*/
+                var picUrl;
+                /*把头部的data:image/png;base64,去掉。（注意：base64后面的逗号也去掉）*/
+                picBase=picBase.substring(22);
+                /*通过base64编码字符流计算文件流大小函数*/
+                function fileSize(str) {
+                    var fileSize;
+                    if(str.indexOf('=')>0)  {
+                        var indexOf=str.indexOf('=');
+                        str=str.substring(0,indexOf);//把末尾的’=‘号去掉
+                    }
+                    fileSize=parseInt(str.length-(str.length/8)*2);
+                    
+                    return fileSize;
+                }
+                /*把字符串转换成json*/
+                function strToJson(str) { 
+                    var json = eval('(' + str + ')');
+                    
+                    return json; 
+                } 
+                //http://upload-z2.qiniu.com/putb64/ 只适用于七牛云华南空间 因为我的是七牛云华南空间，如果不是华南空间需要根据七牛云文档进行更改
+                var url = "http://up.qiniup.com/putb64/"+fileSize(picBase);
+                var xhr = new XMLHttpRequest();
+                var upImgageToken='{$upImgageToken}';
+                console.log("upImgageToken"+upImgageToken);
+                xhr.open("POST", url, true); 
+                xhr.setRequestHeader("Content-Type", "application/octet-stream"); 
+                xhr.setRequestHeader("Authorization", "UpToken "+upImgageToken+""); 
+                xhr.send(picBase);
+                
+                xhr.onreadystatechange=function(){
+                    if (xhr.readyState==4){
+                        var keyText=xhr.responseText;
+                        
+                        /*返回的key是字符串，需要装换成json*/
+                        keyText=strToJson(keyText);
+                        /* http://image.haoqiure.com/ 是我的七牛云空间网址，keyText.key 是返回的图片文件名*/
+                        picUrl=keyText.key;
+                        //$("#imgShowurl").val(picUrl)   //将图片链接显示在输入框去
+                        $.post('./changepic',{'url':picUrl},function(result){
+                            console.log('pic_re:'+result['img']);
+                              $("#guestpic").attr("src",result['img']);
+                              $(".topa-img.img-circle.avatar-navbar").attr("src",result['img']);
+                        });
+
+
+                    }
+                  
+            }
+                
+                
+                
+             }
+            //裁剪后的处理
+            $("#sureCut").on("click",function () {
+                if ($("#tailoringImg").attr("src") == null ){
+                    return false;
+                }else{
+                    var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+                    var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+                    $("#finalImg").prop("src",base64url);//显示为图片的形式
+                     putb64(base64url);
+                     closeTailor();
+                }
+            });
+            //关闭裁剪框
+            function closeTailor() {
+                $(".tailoring-container").toggle();
+            }
+        
+        
+        
+        </script>
+        </div>
+                  
+        <div class="in2">
+        <h3>基本信息</h3>
+        <div class="dbox"><div class="main-info">昵称</div><input id="nick" type="text" value="{$guestinfo.wmxy_nick_guest}"></div>
+        <div class="dbox"><div class="main-info">手机号</div><input id="tel" disabled="disabled" type="text" value="{$guestinfo.mobile}"></div>
+        <!-- <div class="dbox"><div class="main-info">电子邮箱</div><input id="email" type="text" value=""></div> -->
+        </div>
+        <div class="in3">
+         
+        <button id="btbc" name="" class="button11" style="margin-left:392px;border-radius:4px;background-color: rgba(0,80,179,0.85);color:white;border:1px  rgba(0,80,179,0.85) solid;padding: 5px 30px;">保存</button>
+        </div>
+        </div>
+        <script>
+        $('#btbc').click(function(){
+            var nick=$('#nick').val();
+            // var email=$('#email').val();
+            $.post('./changeinfo',{'nick':nick}, function(result){
+                console.log('无emai:'+result['message']);
+                console.log('nick:'+result['wmxy_nick_guest']);
+            });
+            const uploadFile = 'http://api.compassedu.hk/index.php/api/v1/user/profile/update'
+            const token = '{$guestinfo.token}'
+          // alert(token)
+            console.log(document.querySelector("input[name='file']").files[0])
+            let formData = new FormData()
+            formData.append('avatar', document.querySelector("input[name='file']").files[0])
+            formData.append('sign','last')
+            formData.append('timestamp',Number(new Date()).toString())
+            $.ajax({
+              url: uploadFile,
+              dataType:'json',
+              type:'POST',
+              async: false,
+              data: formData,
+              processData : false, // 使数据不做处理
+              contentType : false, // 不要设置Content-Type请求头
+              headers: {
+                Authorization: token,
+                appkey: 'weiming'
+              },
+              success: function(data){
+                console.log('success_pic1:'+data.message);
+                console.log('success_pic:'+data);
+              },
+              error:function(response){
+                console.log('error_pic:'+response);
+              }
+            }); 
+
+            alert("保存成功");
+        })
+        </script>
+        
+        
+        
+        
+        
+        <div id="passset">
+            <div class="newpass"><div class="wid main-info">手机号码</div> <input id="mobile"  type="text" name="mobile" value="{$guestinfo.mobile}"class="inpu" disabled="disabled" />
+            <span class="form-group-addon">
+                <p id="btnCode" class="inputspan send-code unbind">发送验证码</p>
+            </span>
+            </div>
+            <div class="newpass"><div class="wid main-info">验证码</div> <input id="captcha" type=text name="np" placeholder="请输入验证码"class="inpu" />
+            </div>
+            <div class="newpass"><div class="wid main-info">新密码</div> <input id="np" type=password name="np" placeholder="密码不少于6位"class="inpu" />
+            </div>
+            <!-- <div class="newpassa"><div class="wid main-info">再次输入</div><input id="rp" type="password" name="rp" placeholder="密码不少于6位"class="inpu" />
+            </div> -->
+            <button class="bpass">保存</button>
+        </div>
+        <script type="text/javascript">
+
+                if($.cookie("secondsremained")>0){
+                     var count=$.cookie("secondsremained");　
+                }else{
+                    var count=60;
+                }
+                if ($.cookie("secondsremained") > 1) {
+                    $(".inputspan").attr("disabled", "disabled");
+                    $(".inputspan").css("color", "rgba(0, 0, 0, 0.45)");
+                    $(".inputspan").css("cursor", "unset");
+                    $(".inputspan").html("重新获取(" + count + "s)");
+                    count--;
+                    var date = new Date();
+                    var c=count+1;
+                    date.setTime(date.getTime()+c*1000);
+                    $.cookie("secondsremained", count,{expires:date});
+                    setTimeout(GetNumber, 1000);
+                }else{
+                    $(".inputspan").html("发送验证码");
+                    $(".inputspan").css("color", "#1EB9EE");
+                    $(".inputspan").attr("disabled", false);
+                    $(".inputspan").css("cursor", "pointer");
+                }
+                function GetNumber(s) {
+                    if (s > 0) {
+                        count = s
+                    }
+                    count--;
+                    if (count < 1) {
+                        $(".inputspan").html("发送验证码");
+                        $(".inputspan").css("color", "#1EB9EE");
+                        $(".inputspan").attr("disabled", false);
+                        $(".inputspan").css("cursor", "pointer");
+                    } else {
+                        $(".inputspan").attr("disabled", "disabled");
+                        $(".inputspan").css("color", "rgba(0, 0, 0, 0.45)");
+                        $(".inputspan").css("cursor", "unset");
+                        $(".inputspan").html("重新获取(" + count + "s)");
+                        var date = new Date();
+                        var c = count + 1;
+                        date.setTime(date.getTime() + c * 1000);
+                        $.cookie("secondsremained", count,{expires:date});
+                        setTimeout(GetNumber, 1000)
+                    }
+                };
+                $(".inputspan.unbind").click(function () {
+                        if ($(this).css("cursor") == "pointer") {
+                            var tel = $("#mobile").val();
+                            
+                                $.post("/sendmsge",{"tel":tel},function(rsend){
+                                    console.log(rsend.message)
+                                    if(rsend.message=="OK"){
+                                        setremainseconds();
+                                    }else{
+                                        alert("操作异常，请稍后再试");
+                                    }
+                                })
+                            }
+                });
+                function setremainseconds(){
+                    var date = new Date();
+                    date.setTime(date.getTime() + 60 * 1000);
+                    $.cookie("secondsremained", 60,{expires:date});
+                    GetNumber(60)
+                }
+                $('.bpass').click(function(){
+                    var np=$('#np').val();
+                    var captcha=$('#captcha').val();
+                    if(np==""){
+                        alert('请输入密码');
+                    }else if(np.length<6){
+                        alert('密码过短');
+                    }else if(captcha!=""){
+                        $.post('./changepass',{'tel':$('#tel').val(),'captcha':captcha,'np':np},function(r){
+                            console.log(r)
+                            if (r.message == 'ok') {
+                                alert ('密码设置成功');
+                                setTimeout(window.location.reload())
+                            }else{
+                                alert(r.message)
+                                // alert('操作异常，请稍后再试')   
+                            }
+                        })
+                    }else{
+                        alert("请输入验证码")
+                    }
+                });
+        </script>
+        
+        <div id="bind" style="display:none;padding-top:10px;">
+                
+                <div class="bind-r"><span class="bind-s1">账号：{$Think.session.guestinfo.tel_guest}</span></div>
+                
+                {if $Think.session.guestinfo.wechat=="0"}
+                <div class="bind-r1"><img src="http://img.compassedu.hk/vx-tar.png"><span class="bind-s3"><a href="./wxbind">绑定微信号</a></span></div>
+                <div class=""style="font-size:16px;color:rgb(204,204,204)">绑定后，你可以同时使用微信登录未明学院</div>
+                {else}
+                <div class="bind-r1"><img src="http://img.compassedu.hk/dl-wx.jpg?imageMogr2/auto-orient/thumbnail/30x30>/blur/1x0/quality/75"style="width:25px"><span class="bind-s3"><a style="    cursor: default;">已绑定微信号</a></span></div>
+                {/if}
+                
+                </div>
+        
+            </div>
+        </div>
+        </div>
+        
+ 
+{include file="./application/index/view/index/w-bottom-1.html"} 
+
+</body>
+
+
+</html>

@@ -1,0 +1,351 @@
+
+<style>
+        .pj-title{
+            padding-right: 20px!important;
+            width: 100%;
+            height: 56px;
+            padding: 7px 6px 8.5px 17.5px;
+            border-bottom: 1px solid #e7e7e7;
+            position: relative;
+        }
+        .pj-title-1 {
+            font-size: 18px;
+            color: #333;
+            letter-spacing: 0;
+            height: 40.5px;
+            font-weight: 700;
+            width: 100%;
+            vertical-align: middle;
+            display: table-cell;
+        }
+        .comp-type input {
+            width: 100%!important;
+            padding-right: 20px!important;
+            padding-top: 17.5px!important;
+            text-align: right;
+            height: 55px!important;
+            top: 0!important;
+            right: 0!important;
+        }
+        .mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{
+            font-size: 20px!important;
+        }
+        .comp-type {
+            padding: 17.5px  20px 16.5px 20px;
+            height: 55px;
+            margin-bottom: 1px;
+            background-color: #fff;
+        }
+    @keyframes show
+    {
+        from {left:100vw;}
+        to {left:0;}
+    }
+
+    @-moz-keyframes show
+    {
+        from {left:100vw;}
+        to {left:0;}
+    }
+
+    @-webkit-keyframes show
+    {
+        from {left:100vw;}
+        to {left:0;}
+    }
+
+    @-o-keyframes show
+    {
+        from {left:100vw;}
+        to {left:0;}
+    }
+    @keyframes hide
+    {
+        from {left:0;}
+        to {left:100vw;}
+    }
+
+    @-moz-keyframes hide
+    {
+        from {left:0;}
+        to {left:100vw;}
+    }
+
+    @-webkit-keyframes hide
+    {
+        from {left:0;}
+        to {left:100vw;}
+    }
+
+    @-o-keyframes hide
+    {
+        from {left:0;}
+        to {left:100vw;}
+    } 
+    .eval-homepage{
+        width:100vw;
+        min-height:100vh;
+        padding-bottom: 20px;
+    }
+    .eval-page{
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        left: 100vw;
+        z-index:100;
+        min-height:100vh;
+        background: #f7f7f7;
+        overflow-y:hidden;
+        height: 100vh;
+    }   
+    .eval-show
+    {
+        left:0!important;
+        animation: show 0.3s;
+        -moz-animation: show 0.3s;	/* Firefox */
+        -webkit-animation: show 0.3s;	/* Safari 和 Chrome */
+        -o-animation: show 0.3s;	/* Opera */
+    }
+    .eval-hide
+    {
+        left:100vw!important;
+        animation: hide 0.3s;
+        -moz-animation: hide 0.3s;	/* Firefox */
+        -webkit-animation: hide 0.3s;	/* Safari 和 Chrome */
+        -o-animation: hide 0.3s;	/* Opera */
+    }
+    .eval_title{
+        width: 100%;
+        height: 42px;
+        padding-left:20px;
+        border-bottom: 1px solid #e7e7e7;
+        font-size: 15px;
+        line-height: 42px;
+    }
+    .eval_content{
+        background: #fff;
+    }
+    .eval_content .mui-input-row{
+        border-bottom: 1px solid #e7e7e7;
+    }
+    .eval_content .mui-input-row label{
+        padding:10px 10px 10px 20px!important;
+        line-height: 27px;
+        color:#333;
+        font-size: 15px;
+    }
+    .eval_content .mui-input-row input{
+        line-height: 27px;
+        height: 47px;
+        color:#333;
+        font-size: 15px;
+    }
+    .eval_content .mui-input-row select{
+        padding:0px 15px 10px 20px!important;
+        height: 47px;
+        font-size: 15px!important;
+        line-height: 27px;
+        width:100%!important;
+        direction: ltr!important;
+    }
+    .input-row{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: right;
+        width:40%!important;
+        color:#333;
+        font-size: 15px;
+    }
+    .input-row-left{
+        width:60%!important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color:#333;
+        font-size: 15px;
+    }
+    .eval-none{
+        color:#999!important;
+    }
+    .mui-navigate-right:after{
+        right:10px!important;
+    }
+    .mui-toast-message{
+        padding:10px 25px;
+        font-size: 14px;
+        color:#fff;
+        text-align: center;
+        background: #323232;
+        border-radius: 6px;
+    }
+    .python-hide label{
+        width:65%!important;
+    }
+    .python-hide input{
+        width:35%!important;
+    }
+    .python-hide select{
+        width:35%!important;
+    }
+    .python-hide1 label{
+        width:50%!important;
+    }
+    .python-hide1 input{
+        text-align: right;
+        width:50%!important;
+    }
+    .python-hide2 label{
+        width:65%;
+    }
+    .python-hide2 input{
+        width:100%!important;
+        padding-left: 20px!important;
+    }
+    #fx0,#md0,#major0,#zd0{
+        text-align: left;
+    }
+    .python-hide1,.python-hide2,.python-hide{
+    }
+    .mui-navigate-right{
+            padding-right: 24px;
+        }
+    .pj-front-btn {
+        margin-top: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        height:40px;
+    }
+    .pj-front-start {
+        width: 100%;
+        height: 40px;
+        background:  rgba(0,80,179,0.85);
+        border: 1px solid  rgba(0,80,179,0.85);
+        border-radius: 5px;
+        font-size: 16px;
+        color: #FFF;
+        letter-spacing: 0;
+        padding-top: 8px;
+        padding-bottom: 8.5px;
+        line-height:23.5px;
+        text-align: center;
+    }
+    .comp-type label{
+        font-size: 15px;
+        color: #333;
+        letter-spacing: 0;
+        line-height:21px;
+        padding: 0!important;
+    }
+
+    </style>
+</head>
+
+<div class="eval-homepage"> 
+    <div class="eval_title">打卡营问卷调查</div>
+    <div class="eval_content">
+            <div class="mui-input-row">
+                <label  style="width:100%;">你认为本次Tableau训练营难度如何？</label>
+                <select class="eval-none" id="q1">
+                    <option value="">请选择</option>
+                    <option value="A">过难</option>
+                    <option value="B">适中</option>
+                    <option value="C">过易</option>
+                </select>
+            </div> 
+            <div class="mui-input-row">
+                    <label  style="width:100%;">课程老师讲解是否清晰？</label>
+                    <select class="eval-none" id="q2">
+                        <option value="">请选择</option>
+                        <option value="A">清晰</option>
+                        <option value="B">一般</option>
+                        <option value="C">不清晰</option>
+                    </select>
+            </div>    
+            <div class="mui-input-row">
+                    <label  style="width:100%;">你完成作业所需时间大致为多少？</label>
+                    <select class="eval-none" id="q3">
+                        <option value="">请选择</option>
+                        <option value="A">30分钟以内</option>
+                        <option value="B">30-60分钟</option>
+                        <option value="C">超过60分钟</option>
+                    </select>
+            </div>  
+            <div class="mui-input-row">
+                    <label  style="width:100%;">截止目前，你对Tableau掌握如何？</label>
+                    <select class="eval-none" id="q4">
+                        <option value="">请选择</option>
+                        <option value="A">能很好掌握，作业完成顺利</option>
+                        <option value="B">基本掌握，部分作业应用仍有难度</option>
+                        <option value="C">掌握不佳，作业基本无法自己完成</option>
+                    </select>
+            </div> 
+            <div class="mui-input-row">
+                    <label  style="width:100%;">你是否在意训练营结束后的优秀学员评比及奖品颁发？</label>
+                    <select class="eval-none" id="q5">
+                        <option value="">请选择</option>
+                        <option value="A">在意</option>
+                        <option value="B">不在意</option>
+                    </select>
+            </div>             
+            <div class="mui-input-row">
+                    <label style="width:100%;">未明学院开设有多种技能训练与项目实践课程，你是否考虑做进一步了解？</label>
+                    <select class="eval-none" id="q6">
+                        <option value="">请选择</option>
+                        <option value="A">是</option>
+                        <option value="B">否</option>
+                    </select>
+            </div> 
+
+            <div class="mui-input-row python-hide2">
+                <label style="width:100%;">对本次Tableau零基础打卡营，你有任何意见或者建议吗？</label>
+            <input type="text" class="mui-input-clear" id="q7" placeholder="请输入">
+            </div>            
+    </div>
+
+    <div class="pj-front-btn  python-hide">
+            <div class="pj-front-start" onclick="submit()">提交</div>
+        </div>
+</div>   
+    
+
+
+    <script> 
+    function submit(){
+        var q1=$("#q1").val();
+        var q2=$("#q2").val();
+        var q3=$("#q3").val();
+        var q4=$("#q4").val();
+        var q5=$("#q5").val();
+        var q6=$("#q6").val();
+        var q7=$("#q7").val();
+        var q8='{$times}';
+        if(q1==''||q2==''||q3==''||q4==''||q5==''||q6==''){
+            mui.alert('','请完成问卷内容后再点击提交','知道了');
+            return false;
+        }
+        var option=[q1,q2,q3,q4,q5,q6,q7,q8];
+        var uid={$uid};
+        var cid={$cid};
+
+
+        var data={
+            "uid":uid,
+            "cid":cid,
+            'cpgid':1608,
+            'wjid':46,
+            'data':option
+        }
+        $.post("http://api.compassedu.hk/index.php/page/index/savePj", data,
+                                function(a){
+                                    mui.alert('','提交成功','好的',function(){
+                                        window.location.reload();
+                                    });
+                                })
+                                .error(function(){ 
+                                    mui.alert('','提交失败','重试',function(){
+                                submit();
+                        });
+                                })
+    }
+    </script>

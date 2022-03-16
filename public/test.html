@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试swoole的WebSocket服务</title>
+    <span id="response">
+        xx
+    </span>
+
+</head>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    let wsServer = 'ws://127.0.0.1:9504';
+    let websocket = new WebSocket(wsServer);
+    var msg;
+    var response = document.getElementById('response');
+    websocket.onopen = function (evt) {
+        msg = 'Connected to WebSocket server ;'
+        response.innerText = msg;
+        console.log(msg);
+    };
+
+    websocket.onclose = function (evt) {
+        msg = 'Disconnected';
+        response.innerText += msg;
+        console.log(msg);
+    };
+
+    websocket.onmessage = function (evt) {
+        msg = 'Retrieved data from server: ' + evt.data;
+        response.innerText += msg;
+        console.log(msg);
+    };
+
+    websocket.onerror = function (evt, e) {
+        msg = 'Error occured: ' + evt.data
+        response.innerText += msg;
+        console.log(msg);
+    };
+
+
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>未明影院</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #header {
+            background-color: #1266BE;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 15px;
+        }
+
+        #nav {
+            line-height: 60px;
+            background-color: #e0f2f0;
+            width: 80px;
+            padding: 30px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        #footer {
+            background-color: #1266BE;
+            color: #FFFFFF;
+            clear: both;
+            text-align: center;
+            padding: 35px;
+        }
+
+        #main {
+            margin-left: 140px;
+            padding-left: 150px;
+            padding-right: 220px;
+            overflow: scroll;
+        }
+
+        #article {
+            display: flex;
+            position: relative;
+        }
+
+        .catlog {
+            font-size: 20px;
+            color: black;
+            font-family: sans-serif;
+        }
+
+        .title {
+            color: #494949;
+            font-size: 20px;
+        }
+
+        .img {
+            width: 185px;
+            height: 266px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1 style="font-size:50px;">未明影院</h1>
+    </div>
+    <div id="movies">
+        <div id="main">
+            <div class="film">
+                <h2>
+                <a class="title">鲨海逃生</a>
+                </h2>
+                <img class="img" src="/public/static/source/shahaitaosheng.jpg" >
+                <div class="info">
+                        <span class="director"> <a >导演: 约翰内斯·罗伯茨</a></span><br>
+                        <span class="screenplay"><a >编剧: 欧内斯特·里埃拉</a></span><br>
+                        <span class="actors"><a >主演: 尼娅·朗/约翰·考伯特/苏菲·奈丽丝/科琳·福克斯/戴维·桑托斯/布芮妮·邱/希斯蒂妮·史泰龙/卡林·拉姆博</a> </span><br>
+                        <span class="kind">类型:惊悚/恐怖/冒险</span><br>
+                        <span class="area">制片国家/地区: 英国</span><br>
+                        <span class="lang">语言: 英语</span><br>
+                        <span class="date">上映日期:2019-08-16(美国)</span><br>
+                        <span class="duration">片长:89分钟</span><br>
+                        <span class="score">豆瓣评分: 6.1</span><br>
+                        <span class="comments">378人评价</span><br>
+                </div>
+            </div>
+            <div class="film">
+                    <h2>
+                    <a class="title">哪吒之魔童降世</a>
+                    </h2>
+                    <img class="img" src="/public/static/source/naza.jpg" >
+                    <div class="info">
+                            <span class="director"> <a >导演: 饺子</a></span><br>
+                            <span class="screenplay"><a >编剧: 饺子</a></span><br>
+                            <span class="actors"><a >主演: 吕艳婷/囧森瑟夫/瀚墨/陈浩/绿绮/张珈铭/杨卫</a> </span><br>
+                            <span class="kind">类型: 剧情/喜剧/动画/奇幻</span><br>
+                            <span class="area">制片国家/地区: 中国大陆</span><br>
+                            <span class="lang">语言: 汉语普通话</span><br>
+                            <span class="date">上映日期:2019-07-26(中国大陆)/2019-07-13(大规模点映)</span><br>
+                            <span class="duration">片长:110分钟</span><br>
+                            <span class="score">豆瓣评分: 8.5</span><br>
+                            <span class="comments">1070096人评价</span><br>
+                    </div>
+            </div>
+            <div class="film">
+                    <h2>
+                    <a class="title">送我上青云</a>
+                    </h2>
+                    <img class="img" src="/public/static/source/qingyun.jpg" >
+                    <div class="info">
+                            <span class="director"> <a >导演: 滕丛丛</a></span><br>
+                            <span class="screenplay"><a >编剧: 滕丛丛</a></span><br>
+                            <span class="actors"><a >主演: 姚晨/袁弘/李九霄/梁冠华/杨新鸣/吴玉芳</a> </span><br>
+                            <span class="kind">类型: 剧情</span><br>
+                            <span class="area">制片国家/地区: 中国大陆</span><br>
+                            <span class="lang">语言: 汉语普通话</span><br>
+                            <span class="date">上映日期: 2019-08-16(中国大陆)/2019-06-17(上海电影节)</span><br>
+                            <span class="duration">片长:99分钟</span><br>
+                            <span class="score">豆瓣评分: 7.2</span><br>
+                            <span class="comments">99243人评价</span><br>
+                    </div>
+            </div>                
+             <div class='bot' style="margin-left: 300px;">
+                <a href="{$page-1}">上一页</a>
+                <select onchange="window.location=this.value">
+                    <option>1</option>
+                    <option selected="true">2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <a href="{$page+1}">下一页</a>
+            </div> 
+        </div>
+    </div>
+
+    <div id="footer">Copyright © 未明学院
+    </div>
+
+</body>
+
+</html>

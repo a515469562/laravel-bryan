@@ -1,0 +1,193 @@
+<html><head>
+        <meta charset="utf-8">
+        <title>未明学院</title>
+        <meta name="robots" content="NOINDEX,NOFOLLOW,noarchive" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="{$Think.const.LOGO}">
+        <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.5.1/skins/default/aliplayer-min.css" />
+        <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.5.1/aliplayer-min.js"></script>
+    <style>
+        body{
+            margin:0;
+            background: rgb(20, 25, 30);
+            padding-top: 0px;
+            overflow-y: scroll;
+        }
+        .lecture-player{
+            margin: 0px;
+            height: 100%;
+            padding-top: 50px;
+        }
+        .prism-player .prism-controlbar{
+        height:50px!important;
+        }
+        a {
+        color: #428bca;
+        text-decoration: none;
+        }
+        div {
+        display: block;
+        }
+        /*初始化所有标签*/
+        *:focus {
+            outline: none;
+        }
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    </head>
+    
+    <body class="mui-ios mui-ios-9 mui-ios-9-1 lecture">
+            <div  style="background-color: #07111b;height: 50px;position: fixed;top: 0px;width: 100%; z-index: 99999;color: #b5b9bc;">
+                    <p style="margin:0 0 10px 0;font-size: 14px;color: #b5b9bc;padding: 15px 0 0 30px;">{$title}
+                    <a href="javascript:void(0)" onclick="showline()" style="float: right;margin-right: 40px;color:#b5b9bc;">切换线路</a>
+                    </p>
+                    </div>
+        <div id="showline" style="display:none;position: fixed;top:50px;right:40px; z-index: 99999;font-size:14px;">
+                
+                {if $id==1}<a href="http://www.enaca.cn/record?id=1" target="_self" style="display:block;margin-bottom:5px">线路1</a>{else}<a href="http://www.enaca.cn/record?id=1" target="_self" style="color:#b5b9bc; display:block;margin-bottom:5px">线路1</a>{/if}
+                {if $id==2}<a href="http://www.enaca.cn/record?id=2" target="_self" style="display:block;margin-bottom:5px">线路2</a>{else}<a href="http://www.enaca.cn/record?id=2" target="_self" style="color:#b5b9bc; display:block;margin-bottom:5px">线路2</a>{/if}
+                {if $id==3}<a href="http://www.enaca.cn/record?id=3" target="_self" style="display:block">线路3</a>{else}<a href="http://www.enaca.cn/record?id=3" target="_self" style="color:#b5b9bc; display:block">线路3</a>{/if}
+                    </div>
+            <script>
+                    function showline(){
+                        if($("#showline").is(":hidden")){
+                            $("#showline").show();
+                        }else{
+                            $("#showline").hide();
+                        }
+                    }
+                    </script>
+    
+        <div class="lecture-player">
+                <div  id="player">
+                    <div  class="prism-player" id="player-con" ></div>
+                <script>
+                    var rurl='{$rurl}';
+                    var player = new Aliplayer({
+                        id: "player-con",
+                            source: rurl,
+                             autoplay: true,
+                             isLive:false,
+                             playsinline:true,
+                             width:"100%",
+                             height:"100%",
+                             controlBarVisibility:"always",
+                             useH5Prism:true,
+                             "skinLayout": [
+                                            {
+                                              "name": "bigPlayButton",
+                                              "align": "blabs",
+                                              "x": 30,
+                                              "y": 80
+                                            },
+                                            {
+                                              "name": "H5Loading",
+                                              "align": "cc"
+                                            },
+                                            {
+                                              "name": "errorDisplay",
+                                              "align": "tlabs",
+                                              "x": 0,
+                                              "y": 0
+                                            },
+                                            {
+                                              "name": "infoDisplay"
+                                            },
+                                            {
+                                              "name": "tooltip",
+                                              "align": "blabs",
+                                              "x": 0,
+                                              "y": 56
+                                            },
+                                            {
+                                              "name": "thumbnail"
+                                            },
+                                            {
+                                              "name": "controlBar",
+                                              "align": "blabs",
+                                              "x": 0,
+                                              "y": 0,
+                                              "children": [
+                                                {
+                                                  "name": "progress",
+                                                  "align": "blabs",
+                                                  "x": 0,
+                                                  "y": 44
+                                                },
+                                                {
+                                                  "name": "playButton",
+                                                  "align": "tl",
+                                                  "x": 15,
+                                                  "y": 12
+                                                },
+                                                {
+                                                  "name": "timeDisplay",
+                                                  "align": "tl",
+                                                  "x": 10,
+                                                  "y": 7
+                                                },
+                                                {
+                                                  "name": "fullScreenButton",
+                                                  "align": "tr",
+                                                  "x": 10,
+                                                  "y": 10
+                                                },
+                                                {
+                                                  "name": "setting",
+                                                  "align": "tr",
+                                                  "x": 15,
+                                                  "y": 12
+                                                },
+                                                {
+                                                  "name": "volume",
+                                                  "align": "tr",
+                                                  "x": 5,
+                                                  "y": 10
+                                                }
+                                              ]
+                                            }
+                                          ]
+                             },function(player){
+                                console.log("播放器创建了。");
+                              }
+                        );
+        $( document ).on( 'keydown', function ( e ) {
+        	var state=player.getStatus();
+        	console.log(state);
+            if ( e.keyCode === 32 ) {
+                if (state == "pause") {
+                    // Play the video
+              	  player.play();
+                }else{
+                    if(state == "ready"||state == "playing"){
+                    player.pause();
+                    }
+                }
+            }
+        });     
+        </script>  
+        </div>
+            </div>   
+         
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?50037c835a3d4475f3cf72a4868228fc";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+    </body></html>
